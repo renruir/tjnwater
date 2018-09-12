@@ -6,10 +6,17 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5dc31c70-caf9-47b5-92e8-6f4bd9455559" name="Default" comment="">
+    <list default="true" id="5dc31c70-caf9-47b5-92e8-6f4bd9455559" name="Default" comment="create a html page for add general devices like non intelligence devices">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/api/api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/tjnwater/wechat/web/controller/WechatWebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/tjnwater/wechat/web/controller/WechatWebController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp_bak/Customer/cs.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp_bak/Customer/installandrepair.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp_bak/Customer/userdetail.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp_bak/Help/jsq_faq.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp_bak/aftersale_service.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp_bak/customer_service.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp_bak/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp_bak/jsq_home_new.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp_bak/netsetting.jsp" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -117,11 +124,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="jsp" value="11" />
+          <entry key="txt" value="101" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSP" value="11" />
+          <entry key="PLAIN_TEXT" value="101" />
         </counts>
       </usages-collector>
     </session>
@@ -143,8 +152,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp/add_general_device.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="513">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -377,16 +386,6 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="tjnwater" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tjnwater" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -403,7 +402,7 @@
     <property name="SearchEverywhereHistoryKey" value="WaterDataProcess&#9;FILE&#9;file://D:/Web/workspace/tjnwaterservice/wechat/src/main/java/com/tjnwater/wechat/handler/WaterDataProcess.java&#10;BaseDataProcess&#9;PSI&#9;JAVA://com.tjnwater.wechat.handler.BaseDataProcess&#10;WaterMsgExecuteImpl&#9;FILE&#9;file://D:/Web/workspace/tjnwaterservice/service/src/main/java/com/tjnwater/wechat/service/msg/WaterMsgExecuteImpl.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536767032012" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536767178943" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -586,7 +585,7 @@
       <workItem from="1520492708664" duration="1363000" />
       <workItem from="1536734961302" duration="7837000" />
       <workItem from="1536764706121" duration="1172000" />
-      <workItem from="1536766759054" duration="271000" />
+      <workItem from="1536766759054" duration="539000" />
     </task>
     <task id="LOCAL-00001" summary="first commit by renrui for TJNwater project">
       <created>1516517037077</created>
@@ -595,11 +594,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516517037078</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="create a html page for add general devices like non intelligence devices">
+      <created>1536767171282</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1536767171282</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216320000" />
+    <option name="totallyTimeSpent" value="216588000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -612,7 +618,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49317408" visible="true" weight="0.21581769" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -716,7 +721,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit by renrui for TJNwater project" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit by renrui for TJNwater project" />
+    <MESSAGE value="create a html page for add general devices like non intelligence devices" />
+    <option name="LAST_COMMIT_MESSAGE" value="create a html page for add general devices like non intelligence devices" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/api/src/main/webapp/images/jsq_qrcode.png">
@@ -1043,8 +1049,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/src/main/webapp/WEB-INF/jsp/add_general_device.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="513">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
