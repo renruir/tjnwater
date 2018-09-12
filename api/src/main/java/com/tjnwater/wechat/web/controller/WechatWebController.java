@@ -690,10 +690,10 @@ public class WechatWebController {
         return "netsetting";
     }
 
-    @RequestMapping(value = "add_new_device.html")
+    @RequestMapping(value = "add_general_device.html")
     public String addNewDevice(HttpServletRequest request, HttpServletResponse response, String code, Model model) {
         String productModel = request.getParameter("productModel");
-        return "addnewdevice";
+        return "add_general_device";
     }
 
     @RequestMapping(value = "getCityInfo")
