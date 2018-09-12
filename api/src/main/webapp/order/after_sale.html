@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/web/js/jquery-1.10.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>售后进度查询</title>
+    <style>
+        html, body {
+            /*font-size: 100px;*/
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #f4f4f8;
+        }
+
+        /*.page_main {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 7.20rem;
+            height: 100%;
+            min-height: 10.8rem;
+            margin-left: -3.6rem;
+            background-color: #f4f4f8;
+        }*/
+
+        .page_main{
+            width: 7.20rem;
+            margin:0 auto;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        .middle_all {
+            font-family: PingFangSC-Regular;
+            font-size: 0.24rem;
+            color: #202020;
+            letter-spacing: 0;
+            text-align: justify;
+            line-height: 0.4rem;
+            height: 2.3rem;
+            width: 7.2rem;
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            background-color: white;
+        }
+
+        .middle_all1 {
+            font-family: PingFangSC-Regular;
+            font-size: 0.24rem;
+            color: #202020;
+            letter-spacing: 0;
+            text-align: justify;
+            line-height: 0.4rem;
+            height: 1.6rem;
+            width: 7.2rem;
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            background-color: white;
+        }
+
+        .page_middle {
+            height: 2.3rem;
+            width: 7.2rem;
+            text-align: left;
+            vertical-align: middle;
+            background-color: white;
+            font-family: PingFangSC-Regular;
+        }
+
+        .page_middle1 {
+            padding-right: 1.5rem;
+            height: 1.6rem;
+            width: 7.2rem;
+            text-align: left;
+            vertical-align: middle;
+            background-color: white;
+            font-family: PingFangSC-Regular;
+        }
+
+    </style>
+</head>
+<body>
+<div class="page_main">
+
+    <!--<div class="middle_all">
+        <div class="page_middle">
+            <ul class="box" style="text-align: left;font-size:0.24rem;padding-top: 0.15rem;margin-left: -0.3rem">
+                <li>系统操作时间：<span class="time_sys">2018-02-22 09:37:34</span></li>
+                <li>系统操作人员：<span class="people_sys">陶丽</span></li>
+                <li>工单描述：<span class="describe">派工</span></li>
+                <li>服务人员：<span class="service_people">雷英</span></li>
+                <li>服务时间：<span class="service_time">2018-02-24 00:00:00</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="middle_all1">
+        <div class="page_middle1">
+            <ul class="box" style="text-align: center;text-align: left;font-size:0.24rem;padding-top:0.15rem;margin-left: -0.3rem">
+                <li>系统操作时间：<span class="time_sys1">2018-02-26 12:32:24</span></li>
+                <li>系统操作人员：<span class="people_sys1">陶丽</span></li>
+                <li>工单描述：<span class="describe1">完成</span></li>
+            </ul>
+        </div>
+    </div>-->
+
+</div>
+<script type="text/javascript">
+    //用这段js放页面，就能根据屏幕不同尺寸换算html的fontsize了，最终的rem尺寸会跟着变
+    (function (doc, win) {
+        var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if (clientWidth > 720) {
+                clientWidth = 720;
+            }
+            docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+        };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        /* doc.addEventListener('DOMContentLoaded', recalc, false); */
+    })(document, window);
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+
+    $(function(){
+        var orderno = GetQueryString("orderno");
+        if(orderno){
+            $.ajax({
+                type: "GET",
+                url: "/web/orderservice/getProcessList?rank="+Math.random()+"&orderno=" + orderno,
+                success: function (data) {
+                    var dataHtml = "";
+                    if(data) {
+                        data = JSON.parse(data);
+                        if(data.data){
+                            var dataList = data.data;
+                            for(var i=0;i<dataList.length;i++){
+                                dataHtml+="<div class=\"middle_all\"> <div class=\"page_middle\"> <ul class=\"box\" style=\"text-align: left;font-size:0.24rem;padding-top: 0.15rem;margin-left: -0.3rem\">";
+                                if(dataList[i].createdate){
+                                    dataHtml+="<li>系统操作时间：<span class=\"time_sys\">"+dataList[i].createdate+"</span></li>";
+                                }
+                                if(dataList[i].createuser){
+                                    dataHtml+="<li>系统操作人员：<span class=\"people_sys\">"+dataList[i].createuser+"</span></li>";
+                                }
+                                if(dataList[i].stepdesc){
+                                    dataHtml+="<li>工单描述：<span class=\"describe\">"+dataList[i].stepdesc+"</span></li>";
+                                }
+                                if(dataList[i].serviceuser){
+                                    dataHtml+="<li>服务人员：<span class=\"service_people\">"+dataList[i].serviceuser+"</span></li>";
+                                }
+                                if(dataList[i].servicedate){
+                                    dataHtml+="<li>服务时间：<span class=\"service_time\">"+dataList[i].servicedate+"</span></li>";
+                                }
+                                dataHtml+="</ul></div></div>";
+                            }
+                            $(".page_main").html(dataHtml);
+                        }
+                    }
+                    //all_data = data.data;
+                    /*for(var i in all_data){
+                        $(".page_main").append(appenddiv.replace("tid_num", all_data[i].tid).replace("tid_num_data", all_data[i].tid).replace("pay_times", all_data[i].pay_time).replace("store_name", all_data[i].store_name));
+                    }
+
+                    $(".btn").click(function(){
+                        var tid = $(this).data("tid");
+                        window.location.href = "/web/order/select_order_more.html?tid=" + tid;
+                    });*/
+                },
+                error: function (data) {
+                }
+            });
+
+        }
+    });
+
+
+
+
+</script>
+
+
+</body>
+</html>

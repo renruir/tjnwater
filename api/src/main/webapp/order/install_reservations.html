@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../js/jquery-1.10.1.min.js"></script>
+    <script src="../js/laydate.js"></script>
+    <link href="../css/laydate.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>预约安装</title>
+    <style>
+        html, body {
+            /*font-size: 100px;*/
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        a{ text-decoration:none; }
+
+        .page_main {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 7.20rem;
+            height: 100%;
+            min-height: 11.8rem;
+            margin-left: -3.6rem;
+        }
+
+        .page_head {
+            height: 0.17rem;
+            width: 6.25rem;
+        }
+
+        input[type=date]:before {
+            content: attr(placeholder);
+            font-family: 黑体;
+            font-size: 0.24rem;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+        }
+
+        input[type=date]::-webkit-inner-spin-button {
+            visibility: hidden;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #c8c8c8
+        }
+
+        .page_middle {
+            min-height: 7.74rem;
+            width: 6.25rem;
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .middle_cell {
+            width: 6.25rem;
+            border-bottom: 0.01rem solid #c8c8c8;
+            text-align: left;
+            vertical-align: middle;
+            float: left;
+
+        }
+
+        .page_cell {
+            width: 100%;
+            height: 0.86rem;
+            margin-left: 0;
+            text-align: left;
+            vertical-align: middle;
+            line-height: 0.86rem;
+            font-size: 0.28rem;
+            font-family: 黑体;
+        }
+
+        .middle_bottom_cell {
+            width: 6.25rem;
+            border-bottom: 0.01rem solid #c8c8c8;
+            text-align: left;
+            vertical-align: middle;
+            float: left;
+            height: 0.86rem;
+
+        }
+
+        .page_bottom_cell {
+            width: 6.25rem;
+            height: 0.86rem;
+            margin-left: 0;
+            text-align: left;
+            vertical-align: middle;
+            line-height: 0.86rem;
+            font-size: 0.28rem;
+            font-family: 黑体;
+
+        }
+
+        .middle_bottom_cell1 {
+            margin-left: 2.1rem;
+            width: 4.15rem;
+            /*border-bottom: 0.01rem solid #c8c8c8;*/
+            text-align: left;
+            vertical-align: middle;
+            float: left;
+            /*height: 0.86rem;*/
+
+        }
+
+        .page_bottom_cell1 {
+            width: 4.15rem;
+            height: 0.86rem;
+            margin-left: 0;
+            text-align: left;
+            vertical-align: middle;
+            line-height: 0.86rem;
+            font-size: 0.28rem;
+            font-family: 黑体;
+
+        }
+
+        ::-webkit-input-placeholder {
+            color: #ffffff;
+        }
+
+        .icon {
+            float: right;
+            clear: both;
+            display: inline;
+            margin: auto;
+
+        }
+
+        .tips {
+            /*height: 1.2rem;*/
+            width: 6.25rem;
+            text-align: center;
+            vertical-align: middle;
+            margin: auto;
+        }
+
+        .content {
+            /*padding-top: 0.32rem;*/
+            width: 5.6rem;
+            /*float: left;*/
+            font-size: 0.13rem;
+            vertical-align: middle;
+            text-align: left;
+            color: #b4b4b4;
+        }
+
+        .page_bottom {
+            margin-top: 0.4rem;
+            margin-left: 0.475rem;
+            border-radius: 0.1rem;
+            background-color: #ff2452;
+            color: #ffffff;
+            font-size: 0.35rem;
+            width: 6.25rem;
+            height: 0.81rem;
+            line-height: 0.81rem;
+            text-align: center;
+            vertical-align: middle;
+            border: none;
+        }
+
+        .page_inquiry {
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            width: 6.25rem;
+            height: 0.84rem;
+            line-height: 0.84rem;
+        }
+
+        .btn {
+            border-radius: 0.1rem;
+            background-color: #ff2452;
+            color: #ffffff;
+            font-size: 0.35rem;
+            width: 6.25rem;
+            height: 0.81rem;
+            line-height: 0.81rem;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            border: none;
+            margin: auto;
+
+        }
+
+        option {
+            color: #b4b4b4;
+            width: 1.9rem;
+        }
+
+        select:focus option:checked {
+            color: #b4b4b4;
+            background-color: #54cfcf;
+        }
+
+        select {
+            margin-left: -0.3rem;
+            font-size: 0.28rem;
+            padding-right: 1.2rem;
+            height: 0.4rem;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background: url("/install_img/Icons_dropdown.png") no-repeat right center transparent;
+            background-size: 0.4rem 0.4rem;
+            margin-top: 0.24rem;
+            float: right;
+            display: inline-block;
+            border: none;
+        }
+
+        select::-ms-expand {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="page_main">
+    <div class="page_head"></div>
+
+    <form role="form" id="addOrderForm" method="post" onsubmit="return submitData();">
+        <div class="page_middle">
+            <div class="middle_cell">
+                <div class="page_cell">
+                    联系人 <input type="text"
+                               style="font-size: 0.28rem;border: 0rem;width:4.3rem;margin-left: 0.3rem;"
+                               name="receiver_name" id="peopleId" value="" >
+                    <div class="icon"><img src="install_img/Icons_edit.png"
+                                           style="width: 0.4rem;height: 0.4rem;margin-left: auto" align="absmiddle"></div>
+                </div>
+            </div>
+            <div class="middle_cell">
+                <div class="page_cell">
+                    手机号 <input type="text"
+                               style="font-size: 0.28rem;border: 0rem;width:4.3rem;margin-left: 0.3rem"
+                               name="receiver_mobile" id="phoneId" value="">
+                    <div class="icon"><img src="install_img/Icons_edit.png"
+                                           style="width: 0.4rem;height: 0.4rem;margin-left: auto" align="absmiddle"></div>
+                </div>
+            </div>
+            <div class="middle_cell">
+                <div class="page_cell">
+                    订单号 <input type="text"
+                               style="font-size: 0.28rem;border: 0rem;width:4.6rem;margin-left: 0.3rem "
+                               name="tid" id="orderId" value="" readonly>
+                </div>
+            </div>
+
+            <!--隐藏表单属性-->
+            <div class="middle_cell"  style="display:none">
+                <div class="page_cell">
+                    SCI订单号 <input type="text"
+                                  style="font-size: 0.28rem;border: 0rem;width:4.6rem;margin-left: 0.3rem "
+                                  name="orderno" id="orderno" value="" readonly>
+                </div>
+            </div>
+            <div class="middle_cell"  style="display:none">
+                <div class="page_cell">
+                    服务类型 <input type="text"
+                                style="font-size: 0.28rem;border: 0rem;width:4.6rem;margin-left: 0.3rem "
+                                name="servicetype" id="servicetype" value="预约安装" readonly>
+                </div>
+            </div>
+            <!---->
+
+            <div class="middle_cell">
+                <div class="page_cell">
+                    门店名称 <input type="text"
+                                style="font-size: 0.28rem;border: 0rem;width:4.1rem;margin-left: 0.3rem "
+                                name="platform" id="platformId" value="" readonly>
+                </div>
+            </div>
+            <div class="middle_cell">
+                <div class="page_cell">
+                    付款日期 <input type="text"
+                                style="font-size: 0.28rem;border: 0rem;width:4.2rem;margin-left: 0.3rem "
+                                name="date" id="dateId" value="" readonly >
+                </div>
+            </div>
+            <div class="middle_cell">
+                <div class="page_cell">
+                    上门地址 <input type="text"
+                                style="font-size: 0.28rem;border: 0rem;width:3.8rem; margin-left: 0.3rem; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;word-wrap: normal;"
+                                name="receiver_address" id="installId" value="">
+                    <div class="icon"><img src="install_img/Icons_edit.png"
+                                           style="width: 0.4rem;height: 0.4rem;margin-left: auto" align="absmiddle"></div>
+                </div>
+            </div>
+            <div class="middle_cell">
+                <div class="page_cell">
+                    期望上门时间 <input type="text"
+                                  style="font-size: 0.28rem;border: 0rem;width:3.8rem;margin-left: 0.3rem "
+                                  name="servicedate" id="date1Id" placeholder="期望上门日期" readonly="true">
+                </div>
+            </div>
+            <div class="middle_bottom_cell">
+            <div class="page_bottom_cell">
+            安装商品
+                <input type="hidden" name="model" id="modelId" >
+            <input type="text"
+            style="font-size: 0.28rem;border: 0rem;width:1.45rem;margin-left: 0.85rem;"
+            name="modelName" id="modelNameId" placeholder="机器型号" readonly>
+            <input
+            style="font-size: 0.2rem;width:0.3rem;color:#c8c8c8;height:0.88rem;border: none;text-align: center" value="—"
+            readonly
+            >
+            <select style="color:#c8c8c8" name="qty">
+            <option value="0" selected = "selected">数量</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            </select>
+            </div>
+            </div>
+            <div class="middle_bottom_cell1" style="display:none">
+            <!--<div class="page_bottom_cell1">-->
+            <!--<input type="text"-->
+            <!--style="font-size: 0.28rem;border: 0rem;width:1.45rem; "-->
+            <!--name="machine" id="machine1Id" placeholder="机器型号" readonly>-->
+            <!--<input-->
+            <!--style="font-size: 0.2rem;width:0.3rem;color:#c8c8c8;height:0.88rem;border: none;text-align: center " value="—"-->
+            <!--readonly-->
+            <!--&gt;-->
+            <!--<select style="color:#c8c8c8">-->
+            <!--<option value="placeholder" disabled selected style="display:none;border: none;">数量</option>-->
+            <!--<option value="1">1</option>-->
+            <!--<option value="2">2</option>-->
+            <!--<option value="3">3</option>-->
+            <!--</select>-->
+            <!--</div>-->
+            </div>
+            <div class="middle_cell"  style="margin-bottom: 0.2rem">
+                <div class="page_cell">
+                    备注信息 <input type="text"
+                                style="font-size: 0.28rem;border: 0rem;width:3.8rem;margin-left: 0.3rem;color: #b4b4b4 "
+                                name="remark" id="messageId" placeholder="家中管件特殊型号等">
+                    <div class="icon"><img src="install_img/Icons_edit.png"
+                                           style="width: 0.4rem;height: 0.4rem;margin-left: auto" align="absmiddle"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="tips">
+            <div class="content">
+                <span style="text-align: left;vertical-align: middle; font-size: 0.13rem;color:#ff2452">为保证预约安装时效，请于收到货后再开始预约安装，至少提前3天开始预约。</span><br/>
+                <span style="text-align: left;vertical-align: middle; font-size:0.13rem;">(例: 师傅上门安装时间4月10日，预约时间至少为4月7日。)</span><br/>
+                <span style="text-align: left;vertical-align: middle; font-size:0.13rem;color:#ff2452">偏远地区、大促期间可能时间有所延长</span>
+            </div>
+        </div>
+
+
+        <div class="page_bottom">
+            <button type="button" class="btn">确&nbsp;&nbsp;认</button>
+        </div>
+
+        <div class="page_inquiry">
+            <span style="color:#b4b4b4;text-align: center;vertical-align: middle;font-size: 0.22rem;font-family: 黑体"><a href="tel:4008808558" style="color: #b4b4b4">客服电话</a></span>
+        </div>
+    </form>
+
+</div>
+<script type="text/javascript">
+    //用这段js放页面，就能根据屏幕不同尺寸换算html的fontsize了，最终的rem尺寸会跟着变
+    (function (doc, win) {
+        var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if (clientWidth > 720) {
+                clientWidth = 720;
+            }
+            docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+        };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        /* doc.addEventListener('DOMContentLoaded', recalc, false); */
+    })(document, window);
+
+    laydate.render({
+        elem: '#date1Id' //指定元素
+
+    });
+
+    //    点击提交按钮
+    $(".btn").on("click", function(){
+        var type=$("#date1Id").val()
+        if(type!='') {
+            submitData();
+        }else {
+            alert("日期不能为空")
+        }
+    });
+    function submitData() {
+        var serviceDate=document.getElementById("date1Id").value;
+        var noSelect = 0;
+        $("select[name='qty']").each(function(){
+            var selectText = $(this).find("option:selected").text();
+            if(selectText == "数量"){
+                noSelect=noSelect+1;
+            }
+
+        });
+
+        if(noSelect>0){
+            alert("商品数量必选，如该商品无需服务请选择0");
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url:  "/web/orderservice/createOrderService?rank="+Math.random(),
+            data: $('#addOrderForm').serialize(),
+            dataType:"text",//返回参数的类型
+            success: function (data) {
+//                           alert(data);
+                window.location.href="/web/order/order_success.html?date="+serviceDate+"&v=1.0";
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(textStatus);
+                alert(errorThrown);
+            }
+        });
+
+    };
+
+    //    页面自动加载js代码
+    $(document).ready(function(){
+        var tid= GetQueryString("tid");
+        var tid=tid.replace(/(^\s*)|(\s*$)/g, "")
+//        var pay_time=GetQueryString("pay_time");
+//        var shop_name=GetQueryString("shop_name");
+//        var orderno= GetQueryString("orderno");
+//        var orderno=orderno.replace(/(^\s*)|(\s*$)/g, "")
+
+        var url="/web/orderservice/getOrderList";
+        if(tid!='' && tid!=null){
+            var url=url+"?rank="+Math.random()+"&tid="+tid;
+        }
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var dataJson=JSON.parse(data);
+                var dataList=dataJson.data;
+                for (var i=0;i<dataList.length;i++)
+                {
+//                    var tid=dataList[i].tid;
+                    var pay_time=dataList[i].pay_time;
+                    var store_name=dataList[i].store_name;
+                    var receiver_name=dataList[i].receiver_name;
+                    var receiver_mobile=dataList[i].receiver_mobile;
+                    var receiver_address=dataList[i].receiver_state+dataList[i].receiver_city+dataList[i].receiver_address;
+
+//                    隐藏的订单属性值
+                    var orderno=dataList[i].orderno;
+
+//                    机器型号
+                    var detail_list=dataList[i].detail
+                    var productCodeList=[];
+                    var productNameList=[];
+                    var qvList=[];
+//                    alert(detail_list.length)
+                    for (var j=0;j<detail_list.length;j++) {
+                        var product_code=detail_list[j].product_code;
+                        var product_name = detail_list[j].product_name;
+//                        alert(product_code)
+                        var qty=detail_list[j].qty;
+
+//                    <div class="middle_bottom_cell">
+//                            <div class="page_bottom_cell">
+//                            安装商品
+//                            <input type="text"
+//                        style="font-size: 0.28rem;border: 0rem;width:1.45rem;margin-left: 0.85rem;"
+//                        name="machine" id="machineId" placeholder="机器型号" readonly>
+//                        <input
+//                        style="font-size: 0.2rem;width:0.3rem;color:#c8c8c8;height:0.88rem;border: none;text-align: center" value="—"
+//                        readonly
+//                        >
+//                        <select style="color:#c8c8c8">
+//                            <option value="placeholder" disabled selected style="display:none;border: none; ">数量</option>
+//                            <option value="1">0</option>
+//                            <option value="1">1</option>
+//                            <option value="2">2</option>
+//                            <option value="3">3</option>
+//                            </select>
+//                            </div>
+//                            </div>
+                 if(j>=1){
+                     $(".middle_bottom_cell1").css('display','block');
+                     var _html_machineCode=
+                         "            <div class=\"page_bottom_cell1\" style='border-bottom: 0.01rem solid #c8c8c8;'>\n" +
+                         "            <input type=\"hidden\"" +
+                         "            name=\"model\" id=\"machine1Id\" value=\""+product_code+"\">\n" +
+                         "            <input type=\"text\"" +
+                         "            style=\"font-size: 0.28rem;border: 0rem;width:1.45rem; \"" +
+                         "            name=\"modelName\" placeholder=\"机器型号\" readonly value=\""+product_name+"\">\n" +
+                         "            <input" +
+                         "            style=\"font-size: 0.2rem;width:0.3rem;color:#c8c8c8;height:0.88rem;border: none;text-align: center \" value=\"—\"" +
+                         "            readonly" +
+                         "            >\n" +
+                         "            <select style=\"color:#c8c8c8\" name=\"qty\">\n" +
+                         "            <option value=\"0\" selected = \"selected\">数量</option>\n" +
+                         "            <option value=\"0\">0</option>\n" +
+                         "            <option value=\"1\">1</option>\n" +
+                         "            <option value=\"2\">2</option>\n" +
+                         "            <option value=\"3\">3</option>\n" +
+                         "            </select>\n" +
+                         "            </div>\n"
+                     $(".middle_bottom_cell1").append(_html_machineCode);
+                 }else{
+                         $('#modelId').attr('value',product_code);
+                         $('#modelNameId').attr('value',product_name);
+                 }
+                        productCodeList.push(product_code);
+                        productNameList.push(product_name);
+                        qvList.push(qty);
+                    }
+                    $('#orderId').attr('value',tid);
+                    $('#platformId').attr('value',store_name);
+                    $('#dateId').attr('value',pay_time);
+                    $('#orderno').attr('value',orderno);
+
+                    $('#peopleId').attr('value',receiver_name);
+                    $('#phoneId').attr('value',receiver_mobile);
+                    $('#installId').attr('value',receiver_address);
+                    /*var divarr = document.getElementsByName("model");
+                    var divnamearr = document.getElementsByName("modelName");
+                    for (var k=0;k<divarr.length;k++) {
+                        if(productCodeList.length>=k+1){
+                            divarr[k].value=productCodeList[k];
+                            divnamearr[k].value=productNameList[k];
+                        }else {
+                            divarr[k].value="";
+                            divnamearr[k].value="";
+                        }
+                    }*/
+
+                }
+            },
+            error: function (data) {
+            }
+        });
+
+
+
+    });
+
+    //    获取url中的参数值
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+//        获取当前页面的网址，并转成utf-8编码
+        var aaa=window.location.search;
+        var uuu = decodeURI(aaa);
+        var r = uuu.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+</script>
+
+
+</body>
+</html>

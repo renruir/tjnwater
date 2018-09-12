@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+
+<title>特洁恩智能净水器</title>
+
+<style type="text/css">
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:1.6;margin:0;padding:0;font-size: 100px;}
+body{-webkit-touch-callout:none;font-family:"Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;background-color:#fff;line-height:inherit;margin:0;padding:0;color: #444444;font-size: 0.24rem;}
+
+a{ text-decoration:none; }
+ul{ list-style: none;margin: 0;padding: 0; }
+
+a,
+input,div {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+.home_main{
+	width: 7.20rem;
+	height: 100%;
+	min-height:10rem;
+	position: absolute;
+	margin-left:-3.6rem;
+	top:0;
+	left:50%;
+}
+
+.home_content{
+	width: 7.20rem;
+	height:100%;
+	position: relative;
+	overflow: hidden;
+}
+
+
+
+.home_content_bg{
+	width: 7.20rem;
+	height:100%;
+	top:0;
+	left:0;
+	position: absolute;
+	background: url("tjn_imgs/home_bg.png") no-repeat;
+	background-size: cover;
+	}
+
+.home_tds_content{
+	width: 3.02rem;
+	margin:0 auto;
+	margin-top: 0.2rem;
+	overflow: hidden;
+}
+
+	.tds_div{
+		float: left;
+	}
+
+.tds_word{
+	width: 1.02rem;
+	font-size: 0.2rem;
+	margin-top: 1.15rem;
+	color: #7c8892;
+}
+
+	.ppm_word{
+		width: 0.5rem;
+		font-size: 0.2rem;
+		margin-top: 1.15rem;
+		color: #7c8892;
+	}
+
+
+	.tds_value{
+		width: 1.5rem;
+		font-size: 1.25rem;
+		color: #ace8f3;
+	}
+
+
+
+.home_status_content{
+	width: 3.41rem;
+	margin:0 auto;
+	margin-top: -0.4rem;
+	overflow: hidden;
+}
+
+.status_div{
+	float: left;
+}
+
+	.status_word{
+		width: 0.92rem;
+		font-size: 0.2rem;
+		margin-top: 0.3rem;
+		color: #7c8892;
+	}
+
+.status_value{
+	width: 0.67rem;
+	font-size: 0.24rem;
+	margin-top: 0.25rem;
+	color: #ace8f3;
+}
+
+.status_line{
+	width: 0.2rem;
+	font-size: 0.28rem;
+	margin-top: 0.2rem;
+	color: #7c8892;
+}
+
+.ystds_word{
+	width: 0.92rem;
+	font-size: 0.2rem;
+	margin-top: 0.3rem;
+	color: #7c8892;
+}
+
+.ystds_value{
+	width: 0.7rem;
+	font-size: 0.40rem;
+	color: #ace8f3;
+	margin-top: 0.1rem;
+}
+
+	.home_wash_btn{
+		width: 3.08rem;
+		height: 1.01rem;
+		margin: 0 auto;
+		margin-top: 0.82rem;
+		color: #384a53;
+		line-height: 1.01rem;
+		text-align: center;
+		font-size: 0.4rem;
+		letter-spacing:0.10rem;
+		background: url("tjn_imgs/home_wash_button.png") no-repeat;
+		background-size:3.08rem 1.01rem;
+	}
+
+
+	.home_line_show_content{
+		width: 6.24rem;
+		margin:0 auto;
+		margin-top: 0.32rem;
+		overflow: hidden;
+	}
+
+	.line_show_div{
+		float: left;
+	}
+
+	.left_line,.right_line{
+		width: 1.52rem;
+		height: 0.06rem;
+		margin-top: 0.25rem;
+		background: url("tjn_imgs/home_line.png") no-repeat;
+		background-size:1.52rem 0.06rem;
+	}
+
+	.status_show_word{
+		color: #8ca1a7;
+		font-size: 0.24rem;
+		width: 1.55rem;
+		padding-left: 0.3rem;
+		margin-top: 0.08rem;
+	}
+
+.status_show_split{
+	width: 0.2rem;
+	font-size: 0.28rem;
+	color: #8ca1a7;
+}
+
+	.five_status_word{
+		color: #8ca1a7;
+		font-size: 0.24rem;
+		width: 1.15rem;
+		margin-top: 0.08rem;
+	}
+
+	.home_filter_list{
+		margin-top: 0.4rem;
+	}
+
+.home_filter_content{
+	width:5.85rem;
+	margin:0 auto;
+	margin-bottom: 0.5rem;
+	overflow: hidden;
+}
+
+	.home_filter_div{
+		float: left;
+	}
+
+	.number_icon{
+		width: 0.46rem;
+		height: 0.49rem;
+		margin-top: -0.03rem;
+		background: url("tjn_imgs/home_number_unselected.png") no-repeat;
+		background-size:0.46rem 0.49rem;
+		line-height: 0.55rem;
+		text-align: center;
+		color: #999999;
+		font-size: 0.24rem;
+	}
+
+	.progress_bar{
+		width: 3.92rem;
+		height: 0.42rem;
+		margin-left: 0.25rem;
+		background: url("tjn_imgs/home_progressbar_bg.png") no-repeat;
+		background-size:3.92rem 0.42rem;
+	}
+
+	.progress_bar_value{
+		/*width: 3.8rem;*/
+		width: 2.35rem;
+		height: 0.3rem;
+		border-top-right-radius:0.1rem;
+		border-bottom-right-radius:0.1rem;
+		margin-top: 0.06rem;
+		margin-left: 0.06rem;
+		background: url("tjn_imgs/home_progressbar_blue_unselected.png") no-repeat;
+		background-size:3.8rem 0.3rem;
+		overflow: hidden;
+	}
+
+	.filter_value{
+		width: 0.8rem;
+		height: 0.42rem;
+		line-height: 0.42rem;
+		text-align: center;
+		color: #f0fdff;
+		font-size: 0.2rem;
+	}
+
+	.filter_next{
+		width: 0.42rem;
+		height: 0.43rem;
+		background: url("tjn_imgs/home_filter_next.png") no-repeat;
+		background-size:0.42rem 0.43rem;
+	}
+</style>
+
+<script>(function (doc, win) { var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; if(clientWidth>720){clientWidth=720;} docEl.style.fontSize = 100 * (clientWidth / 720) + 'px'; }; recalc(); if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); /* doc.addEventListener('DOMContentLoaded', recalc, false); */})(document, window);
+</script>
+</head>
+<body>
+<div class="home_main">
+
+	<div class="home_content">
+<div class="home_content_bg">
+	<div class="home_tds_content">
+		<div class="tds_div tds_word">纯水TDS</div>
+		<div class="tds_div tds_value">26</div>
+		<div class="tds_div ppm_word">PPM</div>
+	</div>
+
+	<div class="home_status_content">
+		<div class="status_div status_word">设备状态</div>
+		<div class="status_div status_value">待机</div>
+		<div class="status_div status_line">|</div>
+		<div class="status_div ystds_word">原水&nbsp;TDS</div>
+		<div class="status_div ystds_value">136</div>
+	</div>
+
+	<div class="home_wash_btn">滤芯冲洗</div>
+
+	<div class="home_line_show_content">
+		<div class="line_show_div left_line"></div>
+		<div class="line_show_div status_show_word">滤芯状态显示</div>
+		<div class="line_show_div status_show_split">|</div>
+		<div class="line_show_div five_status_word">5级状态</div>
+		<div class="line_show_div right_line"></div>
+	</div>
+
+	<div class="home_filter_list">
+	<div class="home_filter_content">
+		<div class="home_filter_div number_icon">1</div>
+		<div class="home_filter_div progress_bar"><div class="progress_bar_value"></div></div>
+		<div class="home_filter_div filter_value">65%</div>
+		<div class="line_show_div filter_next"></div>
+	</div>
+
+		<div class="home_filter_content">
+			<div class="home_filter_div number_icon">2</div>
+			<div class="home_filter_div progress_bar"><div class="progress_bar_value"></div></div>
+			<div class="home_filter_div filter_value">65%</div>
+			<div class="line_show_div filter_next"></div>
+		</div>
+
+		<div class="home_filter_content">
+			<div class="home_filter_div number_icon">3</div>
+			<div class="home_filter_div progress_bar"><div class="progress_bar_value"></div></div>
+			<div class="home_filter_div filter_value">65%</div>
+			<div class="line_show_div filter_next"></div>
+		</div>
+
+		<div class="home_filter_content">
+			<div class="home_filter_div number_icon">4</div>
+			<div class="home_filter_div progress_bar"><div class="progress_bar_value"></div></div>
+			<div class="home_filter_div filter_value">65%</div>
+			<div class="line_show_div filter_next"></div>
+		</div>
+
+		<div class="home_filter_content">
+			<div class="home_filter_div number_icon">5</div>
+			<div class="home_filter_div progress_bar"><div class="progress_bar_value"></div></div>
+			<div class="home_filter_div filter_value">65%</div>
+			<div class="line_show_div filter_next"></div>
+		</div>
+		</div>
+
+</div>
+	</div>
+	
+</div>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../js/laydate.js"></script>
+    <link href="../css/laydate.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>安装维修手机号查询结果</title>
+    <style>
+        html, body {
+            /*font-size: 100px;*/
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        a{ text-decoration:none; }
+
+        .page_main {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 7.20rem;
+            /*height: 100%;*/
+            min-height: 10.8rem;
+            margin-left: -3.6rem;
+            background-color: #f4f4f8;
+            /*overflow: hidden;*/
+        }
+
+        .page_head {
+            height: 1rem;
+            width: 7.2rem;
+            border-bottom: 0.01rem solid #c8c8c8;
+        }
+
+        .head_content {
+            color: #a9a9a9;
+            padding-top: 0.4rem;
+            padding-left: 0.48rem;
+            font-size: 0.24rem;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        input[type=date]:before {
+            content: attr(placeholder);
+            font-family: 黑体;
+            font-size: 0.24rem;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+        }
+
+        input[type=date]::-webkit-inner-spin-button {
+            visibility: hidden;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #c8c8c8
+        }
+
+        .middle_all
+        {
+            height: 2.6rem;
+            width: 7.2rem;
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            background-color: white;
+        }
+
+        .page_middle {
+            height: 1.8rem;
+            width: 6.25rem;
+            margin: auto;
+            border-bottom: 0.01rem solid #c8c8c8;
+            text-align: center;
+            vertical-align: middle;
+            background-color: white;
+        }
+
+        .middle_left {
+            /*margin-top: 0.6rem;*/
+            display: inline-block;
+            width: 0.8rem;
+            height: 0.8rem;
+            float: left;
+        }
+
+        .middle {
+            margin-top: 0.35rem;
+            margin-left: 0.2rem;
+            width: 4rem;
+            float: left;
+            height: 0.8rem;
+            font-size: 0.24rem;
+            /*text-align: center;*/
+            text-align: left;
+            text-algin: text-justify;
+            vertical-align: middle;
+        }
+
+        .select_all {
+            margin: auto;
+            width: 6.25rem;
+            height: 1rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .middle_right {
+            margin-top: 0.2rem;
+            width: 1.3rem;
+            float: right;
+            height: 0.4rem;
+            font-size: 0.24rem;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #ffffff;
+        }
+
+        .page_inquiry {
+            clear: both;
+            margin-left: 0.4rem;
+            display: block;
+            text-align: center;
+            width: 6.25rem;
+            /*height: 0.5rem;*/
+            /*margin-top:0.04rem;*/
+            /*line-height: 0.5rem;*/
+            /*position: absolute;*/
+            bottom: 1rem;
+            font-size: 0.22rem;
+        }
+
+        .btn_check {
+            color: #1b1f25;
+            border-radius: 0.05rem;
+            font-size: 0.24rem;
+            width: 1.3rem;
+            height: 0.4rem;
+            line-height: 0.4rem;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            border: 0.01rem solid #c8c8c8;
+            margin: auto;
+        }
+
+        .btn_install {
+            color: #1b1f25;
+            border-radius: 0.05rem;
+            font-size: 0.24rem;
+            width: 1.3rem;
+            height: 0.4rem;
+            line-height: 0.4rem;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            border: 0.01rem solid #c8c8c8;
+            margin: auto;
+        }
+
+        .btn_repair {
+            color: #1b1f25;
+            border-radius: 0.05rem;
+            font-size: 0.24rem;
+            width: 1.3rem;
+            height: 0.4rem;
+            line-height: 0.4rem;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            border: 0.01rem solid #c8c8c8;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<script src="../js/jquery-1.10.1.min.js"></script>
+<div class="page_main">
+    <div class="page_head">
+        <div class="head_content">手机号查询结果</div>
+    </div>
+    <!--<div class="middle_all">-->
+        <!--<div class="page_middle">-->
+            <!--<div class="middle_left">-->
+                <!--<img src="install_img/Icons_orders.png" style="width: 0.8rem;height: 0.8rem;margin-top: 0.45rem;">-->
+            <!--</div>-->
+            <!--<div class="middle">-->
+                <!--<div class="order"> 订 单 号：<span>72690641948</span></div>-->
+                <!--<div class="pay_time"> 付款时间：<span>2018/4/2</span></div>-->
+                <!--<div class="shop_name"> 门店名称：<span>明安旭康缘专卖店</span></div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="select_all">-->
+            <!--<div class="middle_right">-->
+                <!--<div class="btn_check">查看进度</div>-->
+            <!--</div>-->
+            <!--<div class="middle_right" style="margin-right: 0.3rem">-->
+                <!--<div class="btn_repair">预约维修</div>-->
+            <!--</div>-->
+            <!--<div class="middle_right" style="margin-right: 0.3rem">-->
+                <!--<div class="btn_install">预约安装</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="middle_all" style="margin-top: 0.1rem">-->
+        <!--<div class="page_middle">-->
+            <!--<div class="middle_left">-->
+                <!--<img src="install_img/Icons_orders.png" style="width: 0.8rem;height: 0.8rem;margin-top: 0.45rem;">-->
+            <!--</div>-->
+            <!--<div class="middle">-->
+                <!--<div class="order1"> 订 单 号：<span>72690641948</span></div>-->
+                <!--<div class="pay_time1"> 付款时间：<span>2018/4/2</span></div>-->
+                <!--<div class="shop_name1"> 门店名称：<span>明安旭康缘专卖店</span></div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="select_all">-->
+            <!--<div class="middle_right">-->
+                <!--<div class="btn_check">查看进度</div>-->
+            <!--</div>-->
+            <!--<div class="middle_right" style="margin-right: 0.3rem">-->
+                <!--<div class="btn_repair">预约维修</div>-->
+            <!--</div>-->
+            <!--<div class="middle_right" style="margin-right: 0.3rem">-->
+                <!--<div class="btn_install">预约安装</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="middle_all" style="margin-top: 0.1rem">-->
+        <!--<div class="page_middle">-->
+            <!--<div class="middle_left">-->
+                <!--<img src="install_img/Icons_orders.png" style="width: 0.8rem;height: 0.8rem;margin-top: 0.45rem;">-->
+            <!--</div>-->
+            <!--<div class="middle">-->
+                <!--<div class="order2"> 订 单 号：<span>72690641948</span></div>-->
+                <!--<div class="pay_time2"> 付款时间：<span>2018/4/2</span></div>-->
+                <!--<div class="shop_name2"> 门店名称：<span>明安旭康缘专卖店</span></div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="select_all">-->
+            <!--<div class="middle_right">-->
+                <!--<div class="btn_check">查看进度</div>-->
+            <!--</div>-->
+            <!--<div class="middle_right" style="margin-right: 0.3rem">-->
+                <!--<div class="btn_repair">预约维修</div>-->
+            <!--</div>-->
+            <!--<div class="middle_right" style="margin-right: 0.3rem">-->
+                <!--<div class="btn_install">预约安装</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="page_inquiry">-->
+        <!--<span style="color:#b4b4b4;text-align: center;vertical-align: middle;font-size: 0.22rem;font-family: 黑体">客服电话&nbsp;&nbsp;|&nbsp;&nbsp;在线咨询</span>-->
+    <!--</div>-->
+
+
+</div>
+<script type="text/javascript">
+    //用这段js放页面，就能根据屏幕不同尺寸换算html的fontsize了，最终的rem尺寸会跟着变
+    (function (doc, win) {
+        var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if (clientWidth > 720) {
+                clientWidth = 720;
+            }
+            docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+        };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        /* doc.addEventListener('DOMContentLoaded', recalc, false); */
+    })(document, window);
+
+//    获取url中的参数值
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+//    页面自动加载js代码
+    $(document).ready(function(){
+        var tid= GetQueryString("tid");
+        var mobile=GetQueryString("mobile");
+//        alert(mobile);
+        var url="/web/orderservice/getOrderList";
+        if(tid!='' && tid!=null){
+            $('title').text('安装维修订单号查询结果');
+            $(".head_content").text('订单号查询结果');
+            var url=url+"?rank="+Math.random()+"&tid="+tid;
+        }
+        if(mobile!='' && mobile!=null){
+            var url=url+"?rank="+Math.random()+"&mobile="+mobile;
+        }
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var dataJson=JSON.parse(data);
+//               var tid=dataJson.tid;
+                var dataList=dataJson.data;
+                var _html_head="<div class=\"info_all\">\n"
+                $(".page_main").append(_html_head);
+                for (var i=0;i<dataList.length;i++)
+                {
+                    var count=i+1
+                    var tid=dataList[i].tid;
+                    var pay_time=dataList[i].pay_time;
+                    var store_name=dataList[i].store_name;
+//                    隐藏的订单属性值
+                    var orderno=dataList[i].orderno;
+
+                    var _html = "<div class=\"middle_all\" style='margin-bottom: 0.1rem'>\n" +
+                        "    <div class=\"page_middle\">\n" +
+                        "    <div class=\"middle_left\">\n" +
+                        "    <img src=\"install_img/Icons_orders.png\" style=\"width: 0.8rem;height: 0.8rem;margin-top: 0.45rem;\"></div>\n" +
+                        "    <div class=\"middle\">\n" +
+                        "    <div class=\"order\"> 订 单 号：<span class=\"tid_"+count+"\">" +tid+
+                        "    </span></div>\n" +
+                        "    <div class=\"pay_time\"> 付款时间：<span class=\"pay_time_"+count+"\">" +pay_time+
+                        "    </span></div>\n" +
+                        "    <div class=\"shop_name\"> 门店名称：<span class=\"store_name_"+count+"\">" +store_name+
+                        "    </span></div>\n" +
+               //隐藏属性标签 传值
+                        "    <div style=\"display:none\" class=\"orderno\"> 门店名称：<span class=\"orderno_"+count+"\" >" +orderno+
+                        "    </span></div>\n" +
+
+
+                        "    </div>\n" +
+                        "    </div>\n" +
+                        "    <div class=\"select_all\">\n" +
+                        "    <div class=\"middle_right\">\n" +
+                        "    <div class=\"btn_check\" id=\"process_"+count+"\"  onclick='test_checkProcess(this)'>查看进度</div>\n" +
+                        "    </div>\n" +
+                        "    <div class=\"middle_right\" style=\"margin-right: 0.3rem\">\n" +
+                        "    <div class=\"btn_repair\"  id=\"repair_"+count+"\" onclick='test_reapir(this)'>预约维修</div>\n" +
+                        "    </div>\n" +
+                        "    <div class=\"middle_right\" style=\"margin-right: 0.3rem\">\n" +
+                        "    <div class=\"btn_install\"  id=\"install_"+count+"\"  onclick='test_install(this)'>预约安装</div>\n" +
+                        "    </div>\n" +
+                        "    </div>\n" +
+                        "    </div>\n"
+                        $(".info_all").append(_html);
+                }
+                var _html_last="</div>\n <div class=\"page_inquiry\">\n" +
+                    "        <span style=\"color:#b4b4b4;text-align: center;vertical-align: middle;font-size: 0.22rem;font-family: 黑体;display: block;line-height: 0.5rem;\"><a href=\"tel:4008808558\" style=\"color: #b4b4b4\">客服电话</a></span>\n" +
+                    "    </div>";
+                var _html_last1="</div>\n <div class=\"page_inquiry\">\n" +
+                        "        <span style=\"color:#b4b4b4;text-align: center;vertical-align: middle;font-size: 0.22rem;font-family: 黑体;display: block;line-height: 0.5rem;\"><a href=\"https://mp.weixin.qq.com/s/h5APUzrvnBzwX8VomvM38Q\" style=\"color: #b4b4b4\">安装材料收费标准</a></span>\n" +
+                        "    </div>";
+                var _html_last2="</div>\n <div class=\"page_inquiry\">\n" +
+                        "        <span style=\"color:#b4b4b4;text-align: center;vertical-align: middle;font-size: 0.22rem;font-family: 黑体;display: block;line-height: 0.5rem;\"><a href=\"https://mp.weixin.qq.com/s/1TCSK65x5gQFnfYt6kJgcA\" style=\"color: #b4b4b4\">维修材料收费标准</a></span>\n" +
+                        "    </div><div style=\"height:0.4rem;\"></div>";
+
+                $(".page_main").append(_html_last+_html_last1+_html_last2);
+
+
+
+//       $("div.btn_install").on("click", function(){
+//        var tid = $(this).attr("id");
+//        alert(tid)
+//    });
+
+            },
+            error: function (data) {
+            }
+        });
+
+    });
+//
+
+
+    //预约安装按钮点击事件
+    function test_install(obj){
+//        alert($(obj).attr("id"));
+        var id=$(obj).attr("id");
+        var count=id.split("_")[1];
+//        alert(count)
+        var tid_Id="tid_"+count;
+        var pay_time_Id="pay_time_"+count;
+        var shop_name_Id="store_name_"+count;
+        var orderno_Id="orderno_"+count;
+
+        var tid = $("span."+tid_Id).text();
+        var tid=tid.replace(/(^\s*)|(\s*$)/g, "")
+//        alert(tid+"qqq")
+        var pay_time = $("span."+pay_time_Id).text();
+        var shop_name = $("span."+shop_name_Id).text();
+        var orderno = $("span."+orderno_Id).text();
+        window.location.href="/web/order/install_reservations.html?tid=" + tid+"&orderno="+orderno+"&v=1.5";
+//        window.location.href="/web/order/install_reservations.html?tid=" + tid+"&pay_time="+pay_time+"&shop_name="+shop_name+"&orderno="+orderno;
+//        alert(tid);
+//        alert(pay_time);
+//        alert(shop_name);
+    }
+
+
+    //预约维修按钮点击事件
+    function test_reapir(obj){
+//        alert($(obj).attr("id"));
+        var id=$(obj).attr("id");
+        var count=id.split("_")[1];
+//        alert(count)
+        var tid_Id="tid_"+count;
+        var pay_time_Id="pay_time_"+count;
+        var shop_name_Id="store_name_"+count;
+        var orderno_Id="orderno_"+count;
+        var tid = $("span."+tid_Id).text();
+        var tid=tid.replace(/(^\s*)|(\s*$)/g, "")
+        var pay_time = $("span."+pay_time_Id).text();
+        var shop_name = $("span."+shop_name_Id).text();
+        var orderno = $("span."+orderno_Id).text();
+        window.location.href="/web/order/repair_reservations.html?tid=" + tid+"&orderno="+orderno+"&v=1.5";
+//        window.location.href="/web/order/repair_reservations.html?tid=" + tid+"&pay_time="+pay_time+"&shop_name="+shop_name+"&orderno="+orderno;
+//        alert(tid);
+//        alert(pay_time);
+//        alert(shop_name);
+//        $.ajax({
+//            type: "POST",
+////            url: sPath + "/admin/voicechat/addChatWord",
+//            data: $('#addOrderForm').serialize(),
+//            success: function (data) {
+//                window.location.href="/web/order/install_reservations.html?tid=" + tid+"&pay_time="+pay_time+"&shop_name="+shop_name;
+//            },
+//            error: function (data) {
+//            }
+//        });
+    }
+
+
+    //预约查看进度按钮点击事件
+    function test_checkProcess(obj){
+        var id=$(obj).attr("id");
+        var count=id.split("_")[1];
+//        alert(count)
+        var tid_Id="tid_"+count;
+        var pay_time_Id="pay_time_"+count;
+        var shop_name_Id="store_name_"+count;
+        var orderno_Id="orderno_"+count;
+        var tid = $("span."+tid_Id).text();
+        var tid=tid.replace(/(^\s*)|(\s*$)/g, "")
+        var pay_time = $("span."+pay_time_Id).text();
+        var shop_name = $("span."+shop_name_Id).text();
+        var orderno = $("span."+orderno_Id).text();
+//        window.location.href="/web/order/after_sale.html?tid=" + tid+"&pay_time="+pay_time+"&shop_name="+shop_name+"&orderno="+orderno;
+        window.location.href="/web/order/after_sale.html?tid=" + tid+"&orderno="+orderno+"&v=1.5";
+    }
+
+</script>
+</body>
+</html>

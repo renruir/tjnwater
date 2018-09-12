@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="js/laydate.js"></script>
+    <link href="css/laydate.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>预约安装单个商品</title>
+    <style>
+        html, body {
+            /*font-size: 100px;*/
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .page_main {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 7.20rem;
+            height: 100%;
+            min-height: 11.8rem;
+            margin-left: -3.6rem;
+            /*background-color: #1b1f25;*/
+            /*overflow: hidden;*/
+        }
+
+        .page_head {
+            height: 0.17rem;
+            width: 6.25rem;
+        }
+
+        input[type=date]:before {
+            content: attr(placeholder);
+            font-family: 黑体;
+            font-size: 0.24rem;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+        }
+
+        input[type=date]::-webkit-inner-spin-button {
+            visibility: hidden;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #c8c8c8
+        }
+
+        .page_middle {
+            height: 7.74rem;
+            width: 6.25rem;
+            /*margin-top: 1.03rem;*/
+            margin: auto;
+            /*border-top: 0.01rem solid #c8c8c8;*/
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .middle_cell {
+            width: 6.25rem;
+            border-bottom: 0.01rem solid #c8c8c8;
+            text-align: left;
+            vertical-align: middle;
+            float: left;
+
+        }
+
+        .page_cell {
+            width: 100%;
+            height: 0.86rem;
+            margin-left: 0;
+            text-align: left;
+            vertical-align: middle;
+            line-height: 0.86rem;
+            font-size: 0.28rem;
+            font-family: 黑体;
+            /*float: left;*/
+        }
+
+        .middle_bottom_cell {
+            width: 6.25rem;
+            border-bottom: 0.01rem solid #c8c8c8;
+            text-align: left;
+            vertical-align: middle;
+            float: left;
+            height: 0.86rem;
+
+        }
+
+        .page_bottom_cell {
+            width: 6.25rem;
+            height: 0.86rem;
+            margin-left: 0;
+            text-align: left;
+            vertical-align: middle;
+            line-height: 0.86rem;
+            font-size: 0.28rem;
+            font-family: 黑体;
+            /*color: #c8c8c8;*/
+            /*float: left;*/
+
+        }
+
+        /*::-webkit-input-placeholder {*/
+            /*color: #ffffff;*/
+        /*}*/
+
+        .icon {
+            float: right;
+            clear: both;
+            display: inline;
+            margin: auto;
+        }
+
+        .tips {
+            height: 1.2rem;
+            width: 6.25rem;
+            text-align: center;
+            vertical-align: middle;
+            margin: auto;
+        }
+
+        .content {
+            padding-top: 0.32rem;
+            width: 5.6rem;
+            float: left;
+            font-size: 0.13rem;
+            vertical-align: middle;
+            text-align: left;
+            color: #b4b4b4;
+        }
+
+        .page_bottom {
+            margin: auto;
+            border-radius: 0.1rem;
+            background-color: #ff2452;
+            color: #ffffff;
+            font-size: 0.35rem;
+            width: 6.25rem;
+            height: 0.81rem;
+            line-height: 0.81rem;
+            text-align: center;
+            vertical-align: middle;
+            border: none;
+        }
+
+        .page_inquiry {
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            width: 6.25rem;
+            height: 0.84rem;
+            line-height: 0.84rem;
+        }
+
+        .btn {
+            border-radius: 0.1rem;
+            background-color: #ff2452;
+            color: #ffffff;
+            font-size: 0.35rem;
+            width: 6.25rem;
+            height: 0.81rem;
+            line-height: 0.81rem;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            border: none;
+            margin: auto;
+
+        }
+
+        option {
+            color: #b4b4b4;
+            width: 1.9rem;
+        }
+
+        select:focus option:checked {
+            color: #b4b4b4;
+            background-color: #54cfcf;
+        }
+
+        select {
+            margin-left: -0.3rem;
+            font-size: 0.28rem;
+            padding-right: 1.2rem;
+            height: 0.4rem;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background: url("/install_img/Icons_dropdown.png") no-repeat right center transparent;
+            background-size: 0.4rem 0.4rem;
+            margin-top: 0.24rem;
+            float: right;
+            display: inline-block;
+            border: none;
+        }
+
+        select::-ms-expand {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="page_main">
+    <div class="page_head"></div>
+    <div class="page_middle">
+        <div class="middle_cell">
+            <div class="page_cell">
+                联系人 <input type="text"
+                           style="font-size: 0.28rem;border: 0rem;width:4.3rem;margin-left: 0.3rem;"
+                           name="people" id="peopleId" value="白万峰" >
+                <div class="icon"><img src="install_img/Icons_edit.png"
+                                       style="width: 0.4rem;height: 0.4rem;margin-left: auto" align="absmiddle"></div>
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                手机号 <input type="text"
+                           style="font-size: 0.28rem;border: 0rem;width:4.3rem;margin-left: 0.3rem"
+                           name="phone" id="phoneId" value="18633274368">
+                <div class="icon"><img src="install_img/Icons_edit.png"
+                                       style="width: 0.4rem;height: 0.4rem;margin-left: auto" align="absmiddle"></div>
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                订单号 <input type="text"
+                           style="font-size: 0.28rem;border: 0rem;width:4.6rem;margin-left: 0.3rem "
+                           name="order" id="orderId" value="72690641948" readonly>
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                门店名称 <input type="text"
+                            style="font-size: 0.28rem;border: 0rem;width:4.1rem;margin-left: 0.3rem "
+                            name="platform" id="platformId" value="京东" readonly>
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                付款日期 <input type="text"
+                            style="font-size: 0.28rem;border: 0rem;width:4.2rem;margin-left: 0.3rem "
+                            name="date" id="dateId" value="2018/4/2 10:10:04" readonly >
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                上门地址 <input type="text"
+                            style="font-size: 0.28rem;border: 0rem;width:3.8rem; margin-left: 0.3rem;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;word-wrap: normal;"
+                            name="install" id="installId" value="河北唐山市开平区双桥镇XX小区2号楼">
+                <div class="icon"><img src="install_img/Icons_edit.png"
+                                       style="width: 0.4rem;height: 0.4rem;margin-left: auto" align="absmiddle"></div>
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                期望上门时间 <input type="text"
+                              style="font-size: 0.28rem;border: 0rem;width:3.8rem;margin-left: 0.3rem; "
+                              name="date1" id="date1Id" placeholder="期望上门日期" readonly="true">
+            </div>
+        </div>
+        <div class="middle_bottom_cell">
+            <div class="page_bottom_cell">
+                安装商品
+                <input type="text"
+                       style="font-size: 0.28rem;border: 0rem;width:1.45rem;margin-left: 0.85rem;"
+                       name="machine" id="machineId" placeholder="机器型号" readonly>
+                <input
+                        style="font-size: 0.2rem;width:0.3rem;color:#c8c8c8;height:0.88rem;border: none;text-align: center" value="—"
+                        readonly
+                >
+                <select style="color:#c8c8c8">
+                    <option value="placeholder" disabled selected style="display:none;border: none; ">数量</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                备注信息 <input type="text"
+                            style="font-size: 0.28rem;border: 0rem;width:3.8rem;margin-left: 0.3rem;color: #b4b4b4"
+                            name="message" id="messageId" placeholder="家中管件特殊型号等">
+                <div class="icon"><img src="install_img/Icons_edit.png"
+                                       style="width: 0.4rem;height: 0.4rem;margin-left: auto" align="absmiddle"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tips">
+        <div class="content">
+            <span style="text-align: left;vertical-align: middle; font-size: 0.13rem;color:#ff2452">为保证预约安装时效，请于收到货后再开始预约安装，至少提前3天开始预约。</span></br>
+            <span style="text-align: left;vertical-align: middle; font-size:0.13rem;">(例: 师傅上门安装时间4月10日，预约时间至少为4月7日。)</span>
+        </div>
+    </div>
+
+
+    <div class="page_bottom">
+        <button type="submit" class="btn">确&nbsp;&nbsp;认</button>
+    </div>
+
+    <div class="page_inquiry">
+        <span style="color:#b4b4b4;text-align: center;vertical-align: middle;font-size: 0.22rem;font-family: 黑体">客服电话&nbsp;&nbsp;|&nbsp;&nbsp;在线咨询</span>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    //用这段js放页面，就能根据屏幕不同尺寸换算html的fontsize了，最终的rem尺寸会跟着变
+    (function (doc, win) {
+        var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if (clientWidth > 720) {
+                clientWidth = 720;
+            }
+            docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+        };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        /* doc.addEventListener('DOMContentLoaded', recalc, false); */
+    })(document, window);
+
+
+    laydate.render({
+        elem: '#date1Id' //指定元素
+
+    });
+
+</script>
+
+
+</body>
+</html>

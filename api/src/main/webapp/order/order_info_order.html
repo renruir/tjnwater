@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="js/laydate.js"></script>
+    <link href="css/laydate.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>订单号订单查询结果</title>
+    <style>
+        html, body {
+            /*font-size: 100px;*/
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .page_main {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 7.20rem;
+            height: 100%;
+            min-height: 10.8rem;
+            margin-left: -3.6rem;
+            /*background-color: #1b1f25;*/
+            /*overflow: hidden;*/
+        }
+
+        .page_head {
+            height: 1rem;
+            width: 7.2rem;
+            border-bottom: 0.01rem solid #c8c8c8;
+        }
+
+        .head_content {
+            color: #a9a9a9;
+            padding-top: 0.4rem;
+            padding-left: 0.48rem;
+            font-size: 0.24rem;
+        }
+
+        .page_middle {
+            height: 1.8rem;
+            width: 6.25rem;
+            margin: auto;
+            border-bottom: 0.01rem solid #c8c8c8;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .middle_left {
+            display: inline-block;
+            width: 0.8rem;
+            height: 0.8rem;
+            float: left;
+        }
+
+        .middle {
+            margin-top: 0.35rem;
+            margin-left: 0.2rem;
+            width: 4rem;
+            float: left;
+            height: 0.8rem;
+            font-size: 0.24rem;
+            /*text-align: center;*/
+            text-align: left;
+            text-algin: text-justify;
+            vertical-align: middle;
+        }
+
+        .middle_right {
+            margin-top: 0.6rem;
+            width: 1.1rem;
+            float: right;
+            height: 0.6rem;
+            font-size: 0.24rem;
+        }
+
+        .page_inquiry {
+            clear: both;
+            margin-left: 0.5rem;
+            display: block;
+            text-align: center;
+            width: 6.25rem;
+            height: 0.84rem;
+            /*line-height: 0.84rem;*/
+            position: absolute;
+            bottom: 1rem;
+        }
+
+        .btn {
+            float: right;
+            color: #1b1f25;
+            border-radius: 0.1rem;
+            font-size: 0.24rem;
+            width: 1.4rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            border: 0.01rem solid #c8c8c8;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="page_main">
+    <div class="page_head">
+        <div class="head_content">订单号查询结果</div>
+    </div>
+    <div class="page_middle">
+        <div class="middle_left">
+            <img src="install_img/Icons_orders.png" style="width: 0.8rem;height: 0.8rem;margin-top: 0.45rem;">
+        </div>
+        <div class="middle">
+            <div class="order"> 订 单 号：<span>72690641948</span></div>
+            <div class="pay_time"> 付款时间：<span>2018/4/2</span></div>
+            <div class="shop_name"> 门店名称：<span>明安旭康缘专卖店</span></div>
+        </div>
+        <div class="middle_right">
+            <div class="btn">查看</div>
+        </div>
+    </div>
+
+
+    <div class="page_inquiry">
+        <span style="color:#b4b4b4;text-align: center;vertical-align: middle;font-size: 0.22rem;font-family: 黑体">客服电话&nbsp;&nbsp;|&nbsp;&nbsp;在线咨询</span>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    //用这段js放页面，就能根据屏幕不同尺寸换算html的fontsize了，最终的rem尺寸会跟着变
+    (function (doc, win) {
+        var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if (clientWidth > 720) {
+                clientWidth = 720;
+            }
+            docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+        };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        /* doc.addEventListener('DOMContentLoaded', recalc, false); */
+    })(document, window);
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 命名空间 -->
+    <typeAliases>
+        <typeAlias alias="User" type="com.tjnwater.wechat.model.User"/>
+        <typeAlias alias="WxAppInfo" type="com.tjnwater.wechat.model.WxAppInfo"/>
+        <typeAlias alias="WxAccessToken" type="com.tjnwater.wechat.model.WxAccessToken"/>
+        <typeAlias alias="WxJsApiTicket" type="com.tjnwater.wechat.model.WxJsApiTicket"/>
+        <typeAlias alias="DeviceInfo" type="com.tjnwater.wechat.api.model.DeviceInfo"/>
+        <typeAlias alias="FilterInfo" type="com.tjnwater.wechat.api.model.FilterInfo"/>
+        <typeAlias alias="DeviceDataStat" type="com.tjnwater.wechat.api.model.DeviceDataStat"/>
+        <typeAlias alias="DeviceVersionUpdate" type="com.tjnwater.wechat.api.model.DeviceVersionUpdate"/>
+        <typeAlias alias="WxBindInfo" type="com.tjnwater.wechat.model.WxBindInfo"/>
+        <typeAlias alias="WxUserInfo" type="com.tjnwater.wechat.model.WxUserInfo"/>
+        <typeAlias alias="DeviceErrorCode" type="com.tjnwater.wechat.api.model.DeviceErrorCode"/>
+        <typeAlias alias="WxUserDetailsInfo" type="com.tjnwater.wechat.model.WxUserDetailsInfo"/>
+        <typeAlias alias="ProvinceTds" type="com.tjnwater.wechat.api.model.ProvinceTds"/>
+        <typeAlias alias="CityTds" type="com.tjnwater.wechat.api.model.CityTds"/>
+        <typeAlias alias="RegionTds" type="com.tjnwater.wechat.api.model.RegionTds"/>
+        <typeAlias alias="LeaseInfo" type="com.tjnwater.wechat.device.model.LeaseInfo"/>
+    </typeAliases>
+</configuration>

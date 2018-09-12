@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:text-decoration="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="js/laydate.js"></script>
+    <link href="css/laydate.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>安装维修</title>
+    <style>
+        html, body {
+            /*font-size: 100%;*/
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        a{ text-decoration:none; }
+
+        .page_main {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 7.20rem;
+            height: 100%;
+            min-height: 10.8rem;
+            margin-left: -3.6rem;
+            /*background-color: #1b1f25;*/
+            overflow: hidden;
+        }
+
+        .page_head {
+            height: 3.24rem;
+            width: 7.2rem;
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            background: url("install_img/image_bg_blue.png") no-repeat;
+            background-size: 7.2rem 2.28rem;
+        }
+
+        .portrait {
+            text-align: center;
+            vertical-align: middle;
+            padding-top: 1.39rem;
+        }
+
+        .page_middle {
+            height: 0.54rem;
+            width: 7.2rem;
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .info {
+            margin: auto;
+            width: 6.4rem;
+            height: 1.7rem;
+            vertical-align: middle;
+            text-align: center;
+            /*margin: auto;*/
+        }
+
+        .info1 {
+            margin: auto;
+            width: 6.4rem;
+            height: 1.7rem;
+            vertical-align: middle;
+            text-align: center;
+            /*margin: auto;*/
+        }
+
+        /*#info1Id {*/
+        /*display: none;*/
+        /*}*/
+
+        .user_info {
+            width: 6.4rem;
+            height: 0.9rem;
+            border-bottom: 0.01rem solid #c8c8c8;
+            text-align: left;
+            vertical-align: middle;
+            margin: auto;
+        }
+
+        .select {
+            margin: auto;
+            width: 6.4rem;
+            height: 1.6rem;
+            font-size: 0.3rem;
+            text-align: center;
+            vertical-align: middle;
+            font-family: 黑体;
+        }
+
+        .select_left {
+            border-top-left-radius: 0.08rem;
+            border-bottom-left-radius: 0.08rem;
+            color: #ff2452;
+            width: 3.18rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            float: left;
+            text-align: center;
+            vertical-align: middle;
+            border: 0.01rem solid #ff2452;
+        }
+
+        .select_right {
+            color: #c8c8c8;
+            width: 3.16rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            border-top-right-radius: 0.08rem;
+            border-bottom-right-radius: 0.08rem;
+            border: 0.01rem solid #c8c8c8;
+            border-left: none;
+            /*border-top: 0.01rem solid #c8c8c8;*/
+            /*border-right: 0.01rem solid #c8c8c8;*/
+            /*border-bottom: 0.01rem solid #c8c8c8;*/
+            float: left;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .info_cell {
+            width: 6.24rem;
+            height: 0.88rem;
+            margin: auto;
+            text-align: left;
+            vertical-align: middle;
+            line-height: 0.88rem;
+            font-size: 0.32rem;
+            font-family: 黑体;
+            color: #202020;
+        }
+
+        .notice {
+            /*display: inline-block;*/
+            margin-top: 0.2rem;
+            width: 6.24rem;
+            height: 0.6rem;
+            font-size: 0.16rem;
+            text-align: left;
+            vertical-align: middle;
+
+        }
+
+        .page_bottom {
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            width: 6.4rem;
+            height: 0.81rem;
+            line-height: 0.81rem;
+        }
+
+        .button {
+            border-radius: 0.08rem;
+            background-color: #ff2452;
+            color: #ffffff;
+            font-size: 0.35rem;
+            width: 6.4rem;
+            height: 0.81rem;
+            line-height: 0.81rem;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            border: none;
+            margin: auto;
+
+        }
+
+        .page_inquiry {
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            width: 6.25rem;
+            height: 0.84rem;
+            line-height: 0.84rem;
+            /*margin-top: 0.3rem;*/
+        }
+
+        h5 {
+            color: #979797;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #ffffff;
+        }
+
+        .advice_bottom {
+            width: 6.4rem;
+            height: 1.8rem;
+            margin: auto;
+            vertical-align: middle;
+        }
+
+        .advice {
+            border-radius: 0.1rem;
+            background-color: #f3f5f8;
+            color: #878787;
+            font-size: 0.22rem;
+            width: 1.2rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            text-align: center;
+            vertical-align: middle;
+            margin-top: 0.2rem;
+        }
+
+        .advice_info {
+            margin-left: 0.3rem;
+            width: 6.4rem;
+            color: #878787;
+            font-size: 0.14rem;
+            text-align: left;
+            vertical-align: middle;
+            margin-top: 0.3rem;
+            line-height: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+<script src="../js/jquery-1.10.1.min.js"></script>
+<div class="page_main">
+    <div class="page_head">
+        <div class="portrait">
+            <img src="install_img/image_head_portrait.png" style="width: 1.76rem;height: 1.76rem">
+        </div>
+    </div>
+
+    <div class="page_middle">
+        <div class="content" style="font-size: 0.13rem;color: #9a9a9a">请选择以下任意方式，开启安装维修之旅!</div>
+
+    </div>
+
+    <div class="select">
+        <div class="select_left" id="select_leftId" onclick="change_left()">手机号</div>
+        <div class="select_right" id="select_rightId" onclick="change_right()">订单号</div>
+    </div>
+
+    <div class="info" id="infoId" >
+        <div class="user_info">
+            <div class="info_cell">
+                手机号 <input type="text"
+                           style="font-size: 0.32rem;border: 0rem;width:4.2rem; margin-left: 0.1rem;color: #202020; "
+                           name="people" id="peopleId" placeholder=""/>
+            </div>
+        </div>
+
+        <div class="notice">
+            <img src="install_img/icon_warning.png" align="absmiddle" style="width: 0.2rem;height: 0.2rem;">
+            <span style="color: #ff2452">请输入您购买时留下的手机号码!</span>
+        </div>
+    </div>
+
+    <div class="info1" id="info1Id" style="display: none">
+        <div class="user_info">
+            <div class="info_cell">
+                订单号 <input type="text"
+                           style="font-size: 0.32rem;border: 0rem;width:4.2rem; margin-left: 0.1rem;color: #202020; "
+                           name="order" id="orderId" placeholder=""/>
+            </div>
+        </div>
+
+        <div class="notice">
+            <img src="install_img/icon_warning.png" align="absmiddle" style="width: 0.2rem;height: 0.2rem;">
+            <span style="color: #ff2452">请输入订单号!</span>
+        </div>
+    </div>
+
+    <div class="page_bottom">
+        <button type="submit" class="button" onclick="btnAction()">确&nbsp;&nbsp;认</button>
+    </div>
+
+
+    <div class="page_inquiry">
+        <span style="color:#b4b4b4;text-align: center;vertical-align: middle;font-size: 0.24rem;"><a href="tel:4008808558" style="color: #b4b4b4">客服电话</a></span>
+    </div>
+
+
+    <div class="advice_bottom">
+        <div class="advice">
+            温馨提醒
+        </div>
+        <div class="advice_info">
+            前置过滤器：需要布完水电，打完水压测试后进行安装；<br>
+            净水器：家里正在装修的，需装完橱柜后进行安装；<br>
+            软水机：需前期与客服人员沟通，安排师傅上门设计后再进行安装。
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+
+
+
+
+    //用这段js放页面，就能根据屏幕不同尺寸换算html的fontsize了，最终的rem尺寸会跟着变
+    (function (doc, win) {
+        var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if (clientWidth > 720) {
+                clientWidth = 720;
+            }
+            docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+        };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        /* doc.addEventListener('DOMContentLoaded', recalc, false); */
+    })(document, window);
+
+
+    var action = null;
+//    点击确认按钮跳转页面
+    function btnAction(){
+        var mobile=document.getElementById("peopleId").value;
+        var tid=document.getElementById("orderId").value;
+//        alert(mobile);
+        //var action = getHashString("checkBy");
+//        alert(action)
+        if(action=='select_rightId'){
+
+        if(tid!='' && tid!=null){
+            window.location.href="/web/order/install_order_results.html?tid=" + tid+"&v=1.5";
+        /*$.ajax({
+            type: "GET",
+            success: function (data) {
+                window.location.href="/web/order/install_order_results.html?tid=" + tid;
+            },
+            error: function (data) {
+            }
+        });*/}else {
+
+        }
+        }
+        if(action==null || action=='select_leftId'){
+        if(mobile!='' && mobile!=null){
+            window.location.href="/web/order/install_order_results.html?mobile=" + mobile+"&v=1.5";
+            /*$.ajax({
+                type: "GET",
+                success: function (data) {
+                    window.location.href="/web/order/install_order_results.html?mobile=" + mobile;
+                },
+                error: function (data) {
+                }
+            });*/}else {
+            //alert("请填写手机号")
+        }
+        }
+    }
+
+
+
+
+
+    function change_left() {
+        document.getElementById("select_rightId").style.color = "#c8c8c8";
+        document.getElementById("select_leftId").style.color = "#ff2452";
+        document.getElementById("select_rightId").style.border = "0.01rem solid #c8c8c8";
+        document.getElementById("select_leftId").style.border = "0.01rem solid #ff2452";
+        document.getElementById("select_rightId").style.borderLeft = "none";
+        var dv = document.getElementById("info1Id");
+        dv.style.display = "none";
+        var dv1 = document.getElementById("infoId");
+        dv1.style.display = "";
+
+
+        var type=$(".select_left").attr("id")
+        //window.location.hash = "checkBy=" + type;
+        action="select_leftId";
+
+    }
+
+    function change_right() {
+        document.getElementById("select_leftId").style.color = "#c8c8c8";
+        document.getElementById("select_rightId").style.color = "#ff2452";
+        document.getElementById("select_rightId").style.border = "0.01rem solid #ff2452";
+        document.getElementById("select_leftId").style.border = "0.01rem solid #c8c8c8";
+        document.getElementById("select_leftId").style.borderRight = "none";
+        var dv = document.getElementById("infoId");
+        dv.style.display = "none";
+        var dv1 = document.getElementById("info1Id");
+        dv1.style.display = "";
+        var type=$(".select_right").attr("id")
+        //window.location.hash = "checkBy=" + type;
+        action = "select_rightId";
+    }
+
+
+    //    根据输入的属性取到对应的值
+    function getHashString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.hash.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+</script>
+
+
+</body>
+</html>

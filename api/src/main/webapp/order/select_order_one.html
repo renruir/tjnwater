@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="js/laydate.js"></script>
+    <link href="css/laydate.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>单个商品订单查询</title>
+    <style>
+        html, body {
+            /*font-size: 100px;*/
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .page_main {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 7.20rem;
+            height: 100%;
+            min-height: 10.8rem;
+            margin-left: -3.6rem;
+            /*background-color: #1b1f25;*/
+            overflow: hidden;
+        }
+
+        .page_head {
+            height: 0.17rem;
+            width: 6.25rem;
+        }
+
+        .page_middle {
+            height: 6.12rem;
+            width: 6.25rem;
+            /*margin-top: 1.03rem;*/
+            margin: auto;
+            /*border-top: 0.01rem solid #c8c8c8;*/
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .middle_cell {
+            width: 6.25rem;
+            border-bottom: 0.01rem solid #c8c8c8;
+            text-align: left;
+            vertical-align: middle;
+            float: left;
+
+        }
+
+        .page_cell {
+            width: 100%;
+            height: 0.86rem;
+            margin-left: 0;
+            text-align: left;
+            vertical-align: middle;
+            line-height: 0.86rem;
+            font-size: 0.28rem;
+            font-family: 黑体;
+
+        }
+
+        .middle_bottom_cell {
+            width: 6.25rem;
+            /*border-bottom: 0.01rem solid #c8c8c8;*/
+            text-align: left;
+            vertical-align: middle;
+            float: left;
+
+        }
+
+        .page_bottom_cell {
+            /*border-bottom: 0.01rem solid #c8c8c8;*/
+            width: 6.25rem;
+            height: 0.86rem;
+            margin-left: 0;
+            text-align: left;
+            vertical-align: middle;
+            line-height: 0.86rem;
+            font-size: 0.28rem;
+            font-family: 黑体;
+
+        }
+
+        .tips {
+            height: 1.26rem;
+            width: 6.25rem;
+            text-align: center;
+            vertical-align: middle;
+            margin: auto;
+
+        }
+
+        .advice {
+            margin-top: 0.32rem;
+            width: 0.58rem;
+            height: 0.58rem;
+            float: left;
+            border-radius: 0.03rem;
+            border: 0.01rem solid #b4b4b4;
+            font-size: 0.2rem;
+            letter-spacing: 0.03rem;
+            vertical-align: middle;
+            text-align: center;
+            color: #b4b4b4;
+        }
+
+        .content {
+            margin-top: 0.38rem;
+            width: 5.6rem;
+            height: 0.84rem;
+            float: left;
+            font-size: 0.13rem;
+            vertical-align: middle;
+            text-align: left;
+            color: #b4b4b4;
+        }
+
+        .ads {
+            text-align: left;
+            vertical-align: middle;
+            margin-left: 0.2rem;
+            font-size: 0.13rem;
+
+        }
+
+        .page_inquiry {
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            width: 6.25rem;
+            height: 0.84rem;
+            line-height: 0.84rem;
+        }
+
+        span {
+            color: #c8c8c8;
+        }
+
+    </style>
+</head>
+<body>
+<div class="page_main">
+    <div class="page_head"></div>
+    <div class="page_middle">
+        <div class="middle_cell">
+            <div class="page_cell">
+                <div class="contact">
+                    联系人&nbsp;&nbsp; <span>白万峰</span>
+                </div>
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                <div class="phone_number">
+                    手机号&nbsp;&nbsp; <span>18633274368</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                <div class="order_number">
+                    订单号&nbsp;&nbsp; <span>72690641948</span>
+                </div>
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                <div class="shop_name">
+                    门店名称&nbsp;&nbsp;<span>京东</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                <div class="pay_time">
+                    付款日期&nbsp;&nbsp; <span>2018/4/2 10:10:04</span>
+                </div>
+            </div>
+        </div>
+        <div class="middle_cell">
+            <div class="page_cell">
+                <div class="address">
+                    收获地址&nbsp;&nbsp; <span>河北唐山市开平区双桥镇xx小区2号楼</span>
+                </div>
+            </div>
+        </div>
+        <div class="middle_bottom_cell">
+            <div class="page_bottom_cell">
+                商品明细&nbsp;&nbsp;
+                <span class="model" style="padding-right:0.6rem;border-bottom: 0.01rem solid #c8c8c8;padding-bottom: 0.3rem;">机器型号</span>
+                <a
+                        style="font-size: 0.28rem;width:0.3rem;color:#c8c8c8; "
+                >&nbsp;&nbsp;—&nbsp;&nbsp;</a>
+                <div class="number" style="float: left;"></div>
+                <span  class="number" style="border-bottom: 0.01rem solid #c8c8c8;padding-bottom: 0.3rem;padding-right: 1.2rem ">数量</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tips">
+        <div class="advice">
+            <span style="text-align: center;vertical-align: middle;">温馨提示</span>
+        </div>
+        <div class="content">
+            <div class="ads">
+                尊敬的客户，您好！净水器的滤芯是有使用年限的，要按时更换滤芯，才能保障喝上健康的水。
+                欢迎咨询客服，了解您家滤芯的具体更换时间。
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page_inquiry">
+        <span style="color:#b4b4b4;font-size: 0.2rem;font-family: 黑体">更换滤芯&nbsp;&nbsp;|&nbsp;&nbsp;产品升级&nbsp;&nbsp;|&nbsp;&nbsp;客服电话&nbsp;&nbsp;|&nbsp;&nbsp;在线咨询</span>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    //用这段js放页面，就能根据屏幕不同尺寸换算html的fontsize了，最终的rem尺寸会跟着变
+    (function (doc, win) {
+        var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if (clientWidth > 720) {
+                clientWidth = 720;
+            }
+            docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+        };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        /* doc.addEventListener('DOMContentLoaded', recalc, false); */
+    })(document, window);
+
+</script>
+
+
+</body>
+</html>

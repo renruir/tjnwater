@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../js/jquery-1.10.1.min.js"></script>
+    <script src="../js/laydate.js"></script>
+    <link href="../css/laydate.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>预约维修成功</title>
+    <style>
+        html, body {
+            /*font-size: 100px;*/
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+        }
+
+        a{ text-decoration:none; }
+
+        .page_main {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 7.20rem;
+            height: 100%;
+            min-height: 10.8rem;
+            margin-left: -3.6rem;
+        }
+
+        .page_head {
+            font-size: 0.3rem;
+            margin-top: 1.2rem;
+            margin-left:0.4rem;
+            color: black;
+
+        }
+
+
+        .middle_time {
+            font-size: 0.22rem;
+            margin-top: 0.6rem;
+            margin-left:0.4rem;
+            color: #202020;
+        }
+
+        .middle_content {
+            font-size: 0.22rem;
+            margin-top: 0.4rem;
+            margin-left:0.4rem;
+            color: #202020;
+        }
+
+        .back_btn{
+            letter-spacing: 0.08rem;
+            border-radius: 0.03rem;
+            width: 6.25rem;
+            height: 0.8rem;
+            margin-left: 0.4rem;
+            margin-top: 1.82rem;
+            line-height: 0.8rem;
+            text-align: center;
+            font-size: 0.32rem;
+            background-color: #ff2552;
+            color:#fffeff;
+        }
+
+        .bottom{
+            letter-spacing: 0.01rem;
+            margin-top: 0.6rem;
+            font-size:0.22rem;
+            vertical-align: middle;
+            text-align: center;
+            color:#9b9b9b;
+        }
+
+    </style>
+</head>
+<body>
+<div class="page_main">
+    <div class="page_head">预约成功
+        <img src="install_img/Icons_done.png"
+             style="width: 0.4rem;height: 0.4rem;"  align="absmiddle">
+    </div>
+
+    <div class="middle_time">
+        您预约的上门维修时间为<span style="color:#ff2552"></span>
+    </div>
+
+    <div class="middle_content">
+        维修师傅已整装待发，<br>
+        具体上门时间段维修师傅会提前电话跟您沟通确认！
+    </div>
+
+    <div class="back_btn" onclick="javascript:history.go(-1);">返回上一级</div>
+
+    <div class="bottom"><a href="tel:4008808558" style="color: #9b9b9b">客服电话</a></div>
+
+</div>
+<script type="text/javascript">
+    //用这段js放页面，就能根据屏幕不同尺寸换算html的fontsize了，最终的rem尺寸会跟着变
+    (function (doc, win) {
+        var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if (clientWidth > 720) {
+                clientWidth = 720;
+            }
+            docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+        };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        /* doc.addEventListener('DOMContentLoaded', recalc, false); */
+    })(document, window);
+
+
+
+    //    页面自动加载js代码
+    $(document).ready(function(){
+        var date= GetQueryString("date");
+        var date=date.replace(/(^\s*)|(\s*$)/g, "")
+        var dateList=date.split("-");
+        var dateStr=dateList[0]+'年'+dateList[1]+'月'+dateList[2]+'日'
+
+        //        alert(shop_name)
+        $(".middle_time span").text(dateStr);
+
+    });
+
+    //    获取url中的参数值
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+//        获取当前页面的网址，并转成utf-8编码
+        var aaa=window.location.search;
+        var uuu = decodeURI(aaa);
+        var r = uuu.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+</script>
+
+
+</body>
+</html>
