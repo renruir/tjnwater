@@ -305,7 +305,7 @@ public class WechatWebController {
             wxAppInfo = weixinService.getWxAppInfo(wxAppInfo);
             String appId = wxAppInfo.getAppId();
             String appSecret = wxAppInfo.getAppSecret();
-            String cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
+            String cookieUid = "ofsg4wfO13sb93cQpvv7uioaAoHY";
             logger.info("cookieUid: " + cookieUid);
             if (StrUtil.strIsNotNull(cookieUid)) {
                 Map<String, String> serverInfo = new HashMap<String, String>();
@@ -490,6 +490,8 @@ public class WechatWebController {
 
         try {
             String openId = CookieUtil.getCookie(appId + "_uid", request);
+            openId = "ofsg4wfO13sb93cQpvv7uioaAoHY"; // for test
+            logger.info("get bind info, openID=" + openId);
             List<WxBindInfo> bindInfos;
             WxBindInfo wxBindInfo = new WxBindInfo();
             wxBindInfo.setOpenid(openId);
@@ -710,6 +712,55 @@ public class WechatWebController {
                 city = cityInfo.get("city").toString();
             }
             return city;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return "";
+    }
+
+    @RequestMapping(value = "registerGeneralDevice")
+    public String registerGeneralDevice(HttpServletRequest request, HttpServletResponse response, String code, Model model, RedirectAttributes attributes) {
+        String deviceModel = request.getParameter("selectModel");
+        String deviceByName = request.getParameter("deviceByName");
+        String installDate = request.getParameter("installDate");
+        logger.info("receive: " + deviceModel + ", " + deviceByName + ", " + installDate);
+        try {
+            WxAppInfo wxAppInfo = new WxAppInfo();
+            wxAppInfo.setGhId(JSQ_GH_ID);
+            wxAppInfo = weixinService.getWxAppInfo(wxAppInfo);
+            String appId = wxAppInfo.getAppId();
+            String appSecret = wxAppInfo.getAppSecret();
+            String cookieUid = CookieUtil.getCookie(appId + "_uid", request);// cookieUid = openid
+            cookieUid = "ofsg4wfO13sb93cQpvv7uioaAoHY";
+            List<DeviceInfo> registeredInfos = weixinService.getGeneralBindCount(cookieUid + "%");
+            logger.info("count:" + registeredInfos.size());
+            DeviceInfo deviceInfo = new DeviceInfo();
+            String deviceId = "";
+            if (registeredInfos.size() < 4) {
+                deviceId = cookieUid + "_" + registeredInfos.size();
+                deviceInfo.setDeviceId(deviceId);
+            } else {
+
+            }
+            deviceInfo.setAppId(appId);
+            deviceInfo.setMac(cookieUid);
+            deviceInfo.setDeviceType("9");
+            deviceInfo.setSeqNum("000000000");
+            deviceInfo.setModel(deviceModel);
+            deviceInfo.setChip("general");
+            deviceInfo.setVersion("V0.00");
+            deviceInfo.setRegisterTime(installDate);
+            weixinService.saveDeviceInfo(deviceInfo);
+
+            WxBindInfo wxBindInfo = new WxBindInfo();
+            wxBindInfo.setAppId(appId);
+            wxBindInfo.setDeviceId(deviceId);
+            wxBindInfo.setDeviceType("9");
+            wxBindInfo.setOpenid(cookieUid);
+            wxBindInfo.setDeviceName(deviceByName);
+            wxBindInfo.setStatu(ServiceConstant.BIND_STATU);
+            weixinService.saveWxBindInfo(wxBindInfo);
+
         } catch (Exception e) {
             logger.error(e.getMessage());
         }

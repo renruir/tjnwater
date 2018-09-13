@@ -319,4 +319,9 @@ public interface WeixinService {
 	 * 获取租赁设备信息
 	 */
 	public List<LeaseInfo> getLeaseInfos();
+
+	/**
+	 * 获取同一个openid下注册的通用设备数量
+	 */
+	public List<DeviceInfo> getGeneralBindCount(String openid);
 }

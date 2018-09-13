@@ -495,5 +495,13 @@ select device_id, ys_tds, cs_tds, js_total, jhs_size, cjs_size, ys_size, zs_time
         ]]>
     </select>
 
+	<select id="getGeneralBindCount" resultType="DeviceInfo" parameterType="java.lang.String">
+		<![CDATA[
+
+		SELECT * FROM device_info WHERE device_id LIKE #{openid}
+
+		  ]]>
+	</select>
+
 
 </mapper>

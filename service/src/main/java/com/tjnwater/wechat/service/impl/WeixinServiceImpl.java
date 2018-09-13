@@ -341,4 +341,8 @@ public class WeixinServiceImpl implements WeixinService {
         return weixinDao.getLeaseInfos();
     }
 
+    public List<DeviceInfo> getGeneralBindCount(String openid){
+        return weixinDao.getGeneralBindCount(openid);
+    }
+
 }
