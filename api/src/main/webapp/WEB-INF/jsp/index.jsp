@@ -161,7 +161,6 @@
     $(function () {
         console.log("all start....");
         getBindInfo(appId);
-        getGeneralBindInfo(appId);
     });
 
     function sel_device() {
@@ -171,16 +170,23 @@
     function initView() {
         if (wxbindInfos.length > 0) {
             for (var i = 0; i < wxbindInfos.length; i++) {
-                if ((wxbindInfos[i].deviceType == "1") || (wxbindInfos[i].deviceType == "2")) {
-                    createDeviceType(wxbindInfos[i].deviceType, i);
-                } else if (wxbindInfos[i].deviceType == "9") {
-                    createGeneralType("9", i);
-                }
-
+                createDeviceType(wxbindInfos[i].deviceType, i);
+                // if ((wxbindInfos[i].deviceType == "1") || (wxbindInfos[i].deviceType == "2")) {
+                //
+                // } else if (wxbindInfos[i].deviceType == "9") {
+                //     createGeneralType("9", i);
+                // }
             }
 
             $(".js_btn").show();
 
+        }
+
+        if (generalBindInfos.length > 0) {
+            for (var i = 0; i < generalBindInfos.length; i++) {
+                createGeneralType("9", i);
+            }
+            $(".js_btn").show();
         } else {
             window.location.href = "/web/add_device.html";
             /*$("#no_device").show();
@@ -190,15 +196,15 @@
         }
     }
 
-    function initGeneralView() {
-        console.log("1111111111")
-        if (generalBindInfos.length > 0) {
-            for (var i = 0; i < generalBindInfos.length; i++) {
-                createGeneralType("9", i);
-            }
-            $(".js_btn").show();
-        }
-    }
+    // function initGeneralView() {
+    //     console.log("1111111111")
+    //     if (generalBindInfos.length > 0) {
+    //         for (var i = 0; i < generalBindInfos.length; i++) {
+    //             createGeneralType("9", i);
+    //         }
+    //         $(".js_btn").show();
+    //     }
+    // }
 
     function fillViewData() {
         for (var i = 0; i < wxbindInfos.length; i++) {
@@ -207,9 +213,14 @@
             $("#" + "device_id_" + i).html(wxbindInfos[i].deviceId);
             $("#" + "seq_num_" + i).html(deviceInfos[i].seqNum);
             $("#" + "firmware_version_text_" + i).html(deviceInfos[i].version);
-            if (wxbindInfos[i].deviceType == "9") {
-                $("#" + "install_date_" + i).html(deviceInfos[i].version);
-            }
+        }
+    }
+    
+    function fillGeneralViewData() {
+        for (var i = 0; i < generalBindInfos.length; i++) {
+            $("#" + "genernal_device_model_" + i).html(generalBindInfos[i].device_model);
+            $("#" + "genernal_device_name_" + i).html(generalBindInfos[i].nick_name);
+            $("#" + "genernal_install_date_" + i).html(generalBindInfos[i].install_date);
         }
     }
 
@@ -222,9 +233,10 @@
             },
             success: function (data) {
                 generalBindInfos = data;
-                console.log("genalL:" + generalBindInfos)
-                initGeneralView();
+                console.log("genalL:" + generalBindInfos[0].nick_name);
+                initView();
                 // getDevciesInfo(JSON.stringify(data));
+                fillGeneralViewData();
             },
             error: function () {
                 weui.alert('获取绑定信息失败，请重试!');
@@ -241,7 +253,7 @@
             },
             success: function (data) {
                 wxbindInfos = data;
-                initView();
+                getGeneralBindInfo(appId);
                 getDevciesInfo(JSON.stringify(data));
             },
             error: function () {
@@ -319,7 +331,7 @@
         childDiv1.appendTo(parentDiv);
         var title = $('<span></span>');
         var icon = $("<img src='../images/jsq_icon.png'/>");
-        title.text("净水器")
+        title.text("前置过滤器")
         icon.css("width", "2rem")
         title.addClass('my-device-list-title');
         icon.appendTo(childDiv1);
@@ -330,7 +342,7 @@
         var title_model = $('<span>型号：</span>')
         title_model.appendTo(childDiv2);
         var model = $('<span></span>');
-        model.attr('id', 'device_model_' + order);
+        model.attr('id', 'genernal_device_model_' + order);
         model.appendTo(childDiv2);
 
         var childDiv3 = $('<div></div>')
@@ -339,7 +351,7 @@
         var title_name = $('<span>名称：</span>')
         title_name.appendTo(childDiv3);
         var name = $('<span></span>');
-        name.attr('id', 'device_name_' + order);
+        name.attr('id', 'genernal_device_name_' + order);
         name.appendTo(childDiv3);
         var edit_name_icon = $("<img src='../images/edit_device_name.png'>")
         edit_name_icon.css('width', '1.5rem');
@@ -352,7 +364,7 @@
         var title_id = $('<span>安装时间：</span>');
         title_id.appendTo(childDiv4);
         var id = $('<span></span>');
-        id.attr('id', 'install_date_' + order);
+        id.attr('id', 'genernal_install_date_' + order);
         id.appendTo(childDiv4);
 
         var mainContent = $("#main_content_id");

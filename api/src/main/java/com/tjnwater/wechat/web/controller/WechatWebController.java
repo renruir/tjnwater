@@ -626,6 +626,12 @@ public class WechatWebController {
         return "jsq_home";
     }
 
+    @RequestMapping(value = "update_general_device_name")
+    @ResponseBody
+    public String updateGeneralDeviceName(HttpServletRequest request, String deviceId, String deviceType, String name, Model model){
+
+    }
+
     @RequestMapping(value = "update_device_name")
     @ResponseBody
     public String updateDeviceName(HttpServletRequest request, String deviceId, String deviceType, String name, Model model) {
