@@ -748,7 +748,7 @@ public class WechatWebController {
             deviceInfo.setSeqNum("000000000");
             deviceInfo.setModel(deviceModel);
             deviceInfo.setChip("general");
-            deviceInfo.setVersion("V0.00");
+            deviceInfo.setVersion(installDate);
             deviceInfo.setRegisterTime(installDate);
             weixinService.saveDeviceInfo(deviceInfo);
 

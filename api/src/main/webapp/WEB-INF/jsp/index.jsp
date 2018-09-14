@@ -20,39 +20,39 @@
     <link href="/web/css/weui.min.css" rel="stylesheet"/>
     <style type="text/css">
 
-        #main_content_id{
+        #main_content_id {
             position: relative;
             width: 100%;
             min-height: 70%;
         }
 
-       /* .js_btn{
-            position: absolute;
-            bottom: 70px;
-            left:50%;
-            margin-left: -125px;
-            width: 250px;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            font-size: 24px;
-            color:#fff;
-            background: url("/web/tjn_imgs/add_device_btn.png") no-repeat;
-            background-size:250px 50px;
-        }*/
+        /* .js_btn{
+             position: absolute;
+             bottom: 70px;
+             left:50%;
+             margin-left: -125px;
+             width: 250px;
+             height: 50px;
+             line-height: 50px;
+             text-align: center;
+             font-size: 24px;
+             color:#fff;
+             background: url("/web/tjn_imgs/add_device_btn.png") no-repeat;
+             background-size:250px 50px;
+         }*/
 
-        .js_btn{
+        .js_btn {
             width: 250px;
             height: 50px;
             line-height: 50px;
             margin: 0 auto;
-            margin-top:20px;
+            margin-top: 20px;
             margin-bottom: 40px;
             text-align: center;
             font-size: 24px;
-            color:#fff;
+            color: #fff;
             background: url("/web/tjn_imgs/add_device_btn.png") no-repeat;
-            background-size:250px 50px;
+            background-size: 250px 50px;
         }
 
         /*.my-device-list:last-child{
@@ -64,33 +64,33 @@
 <body style="margin: 0px; font-family: 'Microsoft YaHei'; font-weight: 500; background-color: #1b1f25">
 
 <%--<div class="my-device-list">--%>
-    <%--<div class="valign-wrapper" style="border-bottom: 2px #5091e5 solid">--%>
-        <%--<img src="../images/jsq_icon.png" style="width: 2rem">--%>
-        <%--<span class="my-device-list-title">智能净水器</span>--%>
-    <%--</div>--%>
-    <%--<div>--%>
-        <%--<span>型号：</span><span id="device_model">CR700D1</span>--%>
-    <%--</div>--%>
-    <%--<div class="valign-wrapper">--%>
-        <%--<span>名称：</span><span id="device_name">客厅净化器</span>--%>
-        <%--<img src="../images/edit_device_name.png" style="width: 1.5rem">--%>
-    <%--</div>--%>
-    <%--<div>--%>
-        <%--<span>序列号：</span><span id="device_seq">CWR4D117071312345</span>--%>
-        <%--<div style="overflow-y: scroll;">--%>
-            <%--<img src="../images/single-arrow-down.png" class="show-more-info-icon"--%>
-                 <%--onclick="showMore()" id="show-more-icon">--%>
-        <%--</div>--%>
-    <%--</div>--%>
-    <%--<div id="more-info">--%>
-        <%--<div class="valign-wrapper" id="firmware_version">--%>
-            <%--<span>固件版本：</span><span id="firmware_version_text">SM-1.0-100</span>--%>
-            <%--<span class="red-remind"></span>--%>
-        <%--</div>--%>
-        <%--<div>--%>
-            <%--<span>设备ID：</span><span id="device_id">bece23711d722537_1</span>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+<%--<div class="valign-wrapper" style="border-bottom: 2px #5091e5 solid">--%>
+<%--<img src="../images/jsq_icon.png" style="width: 2rem">--%>
+<%--<span class="my-device-list-title">智能净水器</span>--%>
+<%--</div>--%>
+<%--<div>--%>
+<%--<span>型号：</span><span id="device_model">CR700D1</span>--%>
+<%--</div>--%>
+<%--<div class="valign-wrapper">--%>
+<%--<span>名称：</span><span id="device_name">客厅净化器</span>--%>
+<%--<img src="../images/edit_device_name.png" style="width: 1.5rem">--%>
+<%--</div>--%>
+<%--<div>--%>
+<%--<span>序列号：</span><span id="device_seq">CWR4D117071312345</span>--%>
+<%--<div style="overflow-y: scroll;">--%>
+<%--<img src="../images/single-arrow-down.png" class="show-more-info-icon"--%>
+<%--onclick="showMore()" id="show-more-icon">--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--<div id="more-info">--%>
+<%--<div class="valign-wrapper" id="firmware_version">--%>
+<%--<span>固件版本：</span><span id="firmware_version_text">SM-1.0-100</span>--%>
+<%--<span class="red-remind"></span>--%>
+<%--</div>--%>
+<%--<div>--%>
+<%--<span>设备ID：</span><span id="device_id">bece23711d722537_1</span>--%>
+<%--</div>--%>
+<%--</div>--%>
 <%--</div>--%>
 
 <div class="js_dialog" id="device_rename_dialog" style="opacity: 1; display: none">
@@ -144,7 +144,6 @@
 <div class="js_btn" onclick="sel_device();" style="display: none;">添加设备</div>
 
 
-
 <script src="/web/js/jquery-1.10.1.min.js" type="text/javascript"></script>
 <script src="/web/js/protocol-parse.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/libs/weuijs/1.1.1/weui.min.js"></script>
@@ -170,7 +169,15 @@
     function initView() {
         if (wxbindInfos.length > 0) {
             for (var i = 0; i < wxbindInfos.length; i++) {
-                createDeviceType(wxbindInfos[i].deviceType, i);
+                console.log("abl====" + wxbindInfos[i].deviceType)
+                console.log("abl====" + wxbindInfos[i].deviceType == "9")
+                if ((wxbindInfos[i].deviceType == "1") || (wxbindInfos[i].deviceType == "2")) {
+                    createDeviceType(wxbindInfos[i].deviceType, i);
+                } else if(wxbindInfos[i].deviceType == "9"){
+                    console.log("000000000")
+                    createGeneralType("9", i);
+                }
+
             }
 
             $(".js_btn").show();
@@ -191,6 +198,9 @@
             $("#" + "device_id_" + i).html(wxbindInfos[i].deviceId);
             $("#" + "seq_num_" + i).html(deviceInfos[i].seqNum);
             $("#" + "firmware_version_text_" + i).html(deviceInfos[i].version);
+            if(wxbindInfos[i].deviceType == "9"){
+                $("#" + "install_date_" + i).html(deviceInfos[i].version);
+            }
         }
     }
 
@@ -266,6 +276,58 @@
             },
         });
 
+    }
+
+    function createGeneralType(type, order) {
+        var parentDiv = $('<div></div>');
+        parentDiv.addClass("my-device-list");
+        parentDiv.css('border-left', '5px #4e91ec solid');
+        parentDiv.attr('id', 'device_' + order);
+        parentDiv.attr('onclick', 'location_device_detail(' + type + ',' + order + ')');
+        var childDiv1 = $('<div></div>');
+        childDiv1.addClass("valign-wrapper");
+        childDiv1.css("border-bottom", "2px #5091e5 solid");
+        childDiv1.appendTo(parentDiv);
+        var title = $('<span></span>');
+        var icon = $("<img src='../images/jsq_icon.png'/>");
+        title.text("净水器")
+        icon.css("width", "2rem")
+        title.addClass('my-device-list-title');
+        icon.appendTo(childDiv1);
+        title.appendTo(childDiv1);
+
+        var childDiv2 = $('<div></div>')
+        childDiv2.appendTo(parentDiv);
+        var title_model = $('<span>型号：</span>')
+        title_model.appendTo(childDiv2);
+        var model = $('<span></span>');
+        model.attr('id', 'device_model_' + order);
+        model.appendTo(childDiv2);
+
+        var childDiv3 = $('<div></div>')
+        childDiv3.addClass('valign-wrapper');
+        childDiv3.appendTo(parentDiv);
+        var title_name = $('<span>名称：</span>')
+        title_name.appendTo(childDiv3);
+        var name = $('<span></span>');
+        name.attr('id', 'device_name_' + order);
+        name.appendTo(childDiv3);
+        var edit_name_icon = $("<img src='../images/edit_device_name.png'>")
+        edit_name_icon.css('width', '1.5rem');
+        edit_name_icon.css('margin-left', '1rem');
+        edit_name_icon.attr('onclick', 'editDeviceName(' + type + ',' + order + ')');
+        edit_name_icon.appendTo(childDiv3);
+
+        var childDiv4 = $('<div></div>');
+        childDiv4.appendTo(parentDiv);
+        var title_id = $('<span>安装时间：</span>');
+        title_id.appendTo(childDiv4);
+        var id = $('<span></span>');
+        id.attr('id', 'install_date_' + order);
+        id.appendTo(childDiv4);
+
+        var mainContent = $("#main_content_id");
+        parentDiv.appendTo(mainContent);
     }
 
     function createDeviceType(type, order) {
