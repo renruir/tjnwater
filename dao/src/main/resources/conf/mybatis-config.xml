@@ -21,5 +21,6 @@
         <typeAlias alias="CityTds" type="com.tjnwater.wechat.api.model.CityTds"/>
         <typeAlias alias="RegionTds" type="com.tjnwater.wechat.api.model.RegionTds"/>
         <typeAlias alias="LeaseInfo" type="com.tjnwater.wechat.device.model.LeaseInfo"/>
+        <typeAlias alias="GeneralDeviceInfo" type="com.tjnwater.wechat.api.model.GeneralDeviceInfo"/>
     </typeAliases>
 </configuration>

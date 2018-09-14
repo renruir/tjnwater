@@ -266,5 +266,17 @@ public interface WeixinDao {
      */
     public List<DeviceInfo> getGeneralBindCount(String openid);
 
+    /**
+     * 保存通用设备绑定信息
+     */
+    public void saveGeneralDeviceBindInfo(GeneralDeviceInfo generalDeviceInfo);
+
+
+    /**
+     * 获取非智能通用绑定信息
+     * @param generalDeviceInfo
+     * @return
+     */
+    public List<GeneralDeviceInfo> getGeneralBindInfo(GeneralDeviceInfo generalDeviceInfo);
 }
 

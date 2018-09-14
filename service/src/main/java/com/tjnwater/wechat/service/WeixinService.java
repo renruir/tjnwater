@@ -324,4 +324,17 @@ public interface WeixinService {
 	 * 获取同一个openid下注册的通用设备数量
 	 */
 	public List<DeviceInfo> getGeneralBindCount(String openid);
+
+	/**
+	 * 保存通用设备绑定信息
+	 */
+	public void saveGeneralDeviceBindInfo(GeneralDeviceInfo generalDeviceInfo);
+
+
+	/**
+	 * 获取通用绑定信息
+	 * @param generalDeviceInfo
+	 * @return
+	 */
+	public List<GeneralDeviceInfo> getGeneralBindInfo(GeneralDeviceInfo generalDeviceInfo) throws Exception;
 }

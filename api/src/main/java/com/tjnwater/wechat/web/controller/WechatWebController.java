@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -483,6 +484,25 @@ public class WechatWebController {
         }
     }
 
+    @RequestMapping(value = "get_general_bind_info")
+    @ResponseBody
+    public List<GeneralDeviceInfo> getGeneralBindInfo(HttpServletRequest request, @RequestParam("appId") String appId, Model model) throws Exception {
+        try {
+            String openId = CookieUtil.getCookie(appId + "_uid", request);
+            openId = "ofsg4wfO13sb93cQpvv7uioaAoHY"; // for test
+            List<GeneralDeviceInfo> generalDeviceInfos;
+            GeneralDeviceInfo info = new GeneralDeviceInfo();
+            info.setOpen_id(openId);
+            info.setApp_id(appId);
+            generalDeviceInfos = weixinService.getGeneralBindInfo(info);
+            logger.info("general info: "+generalDeviceInfos);
+            return generalDeviceInfos;
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return null;
+        }
+    }
+
 
     @RequestMapping(value = "get_bind_info")
     @ResponseBody
@@ -734,37 +754,48 @@ public class WechatWebController {
             cookieUid = "ofsg4wfO13sb93cQpvv7uioaAoHY";
             List<DeviceInfo> registeredInfos = weixinService.getGeneralBindCount(cookieUid + "%");
             logger.info("count:" + registeredInfos.size());
-            DeviceInfo deviceInfo = new DeviceInfo();
+//            DeviceInfo deviceInfo = new DeviceInfo();
+            GeneralDeviceInfo generalDeviceInfo = new GeneralDeviceInfo();
             String deviceId = "";
             if (registeredInfos.size() < 4) {
                 deviceId = cookieUid + "_" + registeredInfos.size();
-                deviceInfo.setDeviceId(deviceId);
+                generalDeviceInfo.setGeneral_id(deviceId);
+                generalDeviceInfo.setApp_id(appId);
+                generalDeviceInfo.setOpen_id(cookieUid);
+                generalDeviceInfo.setDevice_model(deviceModel);
+                generalDeviceInfo.setDevice_type("9");
+                generalDeviceInfo.setNick_name(deviceByName);
+                generalDeviceInfo.setInstall_date(installDate);
+                generalDeviceInfo.setReminder_circle(90);
+                weixinService.saveGeneralDeviceBindInfo(generalDeviceInfo);
             } else {
 
             }
-            deviceInfo.setAppId(appId);
-            deviceInfo.setMac(cookieUid);
-            deviceInfo.setDeviceType("9");
-            deviceInfo.setSeqNum("000000000");
-            deviceInfo.setModel(deviceModel);
-            deviceInfo.setChip("general");
-            deviceInfo.setVersion(installDate);
-            deviceInfo.setRegisterTime(installDate);
-            weixinService.saveDeviceInfo(deviceInfo);
 
-            WxBindInfo wxBindInfo = new WxBindInfo();
-            wxBindInfo.setAppId(appId);
-            wxBindInfo.setDeviceId(deviceId);
-            wxBindInfo.setDeviceType("9");
-            wxBindInfo.setOpenid(cookieUid);
-            wxBindInfo.setDeviceName(deviceByName);
-            wxBindInfo.setStatu(ServiceConstant.BIND_STATU);
-            weixinService.saveWxBindInfo(wxBindInfo);
+
+//            deviceInfo.setAppId(appId);
+//            deviceInfo.setMac(cookieUid);
+//            deviceInfo.setDeviceType("9");
+//            deviceInfo.setSeqNum("000000000");
+//            deviceInfo.setModel(deviceModel);
+//            deviceInfo.setChip("general");
+//            deviceInfo.setVersion(installDate);
+//            deviceInfo.setRegisterTime(installDate);
+//            weixinService.saveDeviceInfo(deviceInfo);
+
+//            WxBindInfo wxBindInfo = new WxBindInfo();
+//            wxBindInfo.setAppId(appId);
+//            wxBindInfo.setDeviceId(deviceId);
+//            wxBindInfo.setDeviceType("9");
+//            wxBindInfo.setOpenid(cookieUid);
+//            wxBindInfo.setDeviceName(deviceByName);
+//            wxBindInfo.setStatu(ServiceConstant.BIND_STATU);
+//            weixinService.saveWxBindInfo(wxBindInfo);
 
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
-        return "";
+        return "index";
     }
 
     @RequestMapping(value = "wxInfo.html")

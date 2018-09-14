@@ -345,4 +345,14 @@ public class WeixinServiceImpl implements WeixinService {
         return weixinDao.getGeneralBindCount(openid);
     }
 
+    public void saveGeneralDeviceBindInfo(GeneralDeviceInfo generalDeviceInfo){
+        weixinDao.saveGeneralDeviceBindInfo(generalDeviceInfo);
+    }
+
+    @Override
+    public List<GeneralDeviceInfo> getGeneralBindInfo(GeneralDeviceInfo generalDeviceInfo) throws Exception {
+        return weixinDao.getGeneralBindInfo(generalDeviceInfo);
+    }
+
+
 }

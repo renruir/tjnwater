@@ -156,10 +156,12 @@
     var wxbindInfos = new Array();
     var deviceInfos = new Array();
     var updateInfos = new Array();
+    var generalBindInfos = new Array();
 
     $(function () {
         console.log("all start....");
         getBindInfo(appId);
+        getGeneralBindInfo(appId);
     });
 
     function sel_device() {
@@ -169,12 +171,9 @@
     function initView() {
         if (wxbindInfos.length > 0) {
             for (var i = 0; i < wxbindInfos.length; i++) {
-                console.log("abl====" + wxbindInfos[i].deviceType)
-                console.log("abl====" + wxbindInfos[i].deviceType == "9")
                 if ((wxbindInfos[i].deviceType == "1") || (wxbindInfos[i].deviceType == "2")) {
                     createDeviceType(wxbindInfos[i].deviceType, i);
-                } else if(wxbindInfos[i].deviceType == "9"){
-                    console.log("000000000")
+                } else if (wxbindInfos[i].deviceType == "9") {
                     createGeneralType("9", i);
                 }
 
@@ -191,6 +190,16 @@
         }
     }
 
+    function initGeneralView() {
+        console.log("1111111111")
+        if (generalBindInfos.length > 0) {
+            for (var i = 0; i < generalBindInfos.length; i++) {
+                createGeneralType("9", i);
+            }
+            $(".js_btn").show();
+        }
+    }
+
     function fillViewData() {
         for (var i = 0; i < wxbindInfos.length; i++) {
             $("#" + "device_model_" + i).html(deviceInfos[i].model);
@@ -198,10 +207,29 @@
             $("#" + "device_id_" + i).html(wxbindInfos[i].deviceId);
             $("#" + "seq_num_" + i).html(deviceInfos[i].seqNum);
             $("#" + "firmware_version_text_" + i).html(deviceInfos[i].version);
-            if(wxbindInfos[i].deviceType == "9"){
+            if (wxbindInfos[i].deviceType == "9") {
                 $("#" + "install_date_" + i).html(deviceInfos[i].version);
             }
         }
+    }
+
+    function getGeneralBindInfo(appId) {
+        $.ajax({
+            type: "POST",
+            url: "/web/wechat/get_general_bind_info",
+            data: {
+                appId: appId
+            },
+            success: function (data) {
+                generalBindInfos = data;
+                console.log("genalL:" + generalBindInfos)
+                initGeneralView();
+                // getDevciesInfo(JSON.stringify(data));
+            },
+            error: function () {
+                weui.alert('获取绑定信息失败，请重试!');
+            },
+        });
     }
 
     function getBindInfo(appId) {
@@ -279,6 +307,7 @@
     }
 
     function createGeneralType(type, order) {
+        console.log("33333333")
         var parentDiv = $('<div></div>');
         parentDiv.addClass("my-device-list");
         parentDiv.css('border-left', '5px #4e91ec solid');
