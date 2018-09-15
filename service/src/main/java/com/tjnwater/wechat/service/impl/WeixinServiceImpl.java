@@ -354,5 +354,13 @@ public class WeixinServiceImpl implements WeixinService {
         return weixinDao.getGeneralBindInfo(generalDeviceInfo);
     }
 
+    @Override
+    public void updateGeneralDeviceName(GeneralDeviceInfo generalDeviceInfo) throws Exception {
+        weixinDao.updateGeneralDeviceName(generalDeviceInfo);
+    }
 
+    @Override
+    public GeneralDeviceInfo getGeneralInfo(String general_id){
+        return weixinDao.getGeneralInfo(general_id);
+    }
 }

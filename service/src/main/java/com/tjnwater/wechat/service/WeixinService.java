@@ -4,6 +4,7 @@ import com.tjnwater.wechat.api.model.*;
 import com.tjnwater.wechat.device.model.LeaseInfo;
 import com.tjnwater.wechat.model.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -337,4 +338,18 @@ public interface WeixinService {
 	 * @return
 	 */
 	public List<GeneralDeviceInfo> getGeneralBindInfo(GeneralDeviceInfo generalDeviceInfo) throws Exception;
+
+	/**
+	 * 更新通用设备的名称
+	 * update General device name
+	 */
+	public void updateGeneralDeviceName(GeneralDeviceInfo generalDeviceInfo) throws Exception;
+
+
+	/**
+	 * 获取指定id的设备信息
+	 */
+	public GeneralDeviceInfo getGeneralInfo(String general_id) throws Exception;
+
+
 }

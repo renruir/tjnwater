@@ -278,5 +278,16 @@ public interface WeixinDao {
      * @return
      */
     public List<GeneralDeviceInfo> getGeneralBindInfo(GeneralDeviceInfo generalDeviceInfo);
+
+    /**
+     * 更新通用设备的名称
+     * update General device name
+     */
+    public void updateGeneralDeviceName(GeneralDeviceInfo generalDeviceInfo);
+
+    /**
+     * 获取指定id的设备信息
+     */
+    public GeneralDeviceInfo getGeneralInfo(String general_id);
 }
 

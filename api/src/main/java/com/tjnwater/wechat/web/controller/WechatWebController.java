@@ -495,9 +495,9 @@ public class WechatWebController {
             info.setOpen_id(openId);
             info.setApp_id(appId);
             generalDeviceInfos = weixinService.getGeneralBindInfo(info);
-            logger.info("general info: "+generalDeviceInfos);
+            logger.info("general info: " + generalDeviceInfos);
             return generalDeviceInfos;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage());
             return null;
         }
@@ -628,8 +628,19 @@ public class WechatWebController {
 
     @RequestMapping(value = "update_general_device_name")
     @ResponseBody
-    public String updateGeneralDeviceName(HttpServletRequest request, String deviceId, String deviceType, String name, Model model){
-
+    public String updateGeneralDeviceName(HttpServletRequest request, String generalId, String name, Model model) {
+        logger.info("name: " + name + ", generalId:" + generalId);
+        try {
+            GeneralDeviceInfo generalDeviceInfo = new GeneralDeviceInfo();
+//            generalDeviceInfo.setApp_id(appId);
+            generalDeviceInfo.setGeneral_id(generalId);
+            generalDeviceInfo.setNick_name(name);
+            weixinService.updateGeneralDeviceName(generalDeviceInfo);
+            return "SUCCESS";
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return "FAILED";
+        }
     }
 
     @RequestMapping(value = "update_device_name")
@@ -724,6 +735,20 @@ public class WechatWebController {
         return "add_general_device";
     }
 
+    @RequestMapping(value = "pre_filter.html")
+    public String preFilter(HttpServletRequest request, HttpServletResponse response, String code, Model model) {
+        String generalId = request.getParameter("generalId");
+        logger.info("general id: " + generalId);
+        GeneralDeviceInfo generalDeviceInfo;
+        try {
+            generalDeviceInfo = weixinService.getGeneralInfo(generalId);
+            logger.info("general Info: " + generalDeviceInfo.getNick_name() + ", install date: " + generalDeviceInfo.getInstall_date());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return "pre_filter";
+    }
+
     @RequestMapping(value = "getCityInfo")
     @ResponseBody
     public String getCityInfo(String location) {
@@ -777,26 +802,6 @@ public class WechatWebController {
             } else {
 
             }
-
-
-//            deviceInfo.setAppId(appId);
-//            deviceInfo.setMac(cookieUid);
-//            deviceInfo.setDeviceType("9");
-//            deviceInfo.setSeqNum("000000000");
-//            deviceInfo.setModel(deviceModel);
-//            deviceInfo.setChip("general");
-//            deviceInfo.setVersion(installDate);
-//            deviceInfo.setRegisterTime(installDate);
-//            weixinService.saveDeviceInfo(deviceInfo);
-
-//            WxBindInfo wxBindInfo = new WxBindInfo();
-//            wxBindInfo.setAppId(appId);
-//            wxBindInfo.setDeviceId(deviceId);
-//            wxBindInfo.setDeviceType("9");
-//            wxBindInfo.setOpenid(cookieUid);
-//            wxBindInfo.setDeviceName(deviceByName);
-//            wxBindInfo.setStatu(ServiceConstant.BIND_STATU);
-//            weixinService.saveWxBindInfo(wxBindInfo);
 
         } catch (Exception e) {
             logger.error(e.getMessage());

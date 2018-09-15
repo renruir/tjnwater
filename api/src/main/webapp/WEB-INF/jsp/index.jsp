@@ -171,11 +171,6 @@
         if (wxbindInfos.length > 0) {
             for (var i = 0; i < wxbindInfos.length; i++) {
                 createDeviceType(wxbindInfos[i].deviceType, i);
-                // if ((wxbindInfos[i].deviceType == "1") || (wxbindInfos[i].deviceType == "2")) {
-                //
-                // } else if (wxbindInfos[i].deviceType == "9") {
-                //     createGeneralType("9", i);
-                // }
             }
 
             $(".js_btn").show();
@@ -196,16 +191,6 @@
         }
     }
 
-    // function initGeneralView() {
-    //     console.log("1111111111")
-    //     if (generalBindInfos.length > 0) {
-    //         for (var i = 0; i < generalBindInfos.length; i++) {
-    //             createGeneralType("9", i);
-    //         }
-    //         $(".js_btn").show();
-    //     }
-    // }
-
     function fillViewData() {
         for (var i = 0; i < wxbindInfos.length; i++) {
             $("#" + "device_model_" + i).html(deviceInfos[i].model);
@@ -215,7 +200,7 @@
             $("#" + "firmware_version_text_" + i).html(deviceInfos[i].version);
         }
     }
-    
+
     function fillGeneralViewData() {
         for (var i = 0; i < generalBindInfos.length; i++) {
             $("#" + "genernal_device_model_" + i).html(generalBindInfos[i].device_model);
@@ -253,6 +238,7 @@
             },
             success: function (data) {
                 wxbindInfos = data;
+                console.log("genalL:" + wxbindInfos[0].deviceName);
                 getGeneralBindInfo(appId);
                 getDevciesInfo(JSON.stringify(data));
             },
@@ -277,21 +263,40 @@
         });
     }
 
-    function refreshData() {
-        $.ajax({
-            type: "POST",
-            url: "/web/wechat/get_bind_info",
-            data: {
-                appId: appId
-            },
-            success: function (data) {
-                wxbindInfos = data;
-                fillViewData();
-            },
-            error: function () {
-                weui.alert('数据刷新失败，请重试!');
-            },
-        });
+    function refreshData(dType) {
+        if (dType != "9") {
+            $.ajax({
+                type: "POST",
+                url: "/web/wechat/get_bind_info",
+                data: {
+                    appId: appId
+                },
+                success: function (data) {
+                    wxbindInfos = data;
+                    fillViewData();
+                },
+                error: function () {
+                    weui.alert('数据刷新失败，请重试!');
+                },
+            });
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/web/wechat/get_general_bind_info",
+                data: {
+                    appId: appId
+                },
+                success: function (data) {
+                    generalBindInfos = data;
+                    console.log("genalL:" + generalBindInfos[0].nick_name);
+                    fillGeneralViewData();
+                },
+                error: function () {
+                    weui.alert('获取绑定信息失败，请重试!');
+                },
+            });
+        }
+
     }
 
     function getUpdateInfo(i) {
@@ -319,7 +324,6 @@
     }
 
     function createGeneralType(type, order) {
-        console.log("33333333")
         var parentDiv = $('<div></div>');
         parentDiv.addClass("my-device-list");
         parentDiv.css('border-left', '5px #4e91ec solid');
@@ -372,6 +376,7 @@
     }
 
     function createDeviceType(type, order) {
+        console.log("type: " + type);
         var parentDiv = $('<div></div>');
         parentDiv.addClass("my-device-list");
         if (type == "1") {
@@ -395,7 +400,7 @@
             var icon = $("<img src='../images/jhq_icon.png'/>");
             title.text("空气净化器")
         }
-        icon.css("width", "2rem")
+        icon.css('width', '2rem');
         title.addClass('my-device-list-title');
         icon.appendTo(childDiv1);
         title.appendTo(childDiv1);
@@ -475,7 +480,11 @@
             url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type + "&update=0" +
                 "&version=" + updateInfos[order].version + "&size=" + updateInfos[order].pkgSize + "&url=" + updateInfos[order].downloadUrl + "&md5=" + updateInfos[order].md5;
         } else {
-            url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type;
+            if (type != "9") {
+                url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type;
+            } else {
+                url = "/web/wechat/pre_filter.html?generalId="+generalBindInfos[order].general_id;
+            }
         }
         window.location.href = url;
     }
@@ -486,9 +495,12 @@
         selectOrder = order;
         selectType = type;
         $("#device_rename_dialog").fadeIn(200);
-        console.log("selectOrder: " + selectOrder);
-        console.log("name: " + wxbindInfos[selectOrder].deviceName);
-        $("#device_new_name").val(wxbindInfos[selectOrder].deviceName);
+        if (selectType != "9") {
+            $("#device_new_name").val(wxbindInfos[selectOrder].deviceName);
+        } else {
+            $("#device_new_name").val(generalBindInfos[selectOrder].nick_name)
+        }
+
     }
 
     function cancelDialog() {
@@ -499,25 +511,48 @@
         if ($('#device_new_name').val().length <= 1) {
             alert("输入的名称太短");
         } else {
-            var newName = $('#device_new_name').val();
-            var deviceID = wxbindInfos[selectOrder].deviceId;
-            $.ajax({
-                type: "POST",
-                url: "/web/wechat/update_device_name",
-                data: {
-                    name: newName,
-                    deviceId: deviceID,
-                    deviceType: selectType
-                },
-                success: function () {
-                    $("#device_rename_dialog").fadeOut(200);
-                    setTimeout(refreshData(), 2000);
-                },
-                error: function () {
-                    $("#device_rename_dialog").fadeOut(200);
-                    weui.alert('修改名称失败，请重试!');
-                }
-            });
+            if (selectType != "9") {
+                var newName = $('#device_new_name').val();
+                var deviceID = wxbindInfos[selectOrder].deviceId;
+                $.ajax({
+                    type: "POST",
+                    url: "/web/wechat/update_device_name",
+                    data: {
+                        name: newName,
+                        deviceId: deviceID,
+                        deviceType: selectType
+                    },
+                    success: function () {
+                        $("#device_rename_dialog").fadeOut(200);
+                        setTimeout(refreshData(selectType), 2000);
+                    },
+                    error: function () {
+                        $("#device_rename_dialog").fadeOut(200);
+                        weui.alert('修改名称失败，请重试!');
+                    }
+                });
+            } else {
+                var newName = $('#device_new_name').val();
+                var generalId = generalBindInfos[selectOrder].general_id;
+                $.ajax({
+                    type: "POST",
+                    url: "/web/wechat/update_general_device_name",
+                    data: {
+                        name: newName,
+                        generalId: generalId
+
+                    },
+                    success: function () {
+                        $("#device_rename_dialog").fadeOut(200);
+                        setTimeout(refreshData(selectType), 2000);
+                    },
+                    error: function () {
+                        $("#device_rename_dialog").fadeOut(200);
+                        weui.alert('修改名称失败，请重试!');
+                    }
+                });
+            }
+
         }
     }
 
