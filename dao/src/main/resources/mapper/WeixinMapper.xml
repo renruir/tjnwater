@@ -374,7 +374,7 @@ select device_id, ys_tds, cs_tds, js_total, jhs_size, cjs_size, ys_size, zs_time
     <insert id="saveGeneralDeviceBindInfo" parameterType="GeneralDeviceInfo">
         <![CDATA[
 
-		replace into general_device_bind_info(general_id,app_id,device_model,device_type,install_date,open_id,reminder_circle,nick_name,create_time) values (#{general_id},#{app_id},#{device_model},#{device_type},#{install_date},#{open_id},#{reminder_circle},#{nick_name},sysdate())
+		replace into general_device_bind_info(general_id,app_id,device_model,device_type,install_date,reset_date,open_id,reminder_circle,nick_name,create_time) values (#{general_id},#{app_id},#{device_model},#{device_type},#{install_date},#{reset_date},#{open_id},#{reminder_circle},#{nick_name},sysdate())
 
         ]]>
 
@@ -383,7 +383,7 @@ select device_id, ys_tds, cs_tds, js_total, jhs_size, cjs_size, ys_size, zs_time
     <select id="getGeneralBindInfo" parameterType="GeneralDeviceInfo" resultType="GeneralDeviceInfo">
 		<![CDATA[
 
-		SELECT general_id general_id, app_id app_id, device_type device_type, install_date install_date, open_id open_id, reminder_circle reminder_circle,nick_name nick_name, device_model device_model, create_time create_time FROM general_device_bind_info WHERE open_id=#{open_id} and app_id=#{app_id}  ORDER BY create_time desc
+		SELECT general_id general_id, app_id app_id, device_type device_type, install_date install_date, reset_date reset_date, open_id open_id, reminder_circle reminder_circle,nick_name nick_name, device_model device_model, create_time create_time FROM general_device_bind_info WHERE open_id=#{open_id} and app_id=#{app_id}  ORDER BY create_time desc
 
 
         ]]>
@@ -392,7 +392,7 @@ select device_id, ys_tds, cs_tds, js_total, jhs_size, cjs_size, ys_size, zs_time
 	<select id="getGeneralInfo" parameterType="java.lang.String" resultType="GeneralDeviceInfo">
 		<![CDATA[
 
-		SELECT general_id general_id, app_id app_id, device_type device_type, install_date install_date, open_id open_id, reminder_circle reminder_circle,nick_name nick_name, device_model device_model, create_time create_time FROM general_device_bind_info WHERE general_id=#{general_id} limit 1
+		SELECT general_id general_id, app_id app_id, device_type device_type, install_date install_date, reset_date reset_date, open_id open_id, reminder_circle reminder_circle,nick_name nick_name, device_model device_model, create_time create_time FROM general_device_bind_info WHERE general_id=#{general_id} limit 1
 
 
         ]]>

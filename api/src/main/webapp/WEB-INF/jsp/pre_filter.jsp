@@ -47,9 +47,9 @@
             font-size: 0.25rem;
             color: #0077c1;
             background-color: #ffffff;
-            box-shadow: 0px 0 10px #5a91c4;
+            /*box-shadow: 0px 0 10px #5a91c4;*/
             letter-spacing: 3px;
-            border-radius: 20px !important;
+            border-radius: 10px !important;
             border-width: 2px;
             border-color: #0077c1;
         }
@@ -92,8 +92,20 @@
 <script src="/web/js/circleChart.min.js"></script>
 <script type="text/javascript">
 
+    var generalInfo = {
+        "nickName": "${generalInfo.nick_name}",
+        "reminderCircle": "${generalInfo.reminder_circle}",
+        "lastResetDate": "${generalInfo.reset_date}"
+    }
+
+    var consumeDay = 0;
+
     $(function () {
         initCircle();
+        console.log("nickname: " + generalInfo.nickName);
+        console.log("install data: " + generalInfo.lastResetDate);
+        console.log("reminder: " + dateMinus(generalInfo.lastResetDate));
+        consumeDay = dateMinus(generalInfo.lastResetDate)
     });
 
     function initCircle() {
@@ -106,14 +118,22 @@
             text: 0,
             textSize: 50,
             onDraw: function (el, circle) {
-                circle.text(Math.round(circle.value));
+                circle.text((generalInfo.reminderCircle - consumeDay) + "/" + generalInfo.reminderCircle);
+                // circle.text(Math.round(circle.value));
             }
         });
     }
-    
+
     function select_circle() {
-        console.log('33333333')
-        $(".circleChart_text").css('font-size', '10px');
+        $(".circleChart_text").css('color', '#fff');
+    }
+
+    function dateMinus(sDate) {
+        var sdate = new Date(sDate.replace(/-/g, "/"));
+        var now = new Date();
+        var days = now.getTime() - sdate.getTime();
+        var day = parseInt(days / (1000 * 60 * 60 * 24));
+        return day;
     }
 
 </script>

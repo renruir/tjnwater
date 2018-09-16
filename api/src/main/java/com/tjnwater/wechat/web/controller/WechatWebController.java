@@ -632,7 +632,6 @@ public class WechatWebController {
         logger.info("name: " + name + ", generalId:" + generalId);
         try {
             GeneralDeviceInfo generalDeviceInfo = new GeneralDeviceInfo();
-//            generalDeviceInfo.setApp_id(appId);
             generalDeviceInfo.setGeneral_id(generalId);
             generalDeviceInfo.setNick_name(name);
             weixinService.updateGeneralDeviceName(generalDeviceInfo);
@@ -743,6 +742,10 @@ public class WechatWebController {
         try {
             generalDeviceInfo = weixinService.getGeneralInfo(generalId);
             logger.info("general Info: " + generalDeviceInfo.getNick_name() + ", install date: " + generalDeviceInfo.getInstall_date());
+            if (generalDeviceInfo != null) {
+                model.addAttribute("generalInfo", generalDeviceInfo);
+            }
+
         } catch (Exception e) {
             logger.error(e.getMessage());
         }

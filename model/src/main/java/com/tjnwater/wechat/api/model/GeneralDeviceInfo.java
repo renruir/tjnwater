@@ -7,6 +7,7 @@ public class GeneralDeviceInfo {
     private String device_model;
     private String device_type;
     private String install_date;
+    private String reset_date;
     private String open_id;
     private int reminder_circle;
     private String nick_name;
@@ -50,6 +51,14 @@ public class GeneralDeviceInfo {
 
     public void setInstall_date(String install_date) {
         this.install_date = install_date;
+    }
+
+    public String getReset_date() {
+        return reset_date;
+    }
+
+    public void setReset_date(String reset_date) {
+        this.reset_date = reset_date;
     }
 
     public String getOpen_id() {

@@ -58,7 +58,6 @@
         </div>
     </div>
 
-
     <div class="weui-btn-area">
         <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" onclick="addGeneralDevice()">确定</a>
     </div>
