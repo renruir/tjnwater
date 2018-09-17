@@ -34,6 +34,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Controller
@@ -628,13 +630,21 @@ public class WechatWebController {
 
     @RequestMapping(value = "update_general_device_name")
     @ResponseBody
-    public String updateGeneralDeviceName(HttpServletRequest request, String generalId, String name, String reminderCircle, Model model) {
-        logger.info("name: " + name + ", generalId:" + generalId + ", reminderCircle:" + reminderCircle);
+    public String updateGeneralDeviceName(HttpServletRequest request, String generalId, String name, String reminderCircle, String resetDate, Model model) {
+        logger.info("name: " + name + ", generalId:" + generalId
+                + ", reminderCircle:" + reminderCircle +", resetDate: "+resetDate);
         try {
+            if (!isInteger(reminderCircle)) {
+                String regEx = "[^0-9]";
+                Pattern p = Pattern.compile(regEx);
+                Matcher m = p.matcher(reminderCircle);
+                reminderCircle = m.replaceAll("").trim();
+            }
             GeneralDeviceInfo generalDeviceInfo = new GeneralDeviceInfo();
             generalDeviceInfo.setGeneral_id(generalId);
             generalDeviceInfo.setNick_name(name);
             generalDeviceInfo.setReminder_circle(Integer.parseInt(reminderCircle));
+            generalDeviceInfo.setReset_date(resetDate);
             weixinService.updateGeneralDeviceName(generalDeviceInfo);
             return "SUCCESS";
         } catch (Exception e) {
@@ -742,7 +752,7 @@ public class WechatWebController {
         GeneralDeviceInfo generalDeviceInfo;
         try {
             generalDeviceInfo = weixinService.getGeneralInfo(generalId);
-            logger.info("general Info: " + generalDeviceInfo.getNick_name() + ", install date: " + generalDeviceInfo.getInstall_date());
+            logger.info("general Info: " + generalDeviceInfo.getNick_name() + ", reset date: " + generalDeviceInfo.getReset_date());
             if (generalDeviceInfo != null) {
                 model.addAttribute("generalInfo", generalDeviceInfo);
             }
@@ -1021,5 +1031,10 @@ public class WechatWebController {
         String signature = ShaUtil.stringSHA1("jsapi_ticket=" + wxTicket + "&noncestr=" + noncestr +
                 "&timestamp=" + timestamp + "&url=" + url);
         return signature;
+    }
+
+    public static boolean isInteger(String str) {
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+        return pattern.matcher(str).matches();
     }
 }

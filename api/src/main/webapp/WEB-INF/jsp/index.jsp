@@ -483,7 +483,7 @@
             if (type != "9") {
                 url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type;
             } else {
-                url = "/web/wechat/pre_filter.html?generalId="+generalBindInfos[order].general_id;
+                url = "/web/wechat/pre_filter.html?generalId=" + generalBindInfos[order].general_id;
             }
         }
         window.location.href = url;
@@ -535,14 +535,15 @@
                 var newName = $('#device_new_name').val();
                 var generalId = generalBindInfos[selectOrder].general_id;
                 var reminderCircle = generalBindInfos[selectOrder].reminder_circle;
+                var resetDate = generalBindInfos[selectOrder].reset_date;
                 $.ajax({
                     type: "POST",
                     url: "/web/wechat/update_general_device_name",
                     data: {
                         name: newName,
                         generalId: generalId,
-                        reminderCircle:reminderCircle
-
+                        reminderCircle: reminderCircle,
+                        resetDate: resetDate
                     },
                     success: function () {
                         $("#device_rename_dialog").fadeOut(200);

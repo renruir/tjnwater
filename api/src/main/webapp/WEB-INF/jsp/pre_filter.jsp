@@ -88,7 +88,7 @@
 
     <div>
         <a href="javascript:;" class="weui-btn weui-btn_primary myButton" style="margin-top: 0.2rem"
-           id="resetState">复位</a>
+           id="resetState" onclick="resetState()">复位</a>
     </div>
 
 </div>
@@ -113,51 +113,54 @@
         "nickName": "${generalInfo.nick_name}",
         "reminderCircle": "${generalInfo.reminder_circle}",
         "lastResetDate": "${generalInfo.reset_date}",
-        "generalId": "${generalInfo.general_id}"
+        "generalId": "${generalInfo.general_id}",
     }
 
-    var consumeDay = 0;
+    var consumeDay = 0.00001;
+    var newReminderCircle;
+    var surplus = generalInfo.reminderCircle - consumeDay;
 
     $(function () {
+        console.log("generalInfo.lastResetDate: " + generalInfo.lastResetDate);
         consumeDay = dateMinus(generalInfo.lastResetDate);
-        initCircle();
+        if(consumeDay == 0){
+            consumeDay = 0.00001;
+        }
+        console.log("consumeDay: " + consumeDay);
+        surplus = parseInt(generalInfo.reminderCircle - consumeDay);
+        if (surplus >= 0) {
+            initCircle(surplus);
+        } else {
+            initCircle(0);
+        }
         $("p:first").css("line-height", "100px");
         $("p:first").css("top", "0.85rem");
-        if (generalInfo.reminderCircle - consumeDay <= 3) {
-            $(".circleChart").circleChart({
-                color: "#fe555c"
-            });
-        }
+
 
         var $androidActionSheet = $('#androidActionsheet');
         var $androidMask = $androidActionSheet.find('.weui-mask');
 
         $("#selectResetCircle").on('click', function () {
-            console.log("55555555");
             $androidActionSheet.fadeIn(200);
             $androidMask.on('click', function () {
-                console.log("99999999");
                 $androidActionSheet.fadeOut(200);
             });
             $('.weui-actionsheet__menu .weui-actionsheet__cell').on('click', function () {
-                console.log("mmmmmmmmm");
-                $('#showActionSheet1').val($(this).text());
+                newReminderCircle = $(this).text();
                 $.ajax({
                     type: "POST",
                     url: "/web/wechat/update_general_device_name",
                     data: {
+                        reminderCircle: newReminderCircle,
                         name: generalInfo.nickName,
                         generalId: generalInfo.generalId,
-                        reminderCircle: $(this).text()
-
+                        resetDate: generalInfo.lastResetDate
                     },
                     success: function () {
-                        $("#device_rename_dialog").fadeOut(200);
-                        setTimeout(refreshData(selectType), 2000);
+                        setTimeout(refreshData(), 1000);
                     },
                     error: function () {
-                        $("#device_rename_dialog").fadeOut(200);
-                        weui.alert('修改名称失败，请重试!');
+                        weui.alert('修改失败，请重试!');
                     }
                 });
                 $androidActionSheet.fadeOut(200);
@@ -165,7 +168,21 @@
         });
     });
 
-    function initCircle() {
+    function refreshData() {
+        generalInfo.reminderCircle = parseInt(newReminderCircle);
+        if (generalInfo.reminderCircle <= consumeDay) {
+            initCircle(0);
+        } else {
+            initCircle(parseInt(generalInfo.reminderCircle - consumeDay));
+        }
+        if (parseInt(generalInfo.reminderCircle - consumeDay) <= 3) {
+            $(".circleChart").circleChart({
+                color: "#fe555c"
+            });
+        }
+    }
+
+    function initCircle(day) {
         $(".circleChart").circleChart({
             color: "#e6e6e6",
             backgroundColor: "#21eb00",
@@ -175,7 +192,7 @@
             text: 0,
             textSize: 50,
             onDraw: function (el, circle) {
-                circle.text('<span class="r_date">' + (generalInfo.reminderCircle - consumeDay) + '</span>'
+                circle.text('<span class="r_date">' + day + '</span>'
                     + '<span style="font-size: 0.6rem; color:#e5f8fc">' + '/' + '</span>'
                     + '<span class="s_date">' + generalInfo.reminderCircle + '</span>'
                     + "<br>" + "<span class=\"f_str\">滤网冲洗天数</span>");
@@ -183,10 +200,25 @@
         });
     }
 
-    function select_circle() {
-        $("#select-circle").fadeIn(200);
-        $(function () {
-
+    function resetState() {
+        console.log(111111);
+        consumeDay = 0.000001;
+        //
+        $.ajax({
+            type: "POST",
+            url: "/web/wechat/update_general_device_name",
+            data: {
+                resetDate: new Date().toLocaleDateString(),
+                reminderCircle: generalInfo.reminderCircle,
+                name: generalInfo.nickName,
+                generalId: generalInfo.generalId,
+            },
+            success: function () {
+                initCircle(generalInfo.reminderCircle);
+            },
+            error: function () {
+                weui.alert('修改失败，请重试!');
+            }
         });
     }
 
