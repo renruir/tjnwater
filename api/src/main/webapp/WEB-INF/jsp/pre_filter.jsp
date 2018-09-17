@@ -27,6 +27,7 @@
     <link href="/web/css/main_1.css" rel="stylesheet"/>
     <link href="/web/css/normalize.css" rel="stylesheet"/>
     <link href="/web/css/normalize.css" rel="stylesheet"/>
+    <%--<link rel="stylesheet" href="/web/css/popup_dialog.css">--%>
     <%--<link href="/web/css/htmleaf-demo.css" rel="stylesheet"/>--%>
     <style type="text/css">
 
@@ -39,32 +40,34 @@
         }
 
         .myButton {
-            display: inline-block;
-            position: relative;
-            padding: 0.1rem 0.8rem 0.1rem 0.8rem;
-            text-align: center;
-            text-decoration: none;
+            width: 75%;
+            background: #fff;
+            border: 2px solid #57b8cf;
+            color: #005b9e;
             font-size: 0.25rem;
-            color: #0077c1;
-            background-color: #ffffff;
-            /*box-shadow: 0px 0 10px #5a91c4;*/
-            letter-spacing: 3px;
-            border-radius: 10px !important;
-            border-width: 2px;
-            border-color: #0077c1;
+            letter-spacing: 5px;
+            border-radius: 1rem;
         }
 
-        .Chart_text {
-            position: absolute;
-            line-height: 250px;
-            top: 0px;
-            width: 100%;
-            margin: 0px;
-            padding: 0px;
-            text-align: center;
-            font-size: 10px;
-            font-weight: normal;
-            font-family: sans-serif;
+        .r_date {
+            color: #e5f8fc;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .s_date {
+            color: #e5f8fc;
+            font-size: 0.3rem;
+            font-weight: 100;
+            line-height: 0px;
+        }
+
+        .f_str {
+            color: #e5f8fc;
+            font-size: 0.2rem;
+            font-weight: 100;
+            line-height: 0px;
+            margin-top: 0px;
         }
 
     </style>
@@ -74,58 +77,117 @@
 
 <div id="cz_page_1" class="progress_zone">
 
-    <div class="circleChart" id="0" style="margin-top: 1rem"></div>
+    <div class="circleChart" id="0" style="margin-top: 0.8rem"></div>
 
 </div>
 
-<div style="position: fixed; bottom: 0.5rem; left: 0; right: 0; text-align: center">
-    <div onclick="select_circle()">
-        <input type="button" value="选择" class="waves-effect waves-green myButton">
+<div style="position: fixed; bottom: 0.8rem; left: 0; right: 0; text-align: center">
+    <div>
+        <a href="javascript:;" class="weui-btn weui-btn_primary myButton" id="selectResetCircle">选择</a>
     </div>
 
-    <div style="margin-top: 0.2rem">
-        <input type="button" value="复位" class="waves-effect waves-green myButton">
+    <div>
+        <a href="javascript:;" class="weui-btn weui-btn_primary myButton" style="margin-top: 0.2rem"
+           id="resetState">复位</a>
     </div>
 
+</div>
+
+<div class="weui-skin_android" id="androidActionsheet" style="display: none">
+    <div class="weui-mask"></div>
+    <div class="weui-actionsheet">
+        <div class="weui-actionsheet__menu">
+            <div class="weui-actionsheet__cell">7天</div>
+            <div class="weui-actionsheet__cell">15天</div>
+            <div class="weui-actionsheet__cell">30天</div>
+        </div>
+    </div>
 </div>
 
 <script src="/web/js/circleChart.min.js"></script>
+<script src="/web/js/popup_dialgo.js?v=1.3"></script>
+<script src="https://res.wx.qq.com/open/libs/weuijs/1.1.1/weui.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
     var generalInfo = {
         "nickName": "${generalInfo.nick_name}",
         "reminderCircle": "${generalInfo.reminder_circle}",
-        "lastResetDate": "${generalInfo.reset_date}"
+        "lastResetDate": "${generalInfo.reset_date}",
+        "generalId": "${generalInfo.general_id}"
     }
 
     var consumeDay = 0;
 
     $(function () {
+        consumeDay = dateMinus(generalInfo.lastResetDate);
         initCircle();
-        console.log("nickname: " + generalInfo.nickName);
-        console.log("install data: " + generalInfo.lastResetDate);
-        console.log("reminder: " + dateMinus(generalInfo.lastResetDate));
-        consumeDay = dateMinus(generalInfo.lastResetDate)
+        $("p:first").css("line-height", "100px");
+        $("p:first").css("top", "0.85rem");
+        if (generalInfo.reminderCircle - consumeDay <= 3) {
+            $(".circleChart").circleChart({
+                color: "#fe555c"
+            });
+        }
+
+        var $androidActionSheet = $('#androidActionsheet');
+        var $androidMask = $androidActionSheet.find('.weui-mask');
+
+        $("#selectResetCircle").on('click', function () {
+            console.log("55555555");
+            $androidActionSheet.fadeIn(200);
+            $androidMask.on('click', function () {
+                console.log("99999999");
+                $androidActionSheet.fadeOut(200);
+            });
+            $('.weui-actionsheet__menu .weui-actionsheet__cell').on('click', function () {
+                console.log("mmmmmmmmm");
+                $('#showActionSheet1').val($(this).text());
+                $.ajax({
+                    type: "POST",
+                    url: "/web/wechat/update_general_device_name",
+                    data: {
+                        name: generalInfo.nickName,
+                        generalId: generalInfo.generalId,
+                        reminderCircle: $(this).text()
+
+                    },
+                    success: function () {
+                        $("#device_rename_dialog").fadeOut(200);
+                        setTimeout(refreshData(selectType), 2000);
+                    },
+                    error: function () {
+                        $("#device_rename_dialog").fadeOut(200);
+                        weui.alert('修改名称失败，请重试!');
+                    }
+                });
+                $androidActionSheet.fadeOut(200);
+            })
+        });
     });
 
     function initCircle() {
         $(".circleChart").circleChart({
-            color: "#21eb00",
-            backgroundColor: "#e6e6e6",
-            size: 250,
-            value: 50,
+            color: "#e6e6e6",
+            backgroundColor: "#21eb00",
+            size: 300,
+            value: (consumeDay) / generalInfo.reminderCircle * 100,
             startAngle: -25,
             text: 0,
             textSize: 50,
             onDraw: function (el, circle) {
-                circle.text((generalInfo.reminderCircle - consumeDay) + "/" + generalInfo.reminderCircle);
-                // circle.text(Math.round(circle.value));
+                circle.text('<span class="r_date">' + (generalInfo.reminderCircle - consumeDay) + '</span>'
+                    + '<span style="font-size: 0.6rem; color:#e5f8fc">' + '/' + '</span>'
+                    + '<span class="s_date">' + generalInfo.reminderCircle + '</span>'
+                    + "<br>" + "<span class=\"f_str\">滤网冲洗天数</span>");
             }
         });
     }
 
     function select_circle() {
-        $(".circleChart_text").css('color', '#fff');
+        $("#select-circle").fadeIn(200);
+        $(function () {
+
+        });
     }
 
     function dateMinus(sDate) {

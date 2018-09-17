@@ -534,12 +534,14 @@
             } else {
                 var newName = $('#device_new_name').val();
                 var generalId = generalBindInfos[selectOrder].general_id;
+                var reminderCircle = generalBindInfos[selectOrder].reminder_circle;
                 $.ajax({
                     type: "POST",
                     url: "/web/wechat/update_general_device_name",
                     data: {
                         name: newName,
-                        generalId: generalId
+                        generalId: generalId,
+                        reminderCircle:reminderCircle
 
                     },
                     success: function () {

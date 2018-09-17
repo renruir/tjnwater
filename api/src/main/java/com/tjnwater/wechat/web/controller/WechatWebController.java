@@ -628,12 +628,13 @@ public class WechatWebController {
 
     @RequestMapping(value = "update_general_device_name")
     @ResponseBody
-    public String updateGeneralDeviceName(HttpServletRequest request, String generalId, String name, Model model) {
-        logger.info("name: " + name + ", generalId:" + generalId);
+    public String updateGeneralDeviceName(HttpServletRequest request, String generalId, String name, String reminderCircle, Model model) {
+        logger.info("name: " + name + ", generalId:" + generalId + ", reminderCircle:" + reminderCircle);
         try {
             GeneralDeviceInfo generalDeviceInfo = new GeneralDeviceInfo();
             generalDeviceInfo.setGeneral_id(generalId);
             generalDeviceInfo.setNick_name(name);
+            generalDeviceInfo.setReminder_circle(Integer.parseInt(reminderCircle));
             weixinService.updateGeneralDeviceName(generalDeviceInfo);
             return "SUCCESS";
         } catch (Exception e) {
