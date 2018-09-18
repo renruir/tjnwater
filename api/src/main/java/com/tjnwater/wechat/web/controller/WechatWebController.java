@@ -490,6 +490,7 @@ public class WechatWebController {
     @ResponseBody
     public List<GeneralDeviceInfo> getGeneralBindInfo(HttpServletRequest request, @RequestParam("appId") String appId, Model model) throws Exception {
         try {
+            logger.info("========appid: " + appId);
             String openId = CookieUtil.getCookie(appId + "_uid", request);
             openId = "ofsg4wfO13sb93cQpvv7uioaAoHY"; // for test
             List<GeneralDeviceInfo> generalDeviceInfos;
@@ -632,7 +633,7 @@ public class WechatWebController {
     @ResponseBody
     public String updateGeneralDeviceName(HttpServletRequest request, String generalId, String name, String reminderCircle, String resetDate, Model model) {
         logger.info("name: " + name + ", generalId:" + generalId
-                + ", reminderCircle:" + reminderCircle +", resetDate: "+resetDate);
+                + ", reminderCircle:" + reminderCircle + ", resetDate: " + resetDate);
         try {
             if (!isInteger(reminderCircle)) {
                 String regEx = "[^0-9]";
@@ -803,7 +804,8 @@ public class WechatWebController {
             GeneralDeviceInfo generalDeviceInfo = new GeneralDeviceInfo();
             String deviceId = "";
             if (registeredInfos.size() < 4) {
-                deviceId = cookieUid + "_" + registeredInfos.size();
+                int rdm = (int) (Math.random() * (9000)) + 1000;
+                deviceId = cookieUid + "_" + String.valueOf(rdm);
                 generalDeviceInfo.setGeneral_id(deviceId);
                 generalDeviceInfo.setApp_id(appId);
                 generalDeviceInfo.setOpen_id(cookieUid);
@@ -811,8 +813,15 @@ public class WechatWebController {
                 generalDeviceInfo.setDevice_type("9");
                 generalDeviceInfo.setNick_name(deviceByName);
                 generalDeviceInfo.setInstall_date(installDate);
-                generalDeviceInfo.setReminder_circle(90);
+                generalDeviceInfo.setReset_date(installDate);
+                generalDeviceInfo.setReminder_circle(15);
                 weixinService.saveGeneralDeviceBindInfo(generalDeviceInfo);
+
+                Map<String, String> serverInfo = new HashMap<String, String>();
+                serverInfo.put("host", MQTT_HOST);
+                serverInfo.put("port", MQTT_PORT);
+                serverInfo.put("appId", appId);
+                model.addAttribute("serverInfo", serverInfo);
             } else {
 
             }
@@ -820,7 +829,19 @@ public class WechatWebController {
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
+
         return "index";
+    }
+
+    @RequestMapping(value = "delete_general_bind_device")
+    @ResponseBody
+    public void deleteGeneralBindDevice(HttpServletRequest request, HttpServletResponse response, @RequestParam String generalId, Model model) {
+        try {
+            logger.info("to be delete general id: " + generalId);
+            weixinService.deleteGeneralBindDevice(generalId);
+        } catch (Exception e) {
+            logger.error(e.getLocalizedMessage());
+        }
     }
 
     @RequestMapping(value = "wxInfo.html")

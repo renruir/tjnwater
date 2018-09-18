@@ -351,5 +351,8 @@ public interface WeixinService {
 	 */
 	public GeneralDeviceInfo getGeneralInfo(String general_id) throws Exception;
 
-
+	/**
+	 * 删除指定general id的绑定设备
+	 */
+	public void deleteGeneralBindDevice(String general_id) throws Exception;
 }

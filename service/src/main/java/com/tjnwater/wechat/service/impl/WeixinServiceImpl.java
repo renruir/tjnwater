@@ -363,4 +363,14 @@ public class WeixinServiceImpl implements WeixinService {
     public GeneralDeviceInfo getGeneralInfo(String general_id){
         return weixinDao.getGeneralInfo(general_id);
     }
+
+    /**
+     * 删除指定general id的绑定设备
+     */
+    public void deleteGeneralBindDevice(String general_id){
+        weixinDao.deleteGeneralBindDevice(general_id);
+    }
+
+
+
 }

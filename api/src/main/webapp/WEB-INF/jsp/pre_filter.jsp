@@ -116,26 +116,17 @@
         "generalId": "${generalInfo.general_id}",
     }
 
-    var consumeDay = 0.00001;
+    var consumeDay = 0;
     var newReminderCircle;
     var surplus = generalInfo.reminderCircle - consumeDay;
 
     $(function () {
-        console.log("generalInfo.lastResetDate: " + generalInfo.lastResetDate);
         consumeDay = dateMinus(generalInfo.lastResetDate);
-        if(consumeDay == 0){
-            consumeDay = 0.00001;
-        }
-        console.log("consumeDay: " + consumeDay);
         surplus = parseInt(generalInfo.reminderCircle - consumeDay);
-        if (surplus >= 0) {
-            initCircle(surplus);
-        } else {
-            initCircle(0);
-        }
+        initCircle(consumeDay);
         $("p:first").css("line-height", "100px");
         $("p:first").css("top", "0.85rem");
-
+        refreshData(generalInfo.reminderCircle);
 
         var $androidActionSheet = $('#androidActionsheet');
         var $androidMask = $androidActionSheet.find('.weui-mask');
@@ -157,7 +148,7 @@
                         resetDate: generalInfo.lastResetDate
                     },
                     success: function () {
-                        setTimeout(refreshData(), 1000);
+                        setTimeout(refreshData(newReminderCircle), 1000);
                     },
                     error: function () {
                         weui.alert('修改失败，请重试!');
@@ -168,13 +159,9 @@
         });
     });
 
-    function refreshData() {
-        generalInfo.reminderCircle = parseInt(newReminderCircle);
-        if (generalInfo.reminderCircle <= consumeDay) {
-            initCircle(0);
-        } else {
-            initCircle(parseInt(generalInfo.reminderCircle - consumeDay));
-        }
+    function refreshData(newCircle) {
+        generalInfo.reminderCircle = parseInt(newCircle);
+        initCircle(consumeDay);
         if (parseInt(generalInfo.reminderCircle - consumeDay) <= 3) {
             $(".circleChart").circleChart({
                 color: "#fe555c"
@@ -201,9 +188,6 @@
     }
 
     function resetState() {
-        console.log(111111);
-        consumeDay = 0.000001;
-        //
         $.ajax({
             type: "POST",
             url: "/web/wechat/update_general_device_name",
@@ -214,7 +198,8 @@
                 generalId: generalInfo.generalId,
             },
             success: function () {
-                initCircle(generalInfo.reminderCircle);
+                consumeDay = 0;
+                initCircle(consumeDay);
             },
             error: function () {
                 weui.alert('修改失败，请重试!');

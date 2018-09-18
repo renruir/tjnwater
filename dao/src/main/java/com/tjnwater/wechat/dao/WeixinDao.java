@@ -289,5 +289,13 @@ public interface WeixinDao {
      * 获取指定id的设备信息
      */
     public GeneralDeviceInfo getGeneralInfo(String general_id);
+
+    /**
+     * 删除指定general id的绑定设备
+     */
+    public void deleteGeneralBindDevice(String general_id);
+
+
 }
+
 

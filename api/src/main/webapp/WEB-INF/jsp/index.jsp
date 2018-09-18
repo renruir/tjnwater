@@ -182,12 +182,10 @@
                 createGeneralType("9", i);
             }
             $(".js_btn").show();
-        } else {
+        }
+
+        if (wxbindInfos.length == 0 && generalBindInfos.length == 0) {
             window.location.href = "/web/add_device.html";
-            /*$("#no_device").show();
-            $("#add_device").click(function () {
-                add_new_device();
-            })*/
         }
     }
 
@@ -218,7 +216,7 @@
             },
             success: function (data) {
                 generalBindInfos = data;
-                console.log("genalL:" + generalBindInfos[0].nick_name);
+                // console.log("genalL:" + generalBindInfos[0].nick_name);
                 initView();
                 // getDevciesInfo(JSON.stringify(data));
                 fillGeneralViewData();
@@ -238,7 +236,7 @@
             },
             success: function (data) {
                 wxbindInfos = data;
-                console.log("genalL:" + wxbindInfos[0].deviceName);
+                // console.log("genalL:" + wxbindInfos[0].deviceName);
                 getGeneralBindInfo(appId);
                 getDevciesInfo(JSON.stringify(data));
             },
@@ -273,7 +271,9 @@
                 },
                 success: function (data) {
                     wxbindInfos = data;
-                    fillViewData();
+                    if (wxbindInfos.length > 0) {
+                        fillViewData();
+                    }
                 },
                 error: function () {
                     weui.alert('数据刷新失败，请重试!');
@@ -288,11 +288,12 @@
                 },
                 success: function (data) {
                     generalBindInfos = data;
-                    console.log("genalL:" + generalBindInfos[0].nick_name);
-                    fillGeneralViewData();
+                    if (generalBindInfos.length > 0) {
+                        fillGeneralViewData();
+                    }
                 },
                 error: function () {
-                    weui.alert('获取绑定信息失败，请重试!');
+                    weui.alert('数据刷新失败，请重试!');
                 },
             });
         }
@@ -340,6 +341,12 @@
         title.addClass('my-device-list-title');
         icon.appendTo(childDiv1);
         title.appendTo(childDiv1);
+
+        var deleteIcon = $("<img src='../image/delete_icon.png'/>");
+        deleteIcon.css("width", "2rem");
+        deleteIcon.css("margin-left", "12rem");
+        deleteIcon.attr('onclick', 'deleteDevice(' + type + ',' + order + ')');
+        deleteIcon.appendTo(childDiv1);
 
         var childDiv2 = $('<div></div>')
         childDiv2.appendTo(parentDiv);
@@ -557,6 +564,27 @@
             }
 
         }
+    }
+
+    function deleteDevice(type, oder) {
+        event.cancelBubble = true;//防止子div的click事件触发外层DIV的click
+        console.log("delete success:" + oder);
+        var generalId = generalBindInfos[oder].general_id;
+        console.log("to b : " + generalId);
+        $.ajax({
+            type: "POST",
+            url: "/web/wechat/delete_general_bind_device",
+            data: {
+                generalId: generalId,
+            },
+            success: function () {
+                setTimeout(refreshData(type), 1000);
+                weui.alert('删除成功!');
+            },
+            error: function () {
+                weui.alert('删除失败');
+            }
+        });
     }
 
     function add_new_device() {
