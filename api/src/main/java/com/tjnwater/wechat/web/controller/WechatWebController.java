@@ -830,7 +830,7 @@ public class WechatWebController {
             logger.error(e.getMessage());
         }
 
-        return "index";
+        return "redirect:test_index.html";
     }
 
     @RequestMapping(value = "delete_general_bind_device")

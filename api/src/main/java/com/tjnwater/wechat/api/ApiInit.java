@@ -72,5 +72,10 @@ public class ApiInit {
 //        }
     }
 
+    @Scheduled(fixedRate = 1000 * 60 * 112)
+    public void updateGeneralNotify() {
+        logger.info("===updateGeneralNotify====");
+    }
+
 
 }

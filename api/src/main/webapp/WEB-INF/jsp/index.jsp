@@ -126,6 +126,7 @@
     </div>
 </div>
 
+
 <div style="width: 100%; display: none;" id="no_device">
     <div style="margin: 20% auto; text-align: center;width: inherit; height: 50%; opacity: 0.4">
         <img src="../images/no_bind_device_icon.png" width="60%">
@@ -168,6 +169,7 @@
     }
 
     function initView() {
+        console.log("000000000");
         if (wxbindInfos.length > 0) {
             for (var i = 0; i < wxbindInfos.length; i++) {
                 createDeviceType(wxbindInfos[i].deviceType, i);
@@ -200,6 +202,7 @@
     }
 
     function fillGeneralViewData() {
+        console.log("niiiii");
         for (var i = 0; i < generalBindInfos.length; i++) {
             $("#" + "genernal_device_model_" + i).html(generalBindInfos[i].device_model);
             $("#" + "genernal_device_name_" + i).html(generalBindInfos[i].nick_name);
@@ -271,9 +274,7 @@
                 },
                 success: function (data) {
                     wxbindInfos = data;
-                    if (wxbindInfos.length > 0) {
-                        fillViewData();
-                    }
+                    fillViewData();
                 },
                 error: function () {
                     weui.alert('数据刷新失败，请重试!');
@@ -288,9 +289,7 @@
                 },
                 success: function (data) {
                     generalBindInfos = data;
-                    if (generalBindInfos.length > 0) {
-                        fillGeneralViewData();
-                    }
+                    fillGeneralViewData();
                 },
                 error: function () {
                     weui.alert('数据刷新失败，请重试!');
@@ -344,7 +343,7 @@
 
         var deleteIcon = $("<img src='../image/delete_icon.png'/>");
         deleteIcon.css("width", "2rem");
-        deleteIcon.css("margin-left", "12rem");
+        deleteIcon.css("margin-left", "10rem");
         deleteIcon.attr('onclick', 'deleteDevice(' + type + ',' + order + ')');
         deleteIcon.appendTo(childDiv1);
 
@@ -578,7 +577,7 @@
                 generalId: generalId,
             },
             success: function () {
-                setTimeout(refreshData(type), 1000);
+                setTimeout(window.location.reload(), 2000);
                 weui.alert('删除成功!');
             },
             error: function () {

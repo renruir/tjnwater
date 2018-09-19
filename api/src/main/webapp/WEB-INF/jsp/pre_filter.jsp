@@ -188,11 +188,12 @@
     }
 
     function resetState() {
+        generalInfo.resetDate = new Date().toLocaleDateString();
         $.ajax({
             type: "POST",
             url: "/web/wechat/update_general_device_name",
             data: {
-                resetDate: new Date().toLocaleDateString(),
+                resetDate: generalInfo.resetDate,
                 reminderCircle: generalInfo.reminderCircle,
                 name: generalInfo.nickName,
                 generalId: generalInfo.generalId,

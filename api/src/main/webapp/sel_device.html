@@ -77,7 +77,7 @@
 			width: 3.7rem;
 			height: 1.02rem;
 			margin: 0 auto;
-			margin-top: 2.2rem;
+			margin-top: 1rem;
 			line-height: 1.02rem;
 			text-align: center;
 			font-size: 0.35rem;
@@ -111,7 +111,11 @@
 
 			<div class="js_btn" onclick="add_new_device();">智能净水</div>
 
+			<div class="kj_btn" onclick="add_general_device()">前置过滤器</div>
+
 			<div class="kj_btn">智能空净</div>
+
+
 			<div class='peiwang'><img class="icon" src="/web/tjn_imgs/icon_warning.png"><span>查看配网指引</span></div>
 
 		</div>
@@ -123,6 +127,10 @@
 	function add_new_device() {
 		window.location.href = "/web/wechat/net_setting.html"
 	}
+
+	function add_general_device() {
+        window.location.href = "/web/wechat/add_general_device.html"
+    }
 </script>
 </body>
 </html>
