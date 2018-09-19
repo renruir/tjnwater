@@ -337,15 +337,15 @@ public class WeixinServiceImpl implements WeixinService {
         weixinDao.saveLeaseInfo(leaseInfo);
     }
 
-    public List<LeaseInfo> getLeaseInfos(){
+    public List<LeaseInfo> getLeaseInfos() {
         return weixinDao.getLeaseInfos();
     }
 
-    public List<DeviceInfo> getGeneralBindCount(String openid){
+    public List<DeviceInfo> getGeneralBindCount(String openid) {
         return weixinDao.getGeneralBindCount(openid);
     }
 
-    public void saveGeneralDeviceBindInfo(GeneralDeviceInfo generalDeviceInfo){
+    public void saveGeneralDeviceBindInfo(GeneralDeviceInfo generalDeviceInfo) {
         weixinDao.saveGeneralDeviceBindInfo(generalDeviceInfo);
     }
 
@@ -360,17 +360,21 @@ public class WeixinServiceImpl implements WeixinService {
     }
 
     @Override
-    public GeneralDeviceInfo getGeneralInfo(String general_id){
+    public GeneralDeviceInfo getGeneralInfo(String general_id) {
         return weixinDao.getGeneralInfo(general_id);
     }
 
     /**
      * 删除指定general id的绑定设备
      */
-    public void deleteGeneralBindDevice(String general_id){
+    public void deleteGeneralBindDevice(String general_id) {
         weixinDao.deleteGeneralBindDevice(general_id);
     }
 
+    @Override
+    public List<GeneralDeviceInfo> scanGeneralDeviceInfo() throws Exception {
+        return weixinDao.scanGeneralDeviceInfo();
+    }
 
 
 }

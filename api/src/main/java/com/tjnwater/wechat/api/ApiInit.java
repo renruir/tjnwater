@@ -1,5 +1,6 @@
 package com.tjnwater.wechat.api;
 
+import com.tjnwater.wechat.service.GeneralScanService;
 import com.tjnwater.wechat.service.WeixinService;
 import com.tjnwater.wechat.service.mqtt.MqttService;
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public class ApiInit {
 
     @Autowired
     private MqttService mqttService;
+
+    @Autowired
+    private GeneralScanService generalScanService;
 
     @PostConstruct
     public void init() {
@@ -72,9 +76,15 @@ public class ApiInit {
 //        }
     }
 
-    @Scheduled(fixedRate = 1000 * 60 * 112)
+//    @Scheduled(cron = "0/15 * * * * ?")//每15秒
+    @Scheduled(cron = "* * 10 * * ?")//每天上午10点
     public void updateGeneralNotify() {
         logger.info("===updateGeneralNotify====");
+        try {
+            generalScanService.scanGeneralDeviceInfo();
+        } catch (Exception e){
+            logger.error(e.getMessage());
+        }
     }
 
 

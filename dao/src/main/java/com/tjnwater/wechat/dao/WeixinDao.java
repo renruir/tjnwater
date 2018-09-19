@@ -295,6 +295,10 @@ public interface WeixinDao {
      */
     public void deleteGeneralBindDevice(String general_id);
 
+    /**
+     * 获取快接近冲洗周期的设备信息
+     */
+    public List<GeneralDeviceInfo> scanGeneralDeviceInfo();
 
 }
 

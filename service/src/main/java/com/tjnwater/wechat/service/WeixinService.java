@@ -355,4 +355,11 @@ public interface WeixinService {
 	 * 删除指定general id的绑定设备
 	 */
 	public void deleteGeneralBindDevice(String general_id) throws Exception;
+
+	/**
+	 * 获取快接近冲洗周期的设备信息
+	 */
+	public List<GeneralDeviceInfo> scanGeneralDeviceInfo() throws Exception;
+
+
 }
