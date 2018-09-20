@@ -24,37 +24,41 @@ public class GeneralScanService {
     @Autowired
     private WeixinService weixinService;
 
-    public List<GeneralDeviceInfo> scanGeneralDeviceInfo() {
+    public void scanGeneralDeviceInfo() {
         List<GeneralDeviceInfo> generalDeviceInfos = new ArrayList<GeneralDeviceInfo>();
         try {
             generalDeviceInfos = weixinService.scanGeneralDeviceInfo();
+            if (generalDeviceInfos.size() == 0) {
+                logger.info("====It has not yet expired filter!====");
+                return;
+            }
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
         for (GeneralDeviceInfo info : generalDeviceInfos) {
-            logger.info("resetDate: " + info.getReset_date() + ",name:" + info.getNick_name());
             if (info.getOpen_id().isEmpty()) {
-                return null;
+                return;
             }
+            logger.info("resetDate: " + info.getReset_date() + ",name:" + info.getNick_name());
 
-            String keyword1 = new StringBuilder("您设定的冲洗周期是：" + info.getReminder_circle() + "天"
+            String keyword1 = new StringBuilder("前置过滤器（名称：" + info.getNick_name() + ")").toString();
+            String keyword2 = new StringBuilder("您设定的冲洗周期是" + info.getReminder_circle() + "天"
                     + ", 距离上次冲洗已经有" + calcNow2Last(info.getReset_date()) + "天").toString();
-            String keyword2 = new StringBuilder("请及时冲洗，以免影响您的健康！").toString();
 
             Map<String, BaseTemplateStruct> map = new HashMap<String, BaseTemplateStruct>();
-            map.put("first", new BaseTemplateStruct("您绑定的前置过滤器该冲洗了！", "#0d0c0c"));
-            map.put("keyword1", new BaseTemplateStruct(keyword1, "#f40505"));
-            map.put("keyword2", new BaseTemplateStruct(keyword2, "#0d0c0c"));
-            map.put("remark", new BaseTemplateStruct("请及时处理或者拨打客户电话保修", "#0d0c0c"));
+            map.put("first", new BaseTemplateStruct("您的前置过滤需要冲洗！", "#0d0c0c"));
+            map.put("keyword1", new BaseTemplateStruct(keyword1, "#00008B"));
+            map.put("keyword2", new BaseTemplateStruct(keyword2, "#00008B"));
+            map.put("remark", new BaseTemplateStruct("请及时冲洗滤芯，以免影响水质健康！", "#0d0c0c"));
             packageModelMsg(info.getOpen_id(), map);
         }
-        return generalDeviceInfos;
+        return;
     }
 
     public void packageModelMsg(String openID, Map<String, BaseTemplateStruct> data) {
         logger.info("openId: " + openID);
         ModelMsg modelMsg = new ModelMsg();
-        modelMsg.setTemplate_id(ServiceConstant.FAULT_NOTICE_MODEL_ID);
+        modelMsg.setTemplate_id(ServiceConstant.FILTER_RINSE_NOTICE_MODEL_ID);
         modelMsg.setTouser(openID);
         modelMsg.setUrl("http://weixin.tejien.com/web/wechat/index.html");
         modelMsg.setTopcolor("#FF0000");

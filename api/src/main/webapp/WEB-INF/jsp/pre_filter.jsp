@@ -40,11 +40,11 @@
         }
 
         .myButton {
-            width: 75%;
+            width: 60%;
             background: #fff;
             border: 2px solid #57b8cf;
             color: #005b9e;
-            font-size: 0.25rem;
+            font-size: 0.2rem;
             letter-spacing: 5px;
             border-radius: 1rem;
         }
@@ -77,11 +77,13 @@
 
 <div id="cz_page_1" class="progress_zone">
 
-    <div class="circleChart" id="0" style="margin-top: 0.8rem"></div>
+    <div class="circleChart"
+         style="position: fixed; right: 0; left: 0;height: 60%;display: flex;align-items: center">
+    </div>
 
 </div>
 
-<div style="position: fixed; bottom: 0.8rem; left: 0; right: 0; text-align: center">
+<div style="position: fixed;height: 40%;bottom: -10%; left: 0; right: 0; text-align: center">
     <div>
         <a href="javascript:;" class="weui-btn weui-btn_primary myButton" id="selectResetCircle">选择</a>
     </div>
@@ -167,13 +169,14 @@
                 color: "#fe555c"
             });
         }
+        $(".circleChart").css('position', 'fixed');
     }
 
     function initCircle(day) {
         $(".circleChart").circleChart({
             color: "#e6e6e6",
             backgroundColor: "#21eb00",
-            size: 300,
+            size: 280,
             value: (consumeDay) / generalInfo.reminderCircle * 100,
             startAngle: -25,
             text: 0,

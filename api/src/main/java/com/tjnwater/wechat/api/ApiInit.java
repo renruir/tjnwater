@@ -77,9 +77,8 @@ public class ApiInit {
     }
 
 //    @Scheduled(cron = "0/15 * * * * ?")//每15秒
-    @Scheduled(cron = "* * 10 * * ?")//每天上午10点
+    @Scheduled(cron = "0 15 10 ? * *")//每天上午10点
     public void updateGeneralNotify() {
-        logger.info("===updateGeneralNotify====");
         try {
             generalScanService.scanGeneralDeviceInfo();
         } catch (Exception e){

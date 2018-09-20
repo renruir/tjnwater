@@ -32,6 +32,8 @@ public interface ServiceConstant {
 
 	String FAULT_NOTICE_MODEL_ID = "qHuvejgurEt9733Og1qY5Z1HRPd05ox2AzPKNAstw60";
 
+	String FILTER_RINSE_NOTICE_MODEL_ID = "sCIMXsUwr6kS6xFPkB7m-SN37LTOuRqzrZzbn23nsLk";
+
 	String[] filterInfo = new String[]{"超滤膜滤芯", "活性炭滤芯", "RO反渗透滤芯", "RO反渗透滤芯"};
 
 	int MODEL_MSG_FLAG_FILTER = 7001;

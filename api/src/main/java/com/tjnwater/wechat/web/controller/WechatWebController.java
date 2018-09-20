@@ -449,7 +449,7 @@ public class WechatWebController {
             wxAppInfo = weixinService.getWxAppInfo(wxAppInfo);
             String appId = "wx9b5c8824203f4718";
             String appSecret = "7dbf4714c590037a710766dcd45be2ac";
-            String cookieUid = "ofsg4wfO13sb93cQpvv7uioaAoHY";
+            String cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
             logger.info("cookieUid: " + cookieUid);
             WxBindInfo wxBindInfo = new WxBindInfo();
             wxBindInfo.setOpenid(cookieUid);
@@ -492,7 +492,7 @@ public class WechatWebController {
         try {
             logger.info("========appid: " + appId);
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-            openId = "ofsg4wfO13sb93cQpvv7uioaAoHY"; // for test
+//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
             List<GeneralDeviceInfo> generalDeviceInfos;
             GeneralDeviceInfo info = new GeneralDeviceInfo();
             info.setOpen_id(openId);
@@ -513,7 +513,7 @@ public class WechatWebController {
 
         try {
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-            openId = "ofsg4wfO13sb93cQpvv7uioaAoHY"; // for test
+//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
             logger.info("get bind info, openID=" + openId);
             List<WxBindInfo> bindInfos;
             WxBindInfo wxBindInfo = new WxBindInfo();
@@ -563,37 +563,6 @@ public class WechatWebController {
             logger.error(e.getMessage());
         }
         return null;
-    }
-
-    @RequestMapping(value = "my_devices_test.html")
-    public String myDevicesTest(HttpServletRequest request, HttpServletResponse response, String code, Model model) {
-        try {
-            WxAppInfo wxAppInfo = new WxAppInfo();
-            wxAppInfo.setGhId(JSQ_GH_ID);
-            wxAppInfo = weixinService.getWxAppInfo(wxAppInfo);
-            String appId = wxAppInfo.getAppId();
-            logger.info("appid: " + appId);
-            WxJsApiTicket wxTicket = weixinService.getJsApiTicket(appId);
-            logger.info("wx ticket: " + wxTicket.getJsApiTicket());
-            String appSecret = "7dbf4714c590037a710766dcd45be2ac";
-//            String cookieUid = "oPcODwVMrngMITF4ARa7uagLmBm8";
-            String cookieUid = "oPcODwfYRrwOGLNZOJXQFXhIKiM4";
-//            String cookieUid = "oPcODwQ-pBu1K6CLFZdAJhuMwiGo";
-            WxBindInfo wxBindInfo = new WxBindInfo();
-            wxBindInfo.setOpenid(cookieUid);
-            wxBindInfo.setAppId(appId);
-
-            Map<String, String> serverInfo = new HashMap<String, String>();
-            serverInfo.put("host", MQTT_HOST);
-            serverInfo.put("port", MQTT_PORT);
-            serverInfo.put("appId", appId);
-            serverInfo.put("openId", cookieUid);
-            model.addAttribute("serverInfo", serverInfo);
-            return "index";
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            return "";
-        }
     }
 
     @RequestMapping(value = "jsq_home.html")
@@ -797,7 +766,7 @@ public class WechatWebController {
             String appId = wxAppInfo.getAppId();
             String appSecret = wxAppInfo.getAppSecret();
             String cookieUid = CookieUtil.getCookie(appId + "_uid", request);// cookieUid = openid
-            cookieUid = "ofsg4wfO13sb93cQpvv7uioaAoHY";
+//            cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
             List<DeviceInfo> registeredInfos = weixinService.getGeneralBindCount(cookieUid + "%");
             logger.info("count:" + registeredInfos.size());
 //            DeviceInfo deviceInfo = new DeviceInfo();
@@ -830,7 +799,7 @@ public class WechatWebController {
             logger.error(e.getMessage());
         }
 
-        return "redirect:test_index.html";
+        return "redirect:index.html";
     }
 
     @RequestMapping(value = "delete_general_bind_device")

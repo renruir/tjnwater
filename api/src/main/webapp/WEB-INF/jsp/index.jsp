@@ -10,8 +10,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html, charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
 
     <title>我的设备列表</title>
 
@@ -343,7 +347,7 @@
 
         var deleteIcon = $("<img src='../image/delete_icon.png'/>");
         deleteIcon.css("width", "2rem");
-        deleteIcon.css("margin-left", "10rem");
+        deleteIcon.css("margin-left", "5rem");
         deleteIcon.attr('onclick', 'deleteDevice(' + type + ',' + order + ')');
         deleteIcon.appendTo(childDiv1);
 
