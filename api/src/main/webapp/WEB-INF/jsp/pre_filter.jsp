@@ -64,8 +64,8 @@
 
         .f_str {
             color: #e5f8fc;
-            font-size: 0.2rem;
-            font-weight: 100;
+            font-size: 0.15rem;
+            font-weight: 800;
             line-height: 0px;
             margin-top: 0px;
         }
@@ -90,7 +90,7 @@
 
     <div>
         <a href="javascript:;" class="weui-btn weui-btn_primary myButton" style="margin-top: 0.2rem"
-           id="resetState" onclick="resetState()">复位</a>
+           id="resetState" onclick="showResetDialog()">复位</a>
     </div>
 
 </div>
@@ -102,6 +102,22 @@
             <div class="weui-actionsheet__cell">7天</div>
             <div class="weui-actionsheet__cell">15天</div>
             <div class="weui-actionsheet__cell">30天</div>
+        </div>
+    </div>
+</div>
+
+<div class="js_dialog" id="reset-dialog" style="opacity: 1; display: none; ">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog weui-skin_android">
+        <div class="weui-dialog__bd">
+            <span>选择复位以后，计时器将重新计时。为了计时准确，请您确认冲洗以后再选择复位。</span>
+            <span><br><br>确认要复位操作吗？</span>
+        </div>
+        <div class="weui-dialog__ft">
+            <a onclick="cancelDialog()" href="javascript:;"
+               class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <a id="update-confirm" onclick="resetState()" href="javascript:;"
+               class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
         </div>
     </div>
 </div>
@@ -127,7 +143,7 @@
         surplus = parseInt(generalInfo.reminderCircle - consumeDay);
         initCircle(consumeDay);
         $("p:first").css("line-height", "100px");
-        $("p:first").css("top", "0.85rem");
+        // $("p:first").css("top", "0.85rem");
         refreshData(generalInfo.reminderCircle);
 
         var $androidActionSheet = $('#androidActionsheet');
@@ -170,6 +186,9 @@
             });
         }
         $(".circleChart").css('position', 'fixed');
+        $(".circleChart_canvas").css('width', '2.8rem');
+        $(".circleChart_canvas").css('height', '2.8rem');
+        $("p:first").css('top', '');
     }
 
     function initCircle(day) {
@@ -190,7 +209,16 @@
         });
     }
 
+    function showResetDialog() {
+        $("#reset-dialog").fadeIn(200);
+    }
+
+    function cancelDialog() {
+        $("#reset-dialog").fadeOut(200);
+    }
+
     function resetState() {
+        $("#reset-dialog").fadeOut(200);
         generalInfo.resetDate = new Date().toLocaleDateString();
         $.ajax({
             type: "POST",
@@ -204,6 +232,9 @@
             success: function () {
                 consumeDay = 0;
                 initCircle(consumeDay);
+                $(".circleChart").css('position', 'fixed');
+                $("p:first").css('top', '');
+                weui.alert('复位成功!');
             },
             error: function () {
                 weui.alert('修改失败，请重试!');

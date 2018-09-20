@@ -308,7 +308,7 @@ public class WechatWebController {
             wxAppInfo = weixinService.getWxAppInfo(wxAppInfo);
             String appId = wxAppInfo.getAppId();
             String appSecret = wxAppInfo.getAppSecret();
-            String cookieUid = "ofsg4wfO13sb93cQpvv7uioaAoHY";
+            String cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
             logger.info("cookieUid: " + cookieUid);
             if (StrUtil.strIsNotNull(cookieUid)) {
                 Map<String, String> serverInfo = new HashMap<String, String>();
@@ -493,6 +493,7 @@ public class WechatWebController {
             logger.info("========appid: " + appId);
             String openId = CookieUtil.getCookie(appId + "_uid", request);
 //            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
+
             List<GeneralDeviceInfo> generalDeviceInfos;
             GeneralDeviceInfo info = new GeneralDeviceInfo();
             info.setOpen_id(openId);
@@ -772,7 +773,7 @@ public class WechatWebController {
 //            DeviceInfo deviceInfo = new DeviceInfo();
             GeneralDeviceInfo generalDeviceInfo = new GeneralDeviceInfo();
             String deviceId = "";
-            if (registeredInfos.size() < 4) {
+            if (registeredInfos.size() < 5) {
                 int rdm = (int) (Math.random() * (9000)) + 1000;
                 deviceId = cookieUid + "_" + String.valueOf(rdm);
                 generalDeviceInfo.setGeneral_id(deviceId);
@@ -792,7 +793,7 @@ public class WechatWebController {
                 serverInfo.put("appId", appId);
                 model.addAttribute("serverInfo", serverInfo);
             } else {
-
+                return "redirect:http://weixin.tejien.com/web/error.html";
             }
 
         } catch (Exception e) {
