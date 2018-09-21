@@ -32,7 +32,7 @@
     <style type="text/css">
 
         .progress_zone {
-            background-image: url('/web/image/general_bg_blue.png');
+            background-image: url('/web/image/pre_filter_bg.png');
             background-size: cover;
             position: fixed;
             width: 100%;
@@ -44,9 +44,10 @@
             background: #fff;
             border: 2px solid #57b8cf;
             color: #005b9e;
-            font-size: 0.2rem;
+            font-size: 0.21rem;
             letter-spacing: 5px;
             border-radius: 1rem;
+            font-weight: 600;
         }
 
         .r_date {
@@ -79,6 +80,7 @@
 
     <div class="circleChart"
          style="position: fixed; right: 0; left: 0;height: 60%;display: flex;align-items: center">
+        <span style="position: fixed;background: #00a7ea;height: 2.5rem;z-index: -1;width: 2.5rem;left: 0;right: 0;margin: 0 auto;border-radius: 2.5rem;"></span>
     </div>
 
 </div>

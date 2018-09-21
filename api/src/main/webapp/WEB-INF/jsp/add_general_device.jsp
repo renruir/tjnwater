@@ -20,10 +20,29 @@
     <link href="/web/css/jsq_home_new.css" rel="stylesheet"/>
     <link href="/web/css/weui.min.css" rel="stylesheet"/>
 
+    <style>
+
+        .pre-filter-image {
+            width: 3rem;
+            height: 7rem;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            align-items: center;
+            display: flex;
+        }
+
+    </style>
+
 </head>
 <body>
 
 <div class="jsqHomeNewBackground">
+    <div style="margin-left:1rem; margin-top:1rem; width: 30%; border: 2px solid #57b8cf;">
+        <img src="/web/image/pre_filter_image.png" class="pre-filter-image">
+    </div>
+
+
     <div class="weui-cells__title">选择设备型号</div>
     <div class="weui-cells">
         <div class="weui-cell weui-cell_select">

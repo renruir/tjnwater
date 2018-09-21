@@ -492,7 +492,7 @@ public class WechatWebController {
         try {
             logger.info("========appid: " + appId);
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
+            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
 
             List<GeneralDeviceInfo> generalDeviceInfos;
             GeneralDeviceInfo info = new GeneralDeviceInfo();
@@ -514,7 +514,7 @@ public class WechatWebController {
 
         try {
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
+            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
             logger.info("get bind info, openID=" + openId);
             List<WxBindInfo> bindInfos;
             WxBindInfo wxBindInfo = new WxBindInfo();
@@ -767,7 +767,7 @@ public class WechatWebController {
             String appId = wxAppInfo.getAppId();
             String appSecret = wxAppInfo.getAppSecret();
             String cookieUid = CookieUtil.getCookie(appId + "_uid", request);// cookieUid = openid
-//            cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
+            cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
             List<DeviceInfo> registeredInfos = weixinService.getGeneralBindCount(cookieUid + "%");
             logger.info("count:" + registeredInfos.size());
 //            DeviceInfo deviceInfo = new DeviceInfo();
