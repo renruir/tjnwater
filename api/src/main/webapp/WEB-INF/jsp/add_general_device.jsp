@@ -11,12 +11,16 @@
 <html>
 <head>
 
-    <meta http-equiv="Content-Type" content="text/html, charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
 
     <title>添加设备</title>
 
-    <link href="/web/css/materialize.min.css" rel="stylesheet"/>
+    <%--<link href="/web/css/materialize.min.css" rel="stylesheet"/>--%>
     <link href="/web/css/jsq_home_new.css" rel="stylesheet"/>
     <link href="/web/css/weui.min.css" rel="stylesheet"/>
 
@@ -27,9 +31,12 @@
             height: 7rem;
             left: 0;
             right: 0;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
             margin: 0 auto;
             align-items: center;
             display: flex;
+
         }
 
     </style>
@@ -37,54 +44,73 @@
 </head>
 <body>
 
-<div class="jsqHomeNewBackground">
-    <div style="margin-left:1rem; margin-top:1rem; width: 30%; border: 2px solid #57b8cf;">
-        <img src="/web/image/pre_filter_image.png" class="pre-filter-image">
-    </div>
-
-
-    <div class="weui-cells__title">选择设备型号</div>
-    <div class="weui-cells">
-        <div class="weui-cell weui-cell_select">
-            <div class="weui-cell__bd">
-                <select class="weui-select" name="select1" id="model_selected_name" style="display: block">
-                    <option selected="" value="TJN-SF-DF35(尊享版)">TJN-SF-DF35(尊享版)</option>
-                    <option value="TJN-SF-DF25(旗舰版)">TJN-SF-DF25(旗舰版)</option>
-                    <option value="TJN-SF-DF25(尊享版)">TJN-SF-DF25(尊享版)</option>
-                    <option value="TJN-SF-DF65(尊享版)">TJN-SF-DF65(尊享版)</option>
-                    <option value="TJN-SF-DF65(自动版)">TJN-SF-DF65(自动版)</option>
-                    <option value="TJN-SF-DF55(尊享版)">TJN-SF-DF55(尊享版)</option>
-                    <option value="TJN-PF-AS15">TJN-PF-AS15</option>
-                    <option value="TJN-PF-AS16">TJN-PF-AS16</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="weui-cells__title">请给设备起一个名字</div>
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <input class="weui-input" id="device_byname" type="text" placeholder="请输入设备名称，以便以后查看">
-            </div>
-        </div>
-    </div>
-
-    <div class="weui-cells__title">安装日期</div>
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <input class="weui-input" id="install_date" type="date" value="">
-        </div>
-    </div>
-
-    <div class="weui-btn-area">
-        <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" onclick="addGeneralDevice()">确定</a>
-    </div>
+<div style="margin-left:1rem; margin-top:1rem; width: 30%; height:8rem;border: 2px solid #57b8cf; border-radius: 0.5rem">
+    <img src="/web/image/pre_filter_image.png" class="pre-filter-image">
 </div>
 
+<%--<div class="jsqHomeNewBackground">--%>
+<form name="建议与投诉" action="/web/wechat/registerGeneralDevice" method="post" onsubmit="return checkInput()">
+
+    <div style="margin-top: 4rem">
+
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd" style="font-weight: 600;"><label class="weui-label">产品名称</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="device_byname" type="text" placeholder="请输入产品名称" value="前置过滤器">
+                </div>
+            </div>
+
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd" style="font-weight: 600;">
+                    <label for="" class="weui-label">产品型号</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="select1" id="model_selected_name" style="display: block">
+                        <option selected="" value="TJN-SF-DF35(尊享版)">TJN-SF-DF35(尊享版)</option>
+                        <option value="TJN-SF-DF25(旗舰版)">TJN-SF-DF25(旗舰版)</option>
+                        <option value="TJN-SF-DF25(尊享版)">TJN-SF-DF25(尊享版)</option>
+                        <option value="TJN-SF-DF65(尊享版)">TJN-SF-DF65(尊享版)</option>
+                        <option value="TJN-SF-DF65(自动版)">TJN-SF-DF65(自动版)</option>
+                        <option value="TJN-SF-DF55(尊享版)">TJN-SF-DF55(尊享版)</option>
+                        <option value="TJN-PF-AS15">TJN-PF-AS15</option>
+                        <option value="TJN-PF-AS16">TJN-PF-AS16</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <div class="weui-cell__hd" style="font-weight: 600;">
+                    <label for="" class="weui-label">安装日期</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="date" id="install_date" value="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input class="weui-btn weui-btn_primary" style="text-align: center; margin-top: 3rem; width: 60%"
+           type="submit" id="submit_" value="提交"/>
+</form>
+
+</div>
 
 <script src="/web/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
 <script type="text/javascript">
+
+
+    function checkInput() {
+        var selectModel = $('#model_selected_name').val();
+        var deviceByName = $('#device_byname').val();
+        var installDate = $('#install_date').val();
+        console.log("install date: " + installDate);
+        if (installDate == "" || installDate == undefined) {
+            weui.alert("请输入安装日期")
+            return false
+        }
+        return true;
+    }
 
     function addGeneralDevice() {
         var selected_model = $('#model_selected_name').val();
