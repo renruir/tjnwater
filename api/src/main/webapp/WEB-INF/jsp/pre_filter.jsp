@@ -36,7 +36,7 @@
             background-size: cover;
             position: fixed;
             width: 100%;
-            height: 60%;
+            height: 100%;
         }
 
         .myButton {
@@ -51,22 +51,24 @@
         }
 
         .r_date {
-            color: #e5f8fc;
-            font-size: 0.8rem;
-            font-weight: 800;
+            color: #f8f8f8;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: "Arial";
         }
 
         .s_date {
-            color: #e5f8fc;
+            color: #f8f8f8;
             font-size: 0.3rem;
-            font-weight: 100;
+            font-weight: 700;
             line-height: 0px;
+            font-family: "Arial";
         }
 
         .f_str {
-            color: #e5f8fc;
+            color: #f8f8f8;
             font-size: 0.15rem;
-            font-weight: 800;
+            font-weight: 700;
             line-height: 0px;
             margin-top: 0px;
         }
@@ -85,13 +87,13 @@
 
 </div>
 
-<div style="position: fixed;height: 40%;bottom: -10%; left: 0; right: 0; text-align: center">
+<div style="position: fixed;height: 45%;bottom: -10%; left: 0; right: 0; text-align: center">
     <div>
         <a href="javascript:;" class="weui-btn weui-btn_primary myButton" id="selectResetCircle">选择</a>
     </div>
 
     <div>
-        <a href="javascript:;" class="weui-btn weui-btn_primary myButton" style="margin-top: 0.2rem"
+        <a href="javascript:;" class="weui-btn weui-btn_primary myButton" style="margin-top: 0.5rem"
            id="resetState" onclick="showResetDialog()">复位</a>
     </div>
 
@@ -205,7 +207,8 @@
             onDraw: function (el, circle) {
                 circle.text('<span class="r_date">' + day + '</span>'
                     + '<span style="font-size: 0.6rem; color:#e5f8fc">' + '/' + '</span>'
-                    + '<span class="s_date">' + generalInfo.reminderCircle + '</span>'
+                    + '<div class="s_date">Days</div>'
+                    + '<div class="s_date">' + generalInfo.reminderCircle + '</div>'
                     + "<br>" + "<span class=\"f_str\">滤网冲洗天数</span>");
             }
         });

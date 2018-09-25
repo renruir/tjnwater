@@ -46,10 +46,11 @@
 
 <div style="margin-left:1rem; margin-top:1rem; width: 30%; height:8rem;border: 2px solid #57b8cf; border-radius: 0.5rem">
     <img src="/web/image/pre_filter_image.png" class="pre-filter-image">
+    <div style="text-align: center; color: #18bbdb;">前置过滤器</div>
 </div>
 
 <%--<div class="jsqHomeNewBackground">--%>
-<form name="建议与投诉" action="/web/wechat/registerGeneralDevice" method="post" onsubmit="return checkInput()">
+<form name="添加设备" action="/web/wechat/registerGeneralDevice" method="post" onsubmit="return checkInput()">
 
     <div style="margin-top: 4rem">
 
@@ -57,7 +58,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd" style="font-weight: 600;"><label class="weui-label">产品名称</label></div>
                 <div class="weui-cell__bd">
-                    <input class="weui-input" id="device_byname" type="text" placeholder="请输入产品名称" value="前置过滤器">
+                    <input class="weui-input" id="device_byname" name="deviceByName" type="text" placeholder="请输入产品名称" value="前置过滤器">
                 </div>
             </div>
 
@@ -66,7 +67,7 @@
                     <label for="" class="weui-label">产品型号</label>
                 </div>
                 <div class="weui-cell__bd">
-                    <select class="weui-select" name="select1" id="model_selected_name" style="display: block">
+                    <select class="weui-select" name="selectModel" id="model_selected_name" style="display: block">
                         <option selected="" value="TJN-SF-DF35(尊享版)">TJN-SF-DF35(尊享版)</option>
                         <option value="TJN-SF-DF25(旗舰版)">TJN-SF-DF25(旗舰版)</option>
                         <option value="TJN-SF-DF25(尊享版)">TJN-SF-DF25(尊享版)</option>
@@ -83,8 +84,9 @@
                 <div class="weui-cell__hd" style="font-weight: 600;">
                     <label for="" class="weui-label">安装日期</label></div>
                 <div class="weui-cell__bd">
-                    <input class="weui-input" type="date" id="install_date" value="">
+                    <input class="weui-input" name="installDate" type="date" id="install_date" value="">
                 </div>
+                <img src="/web/image/edit_icon.png" style="width: 1rem">
             </div>
         </div>
     </div>
@@ -106,7 +108,7 @@
         var installDate = $('#install_date').val();
         console.log("install date: " + installDate);
         if (installDate == "" || installDate == undefined) {
-            weui.alert("请输入安装日期")
+            weui.alert("请输入安装日期!")
             return false
         }
         return true;
