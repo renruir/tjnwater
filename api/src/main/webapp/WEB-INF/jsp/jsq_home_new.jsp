@@ -771,7 +771,7 @@
         }
 
 
-        var action = getHashString("action");InformSuccess
+        var action = getHashString("action");
         myController(action);
     });
 

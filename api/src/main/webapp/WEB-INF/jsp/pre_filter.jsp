@@ -59,9 +59,8 @@
 
         .s_date {
             color: #f8f8f8;
-            font-size: 0.3rem;
+            font-size: 0.5rem;
             font-weight: 700;
-            line-height: 0px;
             font-family: "Arial";
         }
 
@@ -72,6 +71,27 @@
             line-height: 0px;
             margin-top: 0px;
         }
+
+        .xx {
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            top: 0.1rem;
+            width: 2px;
+            height: 0.8rem;
+            margin-left: 5px;
+            z-index: 24;
+            transform:rotate(20deg);
+        }
+
+        .days_str {
+            color:#f8f8f8;
+            font-size: 0.1rem;
+            top: -10px;
+            margin-left: 10px;
+            position: absolute;
+            font-family: "Arial";
+        }
+
 
     </style>
 
@@ -206,9 +226,9 @@
             textSize: 50,
             onDraw: function (el, circle) {
                 circle.text('<span class="r_date">' + day + '</span>'
-                    + '<span style="font-size: 0.6rem; color:#e5f8fc">' + '/' + '</span>'
-                    + '<div class="s_date">Days</div>'
-                    + '<div class="s_date">' + generalInfo.reminderCircle + '</div>'
+                    + '<div style="display: inline-flex"><span class="xx">'  + '</span>'
+                    + '<div style="margin-left: 0.08rem;"><div class="days_str">Days</div>'
+                    + '<div class="s_date">' + generalInfo.reminderCircle + '</div></div></div>'
                     + "<br>" + "<span class=\"f_str\">滤网冲洗天数</span>");
             }
         });

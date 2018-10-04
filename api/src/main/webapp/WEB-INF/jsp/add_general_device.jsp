@@ -101,6 +101,16 @@
 <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
 <script type="text/javascript">
 
+    var productModel = "${productModel}";
+
+    $(function () {
+        console.log("productModel:"+productModel);
+        if(productModel != "" && productModel != undefined && productModel != null){
+            $("#model_selected_name").val(productModel);
+        }
+    });
+
+
 
     function checkInput() {
         var selectModel = $('#model_selected_name').val();

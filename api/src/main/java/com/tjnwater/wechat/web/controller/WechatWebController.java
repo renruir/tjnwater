@@ -710,6 +710,8 @@ public class WechatWebController {
     @RequestMapping(value = "add_general_device.html")
     public String addNewDevice(HttpServletRequest request, HttpServletResponse response, String code, Model model) {
         String productModel = request.getParameter("productModel");
+        logger.info("product model : " + productModel);
+        model.addAttribute("productModel", productModel);
         return "add_general_device";
     }
 
@@ -730,6 +732,12 @@ public class WechatWebController {
         }
         return "pre_filter";
     }
+
+    @RequestMapping(value = "super_filter")
+    public String superFilter(){
+        return "super_filter";
+    }
+
 
     @RequestMapping(value = "getCityInfo")
     @ResponseBody
@@ -764,7 +772,7 @@ public class WechatWebController {
             String appId = wxAppInfo.getAppId();
             String appSecret = wxAppInfo.getAppSecret();
             String cookieUid = CookieUtil.getCookie(appId + "_uid", request);// cookieUid = openid
-            cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
+//            cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
             List<DeviceInfo> registeredInfos = weixinService.getGeneralBindCount(cookieUid + "%");
             logger.info("count:" + registeredInfos.size());
 //            DeviceInfo deviceInfo = new DeviceInfo();
