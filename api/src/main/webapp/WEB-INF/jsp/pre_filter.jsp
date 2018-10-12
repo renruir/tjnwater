@@ -40,32 +40,40 @@
         }
 
         .myButton {
-            width: 60%;
-            background: #fff;
-            border: 2px solid #57b8cf;
-            color: #005b9e;
+            width: 55%;
+            background-color: #73d9eb;
+            /*border: 2px solid #57b8cf;*/
+            color: #fff;
             font-size: 0.21rem;
             letter-spacing: 5px;
-            border-radius: 1rem;
+            border-radius: 10px;
             font-weight: 600;
         }
 
+        .button_icon {
+            height: 30px;
+            line-height: 30px;
+            margin-right: 10px;
+            margin-top: -3px;
+            vertical-align: middle;
+        }
+
         .r_date {
-            color: #f8f8f8;
+            color: #eafbfe;
             font-size: 1rem;
             font-weight: 700;
             font-family: "Arial";
         }
 
         .s_date {
-            color: #f8f8f8;
+            color: #eafbfe;
             font-size: 0.5rem;
             font-weight: 700;
             font-family: "Arial";
         }
 
         .f_str {
-            color: #f8f8f8;
+            color: #eafbfe;
             font-size: 0.15rem;
             font-weight: 700;
             line-height: 0px;
@@ -80,11 +88,11 @@
             height: 0.8rem;
             margin-left: 5px;
             z-index: 24;
-            transform:rotate(20deg);
+            transform: rotate(20deg);
         }
 
         .days_str {
-            color:#f8f8f8;
+            color: #eafbfe;
             font-size: 0.1rem;
             top: -10px;
             margin-left: 10px;
@@ -109,12 +117,18 @@
 
 <div style="position: fixed;height: 45%;bottom: -10%; left: 0; right: 0; text-align: center">
     <div>
-        <a href="javascript:;" class="weui-btn weui-btn_primary myButton" id="selectResetCircle">选择</a>
+        <a href="javascript:;" class="weui-btn weui-btn_primary myButton"
+           id="selectResetCircle">
+            <img src="/web/tjn_imgs/icon_pre_filter_setting.png" class="button_icon">选择</img>
+        </a>
+
     </div>
 
     <div>
         <a href="javascript:;" class="weui-btn weui-btn_primary myButton" style="margin-top: 0.5rem"
-           id="resetState" onclick="showResetDialog()">复位</a>
+           id="resetState" onclick="showResetDialog()">
+            <img src="/web/tjn_imgs/icon_pre_filter_reset.png" class="button_icon">复位</img>
+        </a>
     </div>
 
 </div>
@@ -218,7 +232,8 @@
     function initCircle(day) {
         $(".circleChart").circleChart({
             color: "#e6e6e6",
-            backgroundColor: "#21eb00",
+            backgroundColor: "#e5f9fc",
+            // backgroundColor: "#21eb00",
             size: 280,
             value: (consumeDay) / generalInfo.reminderCircle * 100,
             startAngle: -25,
@@ -226,7 +241,7 @@
             textSize: 50,
             onDraw: function (el, circle) {
                 circle.text('<span class="r_date">' + day + '</span>'
-                    + '<div style="display: inline-flex"><span class="xx">'  + '</span>'
+                    + '<div style="display: inline-flex"><span class="xx">' + '</span>'
                     + '<div style="margin-left: 0.08rem;"><div class="days_str">Days</div>'
                     + '<div class="s_date">' + generalInfo.reminderCircle + '</div></div></div>'
                     + "<br>" + "<span class=\"f_str\">滤网冲洗天数</span>");
