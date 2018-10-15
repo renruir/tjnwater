@@ -110,7 +110,7 @@
 
     <div class="circleChart"
          style="position: fixed; right: 0; left: 0;height: 60%;display: flex;align-items: center">
-        <span style="position: fixed;background: #00a7ea;height: 2.5rem;z-index: -1;width: 2.5rem;left: 0;right: 0;margin: 0 auto;border-radius: 2.5rem;"></span>
+        <span style="position: fixed;height: 2.5rem;z-index: -1;width: 2.5rem;left: 0;right: 0;margin: 0 auto;border-radius: 2.5rem;"></span>
     </div>
 
 </div>
@@ -174,12 +174,16 @@
 
     var consumeDay = 0;
     var newReminderCircle;
-    var surplus = generalInfo.reminderCircle - consumeDay;
+    // var surplus = generalInfo.reminderCircle - consumeDay;
 
     $(function () {
         consumeDay = dateMinus(generalInfo.lastResetDate);
-        surplus = parseInt(generalInfo.reminderCircle - consumeDay);
+        // surplus = parseInt(generalInfo.reminderCircle - consumeDay);
+        if(consumeDay > generalInfo.reminderCircle){
+            consumeDay = generalInfo.reminderCircle;
+        }
         initCircle(consumeDay);
+        console.log("=="+ consumeDay);
         $("p:first").css("line-height", "100px");
         // $("p:first").css("top", "0.85rem");
         refreshData(generalInfo.reminderCircle);
@@ -222,7 +226,12 @@
             $(".circleChart").circleChart({
                 color: "#fe555c"
             });
+        } else {
+            $(".circleChart").circleChart({
+                color: "#21eb00"
+            });
         }
+
         $(".circleChart").css('position', 'fixed');
         $(".circleChart_canvas").css('width', '2.8rem');
         $(".circleChart_canvas").css('height', '2.8rem');
