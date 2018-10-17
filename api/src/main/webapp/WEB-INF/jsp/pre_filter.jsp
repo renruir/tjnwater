@@ -109,7 +109,7 @@
 <div id="cz_page_1" class="progress_zone">
 
     <div class="circleChart"
-         style="position: fixed; right: 0; left: 0;height: 60%;display: flex;align-items: center">
+         style="position: fixed; right: 0; left: 0;height: 65%;display: flex;align-items: center">
         <span style="position: fixed;height: 2.5rem;z-index: -1;width: 2.5rem;left: 0;right: 0;margin: 0 auto;border-radius: 2.5rem;"></span>
     </div>
 

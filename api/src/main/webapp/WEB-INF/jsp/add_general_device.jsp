@@ -167,7 +167,19 @@
             weui.alert("请输入安装日期!")
             return false
         }
+
+        if(compareDate(installDate)){
+            weui.alert("安装日期不能选择将来的日期")
+            return false
+        }
+
         return true;
+    }
+
+    function compareDate(date) {
+        var curTime = new Date();
+        var installDate = new Date(Date.parse(date))
+        return (curTime < installDate);
     }
 
     function addGeneralDevice() {
