@@ -172,25 +172,25 @@ public interface WeixinService {
 	 * 获取设备净水数据统计(日)
 	 * @param map
 	 */
-	public List<DeviceDataStat> getDailyDeviceDataStat(Map<String, Object> map);
+//	public List<DeviceDataStat> getDailyDeviceDataStat(Map<String, Object> map);
 
 	/**
 	 * 获取所有净水数据统计
 	 * @param sqlDate
 	 */
-	public List<DeviceDataStat> getDeviceDataStat(java.sql.Date sqlDate);
+//	public List<DeviceDataStat> getDeviceDataStat(java.sql.Date sqlDate);
 
 	/**
 	 * 获取设备净水数据统计(月)
 	 * @param map
 	 */
-	public List<DeviceDataStat> getMonthlyDeviceDataStat(Map<String, Object> map);
+//	public List<DeviceDataStat> getMonthlyDeviceDataStat(Map<String, Object> map);
 
 	/**
 	 * 获取设备净水数据统计(年)
 	 * @param map
 	 */
-	public List<DeviceDataStat> getYearlyDeviceDataStat(Map<String, Object> map);
+//	public List<DeviceDataStat> getYearlyDeviceDataStat(Map<String, Object> map);
 
 	/**
 	 * 删除设备净水数据

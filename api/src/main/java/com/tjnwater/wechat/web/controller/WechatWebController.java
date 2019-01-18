@@ -17,10 +17,12 @@ import com.tjnwater.wechat.service.constant.ServiceConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -307,6 +309,18 @@ public class WechatWebController {
             String appSecret = wxAppInfo.getAppSecret();
             String cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
             logger.info("cookieUid: " + cookieUid);
+            if (cookieUid != null && !"".equals(cookieUid)) {
+                CookieUtil.setCookie(appId + "_uid", cookieUid, response);
+            } else if (code != null && !"".equals(code)) {
+                Map<Object, Object> openidMap = WeixinServerEngin.getOauthUserId(code, appId, appSecret);
+                if (openidMap != null) {
+                    cookieUid = StrUtil.objectToString(openidMap.get("openid"));
+
+                    if (cookieUid != null && !"".equals(cookieUid)) {
+                        CookieUtil.setCookie(appId + "_uid", cookieUid, response);
+                    }
+                }
+            }
             if (StrUtil.strIsNotNull(cookieUid)) {
                 Map<String, String> serverInfo = new HashMap<String, String>();
                 serverInfo.put("host", MQTT_HOST);
@@ -385,18 +399,14 @@ public class WechatWebController {
                 DeviceInfo deviceInfo;
 
                 List<FilterInfo> filterInfos = null;
-                String jsTotal = null;
 
                 if (wxBindInfo != null && StrUtil.strIsNotNull(wxBindInfo.getDeviceId())) {
                     deviceInfo = weixinService.getDeviceInfo(wxBindInfo.getDeviceId());
+                    logger.info("device model: "+deviceInfo.getModel());
                     if ("1".equals(wxBindInfo.getDeviceType())) {
                         if (deviceInfo != null) {
                             filterInfos = weixinService.getFilterInfo(deviceInfo.getModel());
                         }
-                    }
-                    if ("1".equals(wxBindInfo.getDeviceType())) {
-                        //从数据库中获取deviceid的最新一条净水量统计
-                        jsTotal = weixinService.getjsTotal(wxBindInfo.getDeviceId());
                     }
 
                     String url = "http://weixin.tejien.com/web/wechat/my_devices.html?deviceId=" + deviceId + "&type=" + deviceType;
@@ -417,9 +427,6 @@ public class WechatWebController {
                     if ("1".equals(wxBindInfo.getDeviceType())) {
                         model.addAttribute("filterInfo", filterInfos);
                         model.addAttribute("filterRank", request.getParameter("filterRank"));
-                        if (jsTotal != null && jsTotal != "") {
-                            model.addAttribute("jsTotal", jsTotal);
-                        }
                     }
 
                     if ("1".equals(wxBindInfo.getDeviceType())) {
@@ -444,8 +451,8 @@ public class WechatWebController {
             WxAppInfo wxAppInfo = new WxAppInfo();
             wxAppInfo.setGhId(JSQ_GH_ID);
             wxAppInfo = weixinService.getWxAppInfo(wxAppInfo);
-            String appId = "wx9b5c8824203f4718";
-            String appSecret = "7dbf4714c590037a710766dcd45be2ac";
+            String appId = "wx013a0b0fac979a5e";
+            String appSecret = "1f8fae3cd8034dd40d7e39b73083a445";
             String cookieUid = "ovAFut6Jkhz9z2a6Egmh7CVSzorM";
             logger.info("cookieUid: " + cookieUid);
             WxBindInfo wxBindInfo = new WxBindInfo();
@@ -458,13 +465,13 @@ public class WechatWebController {
             model.addAttribute("updateDeviceInfo", null);
             DeviceInfo deviceInfo = null;
             List<FilterInfo> filterInfos = null;
-            String jsTotal = null;
             if (wxBindInfo != null && StrUtil.strIsNotNull(wxBindInfo.getDeviceId())) {
                 deviceInfo = weixinService.getDeviceInfo(wxBindInfo.getDeviceId());
+                logger.info("model: " + deviceInfo.getModel());
                 if (deviceInfo != null) {
                     filterInfos = weixinService.getFilterInfo(deviceInfo.getModel());
                     for (FilterInfo info : filterInfos) {
-                        logger.info("filter" + info.getRank() + " name: " + info.getFilterName());
+                        logger.info("filter" + info.getGrade() + " name: " + info.getFilter_name());
                     }
                 }
             }
@@ -489,7 +496,7 @@ public class WechatWebController {
         try {
             logger.info("========appid: " + appId);
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
+//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
 
             List<GeneralDeviceInfo> generalDeviceInfos;
             GeneralDeviceInfo info = new GeneralDeviceInfo();
@@ -511,7 +518,7 @@ public class WechatWebController {
 
         try {
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
+//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
             logger.info("get bind info, openID=" + openId);
             List<WxBindInfo> bindInfos;
             WxBindInfo wxBindInfo = new WxBindInfo();
@@ -734,7 +741,7 @@ public class WechatWebController {
     }
 
     @RequestMapping(value = "super_filter")
-    public String superFilter(){
+    public String superFilter() {
         return "super_filter";
     }
 
@@ -958,52 +965,6 @@ public class WechatWebController {
         weixinService.saveDeviceErrorCode(mDeviceErrorCode);
     }
 
-    @Scheduled(cron = "0 1 0 * * ?")
-    public void DailyUpdateStatus() {
-        java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date utilDate = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime() - OneDay_seconds);
-        List<DeviceDataStat> deviceDataStatList = weixinService.getDeviceDataStat(sqlDate);
-
-        if (deviceDataStatList != null && deviceDataStatList.size() > 0) {
-            for (DeviceDataStat deviceDataStat : deviceDataStatList) {
-                weixinService.saveDeviceDataStat(deviceDataStat);
-            }
-        }
-    }
-
-
-    public void setdevicestatmodel(List<DeviceDataStat> deviceDataStatList, Model model, String style) {
-        String date = null;
-        String js_total = null;
-        String ys_size = null;
-        if (deviceDataStatList != null && deviceDataStatList.size() > 0) {
-            int count = deviceDataStatList.size();
-            for (DeviceDataStat deviceDataStat : deviceDataStatList) {
-                if (date == null) {
-                    date = deviceDataStat.getCreateDate();
-                } else {
-                    date += "," + deviceDataStat.getCreateDate();
-                }
-                if (js_total == null) {
-                    js_total = deviceDataStat.getJsTotal() + "";
-                } else {
-                    js_total += "," + deviceDataStat.getJsTotal();
-                }
-
-                if (ys_size == null) {
-                    ys_size = deviceDataStat.getYsSize() + "";
-                } else {
-                    ys_size += "," + deviceDataStat.getYsSize();
-                }
-            }
-            model.addAttribute(style + "count", count);
-            model.addAttribute(style, date);
-            model.addAttribute("js_total_" + style, js_total);
-            model.addAttribute("ys_size_" + style, ys_size);
-        }
-    }
-
     private boolean isNeedUpdate(String serverVersion, String currentVersion) {
         try {
             if (serverVersion == "" || serverVersion == null || currentVersion == "" || currentVersion == null) {
@@ -1033,4 +994,6 @@ public class WechatWebController {
         Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
         return pattern.matcher(str).matches();
     }
+
+
 }

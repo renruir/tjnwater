@@ -170,7 +170,9 @@ input, div {
 .label1 {
     position: absolute;
     top: 4.27rem;
-    left: 2.77rem;
+    /*left: 2.77rem;*/
+    left: 0;
+    right: 0;
     font-size: 0.25rem;
     color: #e7fafd;
 }

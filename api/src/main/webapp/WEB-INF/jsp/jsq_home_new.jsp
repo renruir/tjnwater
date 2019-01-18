@@ -25,52 +25,73 @@
     <link rel="shortcut icon" href="/web/images/favicon.ico" type="image/x-icon"/>
     <link href="/web/css/weui.min.css" rel="stylesheet"/>
     <style type="text/css">
-        html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:1.6;margin:0;padding:0;font-size: 100px;}
-        body{-webkit-touch-callout:none;font-family:"Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;background-color:#fff;line-height:inherit;margin:0;padding:0;color: #444444;font-size: 0.24rem;}
+        html {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            font-size: 100px;
+        }
 
-        a{ text-decoration:none; }
-        ul{ list-style: none;margin: 0;padding: 0; }
+        body {
+            -webkit-touch-callout: none;
+            font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+            background-color: #fff;
+            line-height: inherit;
+            margin: 0;
+            padding: 0;
+            color: #444444;
+            font-size: 0.24rem;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
 
         a,
-        input,div {
+        input, div {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
 
-        .index_module_page{
+        .index_module_page {
             display: none;
         }
 
-
-        .home_main{
+        .home_main {
             width: 7.20rem;
             height: 100%;
-            min-height:10rem;
+            min-height: 10rem;
             position: absolute;
-            margin-left:-3.6rem;
-            top:0;
-            left:50%;
+            margin-left: -3.6rem;
+            top: 0;
+            left: 50%;
         }
 
-        .home_content{
+        .home_content {
             width: 7.20rem;
-            height:100%;
+            height: 100%;
             position: relative;
             overflow: hidden;
         }
 
-
-
-        .home_content_bg{
+        .home_content_bg {
             width: 7.20rem;
-            height:100%;
-            top:0;
-            left:0;
+            height: 100%;
+            top: 0;
+            left: 0;
             position: absolute;
             background: url("/web/tjn_imgs/home_bg.png") no-repeat;
             background-size: cover;
         }
 
-        .home_tds_content{
+        .home_tds_content {
             /*width: 4.1rem;*/
             /*margin:0 auto;*/
             margin-left: 1.8rem;
@@ -78,11 +99,11 @@
             overflow: hidden;
         }
 
-        .tds_div{
+        .tds_div {
             float: left;
         }
 
-        .tds_word{
+        .tds_word {
             width: 1.15rem;
             font-size: 0.5rem;
             line-height: 0.6rem;
@@ -92,7 +113,7 @@
             color: #7c8892;
         }
 
-        .ppm_word{
+        .ppm_word {
             width: 0.5rem;
             font-size: 0.2rem;
             margin-top: 1.15rem;
@@ -100,63 +121,60 @@
             color: #7c8892;
         }
 
-
-        .tds_value{
+        .tds_value {
             min-width: 1.5rem;
             font-size: 1.25rem;
             text-align: center;
             color: #ace8f3;
         }
 
-
-
-        .home_status_content{
+        .home_status_content {
             width: 3.41rem;
-            margin:0 auto;
+            margin: 0 auto;
             margin-top: -0.4rem;
             overflow: hidden;
         }
 
-        .status_div{
+        .status_div {
             float: left;
         }
 
-        .status_word{
+        .status_word {
             width: 0.92rem;
             font-size: 0.2rem;
             margin-top: 0.3rem;
             color: #7c8892;
         }
 
-        .status_value{
+        .status_value {
             width: 0.67rem;
             font-size: 0.24rem;
             margin-top: 0.25rem;
             color: #ace8f3;
         }
 
-        .status_line{
+        .status_line {
             width: 0.2rem;
             font-size: 0.28rem;
             margin-top: 0.2rem;
             color: #7c8892;
         }
 
-        .ystds_word{
+        .ystds_word {
             width: 0.92rem;
             font-size: 0.2rem;
             margin-top: 0.3rem;
             color: #7c8892;
         }
 
-        .ystds_value{
+        .ystds_value {
             width: 0.7rem;
             font-size: 0.40rem;
             color: #ace8f3;
             margin-top: 0.1rem;
         }
 
-        .home_wash_btn{
+        .home_wash_btn {
             width: 3.08rem;
             height: 1.01rem;
             margin: 0 auto;
@@ -165,32 +183,31 @@
             line-height: 1.01rem;
             text-align: center;
             font-size: 0.4rem;
-            letter-spacing:0.10rem;
+            letter-spacing: 0.10rem;
             background: url("/web/tjn_imgs/home_wash_button.png") no-repeat;
-            background-size:3.08rem 1.01rem;
+            background-size: 3.08rem 1.01rem;
         }
 
-
-        .home_line_show_content{
+        .home_line_show_content {
             width: 6.24rem;
-            margin:0 auto;
+            margin: 0 auto;
             margin-top: 0.32rem;
             overflow: hidden;
         }
 
-        .line_show_div{
+        .line_show_div {
             float: left;
         }
 
-        .left_line,.right_line{
+        .left_line, .right_line {
             width: 1.52rem;
             height: 0.06rem;
             margin-top: 0.25rem;
             background: url("/web/tjn_imgs/home_line.png") no-repeat;
-            background-size:1.52rem 0.06rem;
+            background-size: 1.52rem 0.06rem;
         }
 
-        .status_show_word{
+        .status_show_word {
             color: #8ca1a7;
             font-size: 0.24rem;
             width: 1.55rem;
@@ -198,70 +215,70 @@
             margin-top: 0.08rem;
         }
 
-        .status_show_split{
+        .status_show_split {
             width: 0.2rem;
             font-size: 0.28rem;
             color: #8ca1a7;
         }
 
-        .five_status_word{
+        .five_status_word {
             color: #8ca1a7;
             font-size: 0.24rem;
             width: 1.15rem;
             margin-top: 0.08rem;
         }
 
-        .home_filter_list{
+        .home_filter_list {
             margin-top: 0.4rem;
         }
 
-        .home_filter_content{
-            width:5.85rem;
-            margin:0 auto;
+        .home_filter_content {
+            width: 5.85rem;
+            margin: 0 auto;
             margin-bottom: 0.5rem;
             overflow: hidden;
             display: none;
         }
 
-        .home_filter_div{
+        .home_filter_div {
             float: left;
         }
 
-        .number_icon{
+        .number_icon {
             width: 0.46rem;
             height: 0.49rem;
             margin-top: -0.03rem;
             background: url("/web/tjn_imgs/home_number_unselected.png") no-repeat;
-            background-size:0.46rem 0.49rem;
+            background-size: 0.46rem 0.49rem;
             line-height: 0.55rem;
             text-align: center;
             color: #999999;
             font-size: 0.24rem;
         }
 
-        .progress_bar{
+        .progress_bar {
             width: 3.92rem;
             height: 0.42rem;
             margin-left: 0.25rem;
             background: url("/web/tjn_imgs/home_progressbar_bg.png") no-repeat;
-            background-size:3.92rem 0.42rem;
+            background-size: 3.92rem 0.42rem;
         }
 
-        .progress_bar_value{
+        .progress_bar_value {
             /*width: 3.8rem;*/
             /*width: 2.35rem;*/
-            width:50%;
+            width: 50%;
             height: 0.3rem;
-            border-top-right-radius:0.1rem;
-            border-bottom-right-radius:0.1rem;
+            border-top-right-radius: 0.1rem;
+            border-bottom-right-radius: 0.1rem;
             margin-top: 0.06rem;
             margin-left: 0.06rem;
             background: url("/web/tjn_imgs/home_progressbar_blue_unselected.png") no-repeat;
-            background-size:3.8rem 0.3rem;
+            background-size: 3.8rem 0.3rem;
             overflow: hidden;
         }
 
-        .filter_value{
+        .filter_value {
             width: 0.8rem;
             height: 0.42rem;
             line-height: 0.42rem;
@@ -270,54 +287,48 @@
             font-size: 0.2rem;
         }
 
-        .filter_next{
+        .filter_next {
             width: 0.42rem;
             height: 0.43rem;
             background: url("/web/tjn_imgs/home_filter_next.png") no-repeat;
-            background-size:0.42rem 0.43rem;
+            background-size: 0.42rem 0.43rem;
         }
 
-
-
-
-        .add_device_main{
+        .add_device_main {
             width: 7.20rem;
             height: 100%;
-            min-height:10rem;
+            min-height: 10rem;
             position: absolute;
-            margin-left:-3.6rem;
-            top:0;
-            left:50%;
+            margin-left: -3.6rem;
+            top: 0;
+            left: 50%;
         }
 
-        .add_device_content{
+        .add_device_content {
             width: 7.20rem;
-            height:100%;
+            height: 100%;
             position: relative;
             overflow: hidden;
         }
 
-
-
-        .device_content_bg{
+        .device_content_bg {
             width: 7.20rem;
-            height:100%;
-            top:0;
-            left:0;
+            height: 100%;
+            top: 0;
+            left: 0;
             position: absolute;
             background: url("/web/tjn_imgs/shebeibroken_bg.png") no-repeat;
             background-size: cover;
         }
 
-
-        .select_device_text{
+        .select_device_text {
             color: yellow;
             font-size: 0.28rem;
             margin-top: 1.4rem;
             text-align: center;
         }
 
-        .js_btn{
+        .js_btn {
             width: 3.7rem;
             height: 1.02rem;
             margin: 0 auto;
@@ -325,12 +336,12 @@
             line-height: 1.02rem;
             text-align: center;
             font-size: 0.35rem;
-            color:#fff;
+            color: #fff;
             background: url("/web/tjn_imgs/add_device_btn.png") no-repeat;
-            background-size:3.7rem 1.02rem;
+            background-size: 3.7rem 1.02rem;
         }
 
-        .kj_btn{
+        .kj_btn {
             width: 3.7rem;
             height: 1.02rem;
             margin: 0 auto;
@@ -338,9 +349,9 @@
             line-height: 1.02rem;
             text-align: center;
             font-size: 0.35rem;
-            color:#fff;
+            color: #fff;
             background: url("/web/tjn_imgs/add_device_btn.png") no-repeat;
-            background-size:3.7rem 1.02rem;
+            background-size: 3.7rem 1.02rem;
         }
 
     </style>
@@ -351,7 +362,21 @@
     <link rel="stylesheet" href="/web/css/popup_dialog.css">
 
 
-    <script>(function (doc, win) { var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () { var clientWidth = docEl.clientWidth; if (!clientWidth) return; if(clientWidth>560){clientWidth=560;} docEl.style.fontSize = 100 * (clientWidth / 720) + 'px'; }; recalc(); if (!doc.addEventListener) return; win.addEventListener(resizeEvt, recalc, false); /* doc.addEventListener('DOMContentLoaded', recalc, false); */})(document, window);
+    <script>(function (doc, win) {
+        var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if (clientWidth > 560) {
+                    clientWidth = 560;
+                }
+                docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+            };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        /* doc.addEventListener('DOMContentLoaded', recalc, false); */
+    })(document, window);
     </script>
 
 
@@ -390,36 +415,55 @@
             <div class="home_filter_list">
                 <div class="home_filter_content" id="home_filter_id_1" onclick="showFilterDetail('1')">
                     <div class="home_filter_div number_icon">1</div>
-                    <div class="home_filter_div progress_bar"><div class="progress_bar_value" id="filter-progress-1"></div></div>
+                    <div class="home_filter_div progress_bar">
+                        <div class="progress_bar_value" id="filter-progress-1"></div>
+                    </div>
                     <div class="home_filter_div filter_value" id="filter-surplus-1">50%</div>
                     <div class="line_show_div filter_next"></div>
                 </div>
 
                 <div class="home_filter_content" id="home_filter_id_2" onclick="showFilterDetail('2')">
                     <div class="home_filter_div number_icon">2</div>
-                    <div class="home_filter_div progress_bar"><div class="progress_bar_value" id="filter-progress-2"></div></div>
+                    <div class="home_filter_div progress_bar">
+                        <div class="progress_bar_value" id="filter-progress-2"></div>
+                    </div>
                     <div class="home_filter_div filter_value" id="filter-surplus-2">50%</div>
                     <div class="line_show_div filter_next"></div>
                 </div>
 
                 <div class="home_filter_content" id="home_filter_id_3" onclick="showFilterDetail('3')">
                     <div class="home_filter_div number_icon">3</div>
-                    <div class="home_filter_div progress_bar"><div class="progress_bar_value" id="filter-progress-3"></div></div>
+                    <div class="home_filter_div progress_bar">
+                        <div class="progress_bar_value" id="filter-progress-3"></div>
+                    </div>
                     <div class="home_filter_div filter_value" id="filter-surplus-3">50%</div>
                     <div class="line_show_div filter_next"></div>
                 </div>
 
                 <div class="home_filter_content" id="home_filter_id_4" onclick="showFilterDetail('4')">
                     <div class="home_filter_div number_icon">4</div>
-                    <div class="home_filter_div progress_bar"><div class="progress_bar_value" id="filter-progress-4"></div></div>
+                    <div class="home_filter_div progress_bar">
+                        <div class="progress_bar_value" id="filter-progress-4"></div>
+                    </div>
                     <div class="home_filter_div filter_value" id="filter-surplus-4">50%</div>
                     <div class="line_show_div filter_next"></div>
                 </div>
 
                 <div class="home_filter_content" id="home_filter_id_5" onclick="showFilterDetail('5')">
                     <div class="home_filter_div number_icon">5</div>
-                    <div class="home_filter_div progress_bar"><div class="progress_bar_value" id="filter-progress-5"></div></div>
+                    <div class="home_filter_div progress_bar">
+                        <div class="progress_bar_value" id="filter-progress-5"></div>
+                    </div>
                     <div class="home_filter_div filter_value" id="filter-surplus-5">50%</div>
+                    <div class="line_show_div filter_next"></div>
+                </div>
+
+                <div class="home_filter_content" id="home_filter_id_6" onclick="showFilterDetail('6')" >
+                    <div class="home_filter_div number_icon">5</div>
+                    <div class="home_filter_div progress_bar">
+                        <div class="progress_bar_value" id="filter-progress-6"></div>
+                    </div>
+                    <div class="home_filter_div filter_value" id="filter-surplus-6">50%</div>
                     <div class="line_show_div filter_next"></div>
                 </div>
             </div>
@@ -455,11 +499,11 @@
             <canvas class="canvas" id="canvas_1"></canvas>
             <img class="drop" src="/web/image/icon_blue_big_water%20drop.png">
             <label class="percent_label" id="percent_label_1">0%</label>
-            <label class="label1" id="label_1">前置PP棉</label>
+            <label class="label1" id="label_1"></label>
             <img class="icon_white1" src="/web/image/icon_white_small_water%20drop.png">
-            <div class="line1">能有效去除水中的各种颗粒杂质，如泥沙、铁锈等</div>
+            <div class="line1" id="func_1"></div>
             <img class="icon_white2" src="/web/image/icon_white_small_water%20drop.png">
-            <div class="line2">根据使用水量，一般为3-6个月</div>
+            <div class="line2" id="use_duration_1"></div>
             <div class="div_bottom" id="div_bottom_1_1">购买滤芯</div>
             <div class="div_bottom" id="div_bottom_1">重置滤芯</div>
         </div>
@@ -472,16 +516,35 @@
             <canvas class="canvas" id="canvas_2"></canvas>
             <img class="drop" src="/web/image/icon_deep%20blue_big_water%20drop.png">
             <label class="percent_label" id="percent_label_2">0%</label>
-            <label class="label1" id="label_2">前置活性炭</label>
+            <label class="label1" id="label_2"></label>
             <img class="icon_white1" src="/web/image/icon_white_small_water%20drop.png">
-            <div class="line1">吸附重金属和消毒副产物等，去除水中的异色、异味</div>
+            <div class="line1" id="func_2"></div>
             <img class="icon_white2" src="/web/image/icon_white_small_water%20drop.png">
-            <div class="line2">根据使用水量，一般为6-12个月</div>
+            <div class="line2" id="use_duration_2"></div>
             <div class="div_bottom" id="div_bottom_2_2">购买滤芯</div>
             <div class="div_bottom" id="div_bottom_2">重置滤芯</div>
         </div>
     </div>
 </div>
+
+<%--<div class="index_main index_module_page" id="cz_page_3">--%>
+<%--<div class="main_content">--%>
+<%--<div class="content_main" id="content_main_3">--%>
+<%--<img class="round" id="round_3" src="/web/image/icon_green_progressbar_bg.png"/>--%>
+<%--<canvas class="canvas" id="canvas_3"></canvas>--%>
+<%--<img class="drop" src="/web/image/icon_green_big_water%20drop.png">--%>
+<%--<label class="percent_label" id="percent_label_3">0%</label>--%>
+<%--<label class="label1"  id="label_3">后置PP棉</label>--%>
+<%--<img class="icon_white1" src="/web/image/icon_white_small_water%20drop.png">--%>
+<%--<div class="line1">进一步过滤，滤除原水中泥沙、铁锈、悬浮物等</div>--%>
+<%--<img class="icon_white2" src="/web/image/icon_white_small_water%20drop.png">--%>
+<%--<div class="line2">根据使用水量，一般为6-12个月</div>--%>
+<%--<div class="div_bottom" id="div_bottom_3_3">购买滤芯</div>--%>
+<%--<div class="div_bottom" id="div_bottom_3">重置滤芯</div>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
+
 <div class="index_main index_module_page" id="cz_page_3">
     <div class="main_content">
         <div class="content_main" id="content_main_3">
@@ -489,16 +552,35 @@
             <canvas class="canvas" id="canvas_3"></canvas>
             <img class="drop" src="/web/image/icon_green_big_water%20drop.png">
             <label class="percent_label" id="percent_label_3">0%</label>
-            <label class="label1"  id="label_3">后置PP棉</label>
+            <label class="label1" id="label_3"></label>
             <img class="icon_white1" src="/web/image/icon_white_small_water%20drop.png">
-            <div class="line1">进一步过滤，滤除原水中泥沙、铁锈、悬浮物等</div>
+            <div class="line1" id="func_3"></div>
             <img class="icon_white2" src="/web/image/icon_white_small_water%20drop.png">
-            <div class="line2">根据使用水量，一般为6-12个月</div>
+            <div class="line2" id="use_duration_3"></div>
             <div class="div_bottom" id="div_bottom_3_3">购买滤芯</div>
             <div class="div_bottom" id="div_bottom_3">重置滤芯</div>
         </div>
     </div>
 </div>
+
+<%--<div class="index_main index_module_page" id="cz_page_4">--%>
+<%--<div class="main_content">--%>
+<%--<div class="content_main" id="content_main_4">--%>
+<%--<img class="round" id="round_4" src="/web/image/icon_yellow_progressbar_bg.png"/>--%>
+<%--<canvas class="canvas" id="canvas_4"></canvas>--%>
+<%--<img class="drop" src="/web/image/icon_yellow_big_water%20drop.png">--%>
+<%--<label class="percent_label" id="percent_label_4">0%</label>--%>
+<%--<label class="label1"  id="label_4">RO反渗透</label>--%>
+<%--<img class="icon_white1" src="/web/image/icon_white_small_water%20drop.png">--%>
+<%--<div class="line1">过滤精度为0.0001微米，过滤水中重金属、抗生素、残留农药和水垢</div>--%>
+<%--<img class="icon_white2" src="/web/image/icon_white_small_water%20drop.png">--%>
+<%--<div class="line2">根据使用水量，一般为18-24个月</div>--%>
+<%--<div class="div_bottom" id="div_bottom_4_4">购买滤芯</div>--%>
+<%--<div class="div_bottom" id="div_bottom_4">重置滤芯</div>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
+
 <div class="index_main index_module_page" id="cz_page_4">
     <div class="main_content">
         <div class="content_main" id="content_main_4">
@@ -506,16 +588,18 @@
             <canvas class="canvas" id="canvas_4"></canvas>
             <img class="drop" src="/web/image/icon_yellow_big_water%20drop.png">
             <label class="percent_label" id="percent_label_4">0%</label>
-            <label class="label1"  id="label_4">RO反渗透</label>
+            <label class="label1" id="label_4"></label>
             <img class="icon_white1" src="/web/image/icon_white_small_water%20drop.png">
-            <div class="line1">过滤精度为0.0001微米，过滤水中重金属、抗生素、残留农药和水垢</div>
+            <div class="line1" id="func_4"></div>
             <img class="icon_white2" src="/web/image/icon_white_small_water%20drop.png">
-            <div class="line2">根据使用水量，一般为18-24个月</div>
+            <div class="line2" id="use_duration_4"></div>
             <div class="div_bottom" id="div_bottom_4_4">购买滤芯</div>
             <div class="div_bottom" id="div_bottom_4">重置滤芯</div>
         </div>
     </div>
 </div>
+
+
 <div class="index_main index_module_page" id="cz_page_5">
     <div class="main_content">
         <div class="content_main" id="content_main_5">
@@ -523,17 +607,34 @@
             <canvas class="canvas" id="canvas_5"></canvas>
             <img class="drop" src="/web/image/icon_purple_big_water%20drop.png">
             <label class="percent_label" id="percent_label_5">0%</label>
-            <label class="label1" id="label_5">后置活性炭</label>
+            <label class="label1" id="label_5"></label>
             <img class="icon_white1" src="/web/image/icon_white_small_water%20drop.png">
-            <div class="line1">深化净化水质，调节口感</div>
-            <img id="last_line_w" src="/web/image/icon_white_small_water%20drop.png">
-            <div id="last_line">根据使用水量，一般为12-18个月</div>
+            <div class="line1" id="func_5"></div>
+            <img class="icon_white2" src="/web/image/icon_white_small_water%20drop.png">
+            <div class="line2" id="use_duration_5"></div>
             <div class="div_bottom" id="div_bottom_5_5">购买滤芯</div>
             <div class="div_bottom" id="div_bottom_5">重置滤芯</div>
         </div>
     </div>
 </div>
 
+<div class="index_main index_module_page" id="cz_page_6">
+    <div class="main_content">
+        <div class="content_main" id="content_main_6">
+            <img class="round" id="round_6" src="/web/image/icon_purple_progressbar_bg.png"/>
+            <canvas class="canvas" id="canvas_6"></canvas>
+            <img class="drop" src="/web/image/icon_purple_big_water%20drop.png">
+            <label class="percent_label" id="percent_label_6">0%</label>
+            <label class="label1" id="label_6"></label>
+            <img class="icon_white1" src="/web/image/icon_white_small_water%20drop.png">
+            <div class="last_line_w" id="func_6"></div>
+            <img src="/web/image/icon_white_small_water%20drop.png">
+            <div class="last_line_w" id="use_duration_6"></div>
+            <div class="div_bottom" id="div_bottom_6_6">购买滤芯</div>
+            <div class="div_bottom" id="div_bottom_6">重置滤芯</div>
+        </div>
+    </div>
+</div>
 
 
 <%--<div id="main-page" style="width: 100%; height: 100%; display: none;">
@@ -728,11 +829,11 @@
 
     <c:forEach items="${filterInfo}" var="FilterInfo">
     var filter = {
-        rank: "${FilterInfo.getRank()}",
-        name: "${FilterInfo.getFilterName()}",
-        life: "${FilterInfo.getFilterLife()}",
-        detail: "${FilterInfo.getFilterDetail()}",
-        other: "${FilterInfo.getOtherInfo()}",
+        grade: "${FilterInfo.getGrade()}",
+        name: "${FilterInfo.getFilter_name()}",
+        life: "${FilterInfo.getFilter_life()}",
+        detail: "${FilterInfo.getFilter_detail()}",
+        other: "${FilterInfo.getOther()}",
     }
     filterInfo.push(filter);
     </c:forEach>
@@ -744,7 +845,7 @@
         "downloadUrl": "${updateDeviceInfo.downloadUrl}"
     };
 
-    $(window).on('hashchange', function(){
+    $(window).on('hashchange', function () {
         var action = getHashString("action");
         myController(action);
     });
@@ -755,9 +856,9 @@
 
     $(function () {
         console.log("start");
-        
-        for(var i =0; i < filterInfo.length; i++){
-            console.log("info: "+filterInfo[i].life);
+
+        for (var i = 0; i < filterInfo.length; i++) {
+            console.log("info: " + filterInfo[i].life);
         }
 
         $("#home_page_id").show();
@@ -775,98 +876,132 @@
         myController(action);
     });
 
-    function cx_callback(){
+    function cx_callback() {
         startResetFilter();
     }
 
-    function myController(action){
+    function myController(action) {
         $(".index_module_page").hide();
         $.MsgBox.Remove();
-        switch(action)
-        {
+        switch (action) {
             case "lx_1":
+                $("#label_1").html(filterInfo[0].name);
+                $("#func_1").html(filterInfo[0].detail);
+                $("#use_duration_1").html(filterInfo[0].life);
                 $("#cz_page_1").show();
                 var index = getHashString("index");
                 filterIndex = index - 1;
                 var degree = perunused[filterIndex];
-                drawProgress("canvas_"+index,degree);
-                $("#div_bottom_"+index).off("click");
-                $("#div_bottom_"+index).on("click",function(){
-                    var title = $("#label_"+index).html();
-                    $.MsgBox.Confirm(title,cx_callback);
+                drawProgress("canvas_" + index, degree);
+                $("#div_bottom_" + index).off("click");
+                $("#div_bottom_" + index).on("click", function () {
+                    var title = $("#label_" + index).html();
+                    $.MsgBox.Confirm(title, cx_callback);
                 });
 
-                $("#div_bottom_"+index+"_"+index).off("click");
-                $("#div_bottom_"+index+"_"+index).on("click",function(){
-                    window.location.href="https://item.jd.com/12186293491.html#crumb-wrap";
+                $("#div_bottom_" + index + "_" + index).off("click");
+                $("#div_bottom_" + index + "_" + index).on("click", function () {
+                    window.location.href = "https://item.jd.com/12186293491.html#crumb-wrap";
                 });
                 break;
             case "lx_2":
+                $("#label_2").html(filterInfo[1].name);
+                $("#func_2").html(filterInfo[1].detail);
+                $("#use_duration_2").html(filterInfo[1].life);
                 $("#cz_page_2").show();
                 var index = getHashString("index");
                 filterIndex = index - 1;
                 var degree = perunused[filterIndex];
-                drawProgress("canvas_"+index,degree);
-                $("#div_bottom_"+index).off("click");
-                $("#div_bottom_"+index).on("click",function(){
-                    var title = $("#label_"+index).html();
-                    $.MsgBox.Confirm(title,cx_callback);
+                drawProgress("canvas_" + index, degree);
+                $("#div_bottom_" + index).off("click");
+                $("#div_bottom_" + index).on("click", function () {
+                    var title = $("#label_" + index).html();
+                    $.MsgBox.Confirm(title, cx_callback);
                 });
 
-                $("#div_bottom_"+index+"_"+index).off("click");
-                $("#div_bottom_"+index+"_"+index).on("click",function(){
-                    window.location.href="https://item.jd.com/12186293493.html#crumb-wrap";
+                $("#div_bottom_" + index + "_" + index).off("click");
+                $("#div_bottom_" + index + "_" + index).on("click", function () {
+                    window.location.href = "https://item.jd.com/12186293493.html#crumb-wrap";
                 });
                 break;
             case "lx_3":
+                $("#label_3").html(filterInfo[2].name);
+                $("#func_3").html(filterInfo[2].detail);
+                $("#use_duration_3").html(filterInfo[2].life);
                 $("#cz_page_3").show();
                 var index = getHashString("index");
                 filterIndex = index - 1;
                 var degree = perunused[filterIndex];
-                drawProgress("canvas_"+index,degree);
-                $("#div_bottom_"+index).off("click");
-                $("#div_bottom_"+index).on("click",function(){
-                    var title = $("#label_"+index).html();
-                    $.MsgBox.Confirm(title,cx_callback);
+                drawProgress("canvas_" + index, degree);
+                $("#div_bottom_" + index).off("click");
+                $("#div_bottom_" + index).on("click", function () {
+                    var title = $("#label_" + index).html();
+                    $.MsgBox.Confirm(title, cx_callback);
                 });
 
-                $("#div_bottom_"+index+"_"+index).off("click");
-                $("#div_bottom_"+index+"_"+index).on("click",function(){
-                    window.location.href="https://item.jd.com/12186293490.html#crumb-wrap";
+                $("#div_bottom_" + index + "_" + index).off("click");
+                $("#div_bottom_" + index + "_" + index).on("click", function () {
+                    window.location.href = "https://item.jd.com/12186293490.html#crumb-wrap";
                 });
                 break;
             case "lx_4":
+                $("#label_4").html(filterInfo[3].name);
+                $("#func_4").html(filterInfo[3].detail);
+                $("#use_duration_4").html(filterInfo[3].life);
                 $("#cz_page_4").show();
                 var index = getHashString("index");
                 filterIndex = index - 1;
                 var degree = perunused[filterIndex];
-                drawProgress("canvas_"+index,degree);
-                $("#div_bottom_"+index).off("click");
-                $("#div_bottom_"+index).on("click",function(){
-                    var title = $("#label_"+index).html();
-                    $.MsgBox.Confirm(title,cx_callback);
+                drawProgress("canvas_" + index, degree);
+                $("#div_bottom_" + index).off("click");
+                $("#div_bottom_" + index).on("click", function () {
+                    var title = $("#label_" + index).html();
+                    $.MsgBox.Confirm(title, cx_callback);
                 });
 
-                $("#div_bottom_"+index+"_"+index).off("click");
-                $("#div_bottom_"+index+"_"+index).on("click",function(){
-                    window.location.href="https://item.jd.com/12186293489.html#crumb-wrap";
+                $("#div_bottom_" + index + "_" + index).off("click");
+                $("#div_bottom_" + index + "_" + index).on("click", function () {
+                    window.location.href = "https://item.jd.com/12186293489.html#crumb-wrap";
                 });
                 break;
             case "lx_5":
+                $("#label_5").html(filterInfo[4].name);
+                $("#func_5").html(filterInfo[4].detail);
+                $("#use_duration_5").html(filterInfo[4].life);
                 $("#cz_page_5").show();
                 var index = getHashString("index");
                 filterIndex = index - 1;
                 var degree = perunused[filterIndex];
-                drawProgress("canvas_"+index,degree);
-                $("#div_bottom_"+index).off("click");
-                $("#div_bottom_"+index).on("click",function(){
-                    var title = $("#label_"+index).html();
-                    $.MsgBox.Confirm(title,cx_callback);
+                drawProgress("canvas_" + index, degree);
+                $("#div_bottom_" + index).off("click");
+                $("#div_bottom_" + index).on("click", function () {
+                    var title = $("#label_" + index).html();
+                    $.MsgBox.Confirm(title, cx_callback);
                 });
 
-                $("#div_bottom_"+index+"_"+index).off("click");
-                $("#div_bottom_"+index+"_"+index).on("click",function(){
-                    window.location.href="https://item.jd.com/12186293487.html#crumb-wrap";
+                $("#div_bottom_" + index + "_" + index).off("click");
+                $("#div_bottom_" + index + "_" + index).on("click", function () {
+                    window.location.href = "https://item.jd.com/12186293487.html#crumb-wrap";
+                });
+                break;
+            case "lx_6":
+                $("#label_6").html(filterInfo[5].name);
+                $("#func_6").html(filterInfo[5].detail);
+                $("#use_duration_6").html(filterInfo[5].life);
+                $("#cz_page_6").show();
+                var index = getHashString("index");
+                filterIndex = index - 1;
+                var degree = perunused[filterIndex];
+                drawProgress("canvas_" + index, degree);
+                $("#div_bottom_" + index).off("click");
+                $("#div_bottom_" + index).on("click", function () {
+                    var title = $("#label_" + index).html();
+                    $.MsgBox.Confirm(title, cx_callback);
+                });
+
+                $("#div_bottom_" + index + "_" + index).off("click");
+                $("#div_bottom_" + index + "_" + index).on("click", function () {
+                    window.location.href = "https://item.jd.com/12186293487.html#crumb-wrap";
                 });
                 break;
             default:
@@ -875,8 +1010,9 @@
     }
 
 
-        function viewInit() {
+    function viewInit() {
         //circleProgressInit();
+         console.log("model:"+model)
         filterRanks = 0;
         try {
             $("#device_model").html(model);
@@ -894,14 +1030,17 @@
             } else if (model == "TJN-600E") {
                 filterRanks = 5;
                 $("#stat_num_id").html("5级状态");
-            }else if (model == "50G-X3") {
+            } else if (model == "TJN-M30") {
                 filterRanks = 5;
                 $("#stat_num_id").html("5级状态");
                 $("#water-temperature").hide();
+            } else{
+                filterRanks = 4;
+                $("#stat_num_id").html("4级状态");
             }
 
             for (var i = 0; i < filterRanks; i++) {
-                $("#home_filter_id_"+(i+1)).show();
+                $("#home_filter_id_" + (i + 1)).show();
                 /*createFilterDisplay(i + 1);
                 $("#filter-name-" + (i + 1)).text(filterInfo[i].name);*/
             }
@@ -911,10 +1050,10 @@
         }
     }
 
-    function progressAnimation(value, rank) {
+    function progressAnimation(value, grade) {
         console.log("progress value=" + value);
-        console.log("rank = " + rank);
-        var $progress = $('#filter-progress-' + rank);
+        console.log("grade = " + grade);
+        var $progress = $('#filter-progress-' + grade);
         progress = 0;
 
         function next() {
@@ -971,9 +1110,9 @@
         queryDeviceStates(TYPE_WATER_PURIFIER, deviceId);
         if (updateVersionInfo.version != null && updateVersionInfo.version != "") {
             //$("#loadingToast").show();
-            var title= "";
+            var title = "";
             var content = "固件升级中…";
-            $.MsgBox.InformWait(title,content);
+            $.MsgBox.InformWait(title, content);
             update();
         }
     }
@@ -985,15 +1124,16 @@
             weui.alert("与净水器已经断开连接，请检查重试！");
         }
     }
+
     function connectSuccess() {
         client.subscribe("nodes/" + deviceId + "/status");
         client.subscribe("nodes/" + deviceId + "/alive");
         queryDeviceStates(TYPE_WATER_PURIFIER, deviceId);
         if (updateVersionInfo.version != null && updateVersionInfo.version != "") {
             //$("#loadingToast").show();
-            var title= "";
+            var title = "";
             var content = "固件升级中…";
-            $.MsgBox.InformWait(title,content);
+            $.MsgBox.InformWait(title, content);
             update();
         }
     }
@@ -1009,8 +1149,8 @@
         console.log("arrived msg: " + bytes2StrForPrint(arr));
         try {
             if ((arr.length == 3) && (arr[0] == 111) && (arr[1] == 102) && (arr[2] == 102)) {//off消息表示wifi模块离线
-                $(".home_status_content").css('width','3.41rem');
-                $("#current_state").css('width','0.67rem');
+                $(".home_status_content").css('width', '3.41rem');
+                $("#current_state").css('width', '0.67rem');
                 $("#current_state").text(WORKING_STATE_OFFLINE);
             }
 
@@ -1060,17 +1200,18 @@
         }
     }
 
-    var isError=0;
+    var isError = 0;
+
     function updateDevicesState(jsqInfo) {
         //jsqInfo.is_fault=true;
         //jsqInfo.fault_code ="高压开关故障或忘记关水";
         if (!jsqInfo.is_fault) {
 
-            if(isError==1) {
+            if (isError == 1) {
                 $(".index_module_page").hide();
                 $("#home_page_id").show();
             }
-            isError=0;
+            isError = 0;
             //$("#normal-page").show();
             //$("#error-page").hide();
 
@@ -1078,8 +1219,9 @@
             /*if (jsqInfo.pure_water_TDS < 100) {
                 $(".home_tds_content").css('width','3.02rem');
                 $("#TDS_value").css('width', '1.5rem');
-            } else */if(jsqInfo.pure_water_TDS >= 1000){
-                currentState=999;
+            } else */
+            if (jsqInfo.pure_water_TDS >= 1000) {
+                currentState = 999;
                 /*$(".home_tds_content").css('width','3.87rem');
                 $("#TDS_value").css('width', '2.25rem');*/
             }
@@ -1089,14 +1231,14 @@
             }*/
 
             if (jsqInfo.working_state == "水箱满") {
-                $(".home_status_content").css('width','3.64rem');
-                $("#current_state").css('width','0.9rem');
-            }else if(jsqInfo.working_state == "原水缺水"){
-                $(".home_status_content").css('width','3.84rem');
-                $("#current_state").css('width','1.1rem');
-            }else {
-                $(".home_status_content").css('width','3.41rem');
-                $("#current_state").css('width','0.67rem');
+                $(".home_status_content").css('width', '3.64rem');
+                $("#current_state").css('width', '0.9rem');
+            } else if (jsqInfo.working_state == "原水缺水") {
+                $(".home_status_content").css('width', '3.84rem');
+                $("#current_state").css('width', '1.1rem');
+            } else {
+                $(".home_status_content").css('width', '3.41rem');
+                $("#current_state").css('width', '0.67rem');
             }
 
             $("#TDS_value").html(jsqInfo.pure_water_TDS);
@@ -1114,7 +1256,7 @@
 
             Rinse.rinse(jsqInfo.rinse_state);
         } else {//故障
-            isError=1;
+            isError = 1;
             $(".index_module_page").hide();
             $("#fault_detail_text").html(jsqInfo.fault_code);
             $("#error_page_id").show();
@@ -1140,9 +1282,9 @@
             console.log("begin update");
         } else if ((arr.length == 16) && (arr[index + 1] == 0x10)) {//升级成功,16为升级命令的固定长度
             //$('#update-text').html("升级成功！");
-            var title= ""
+            var title = ""
             var content = "升级成功";
-            $.MsgBox.InformSuccess(title,content);
+            $.MsgBox.InformSuccess(title, content);
             setTimeout(function () {
                 //$("#loadingToast").fadeOut(200);
                 $.MsgBox.Remove();
@@ -1150,7 +1292,7 @@
         } else if ((arr.length == 16) && (arr[index + 1] == 0x11)) {//升级失败
             var title = "";
             var content = "升级失败";
-            $.MsgBox.InformFail(title,content);
+            $.MsgBox.InformFail(title, content);
             //$('#update-text').html("升级失败！");
             setTimeout(function () {
                 //$("#loadingToast").fadeOut(200);
@@ -1162,21 +1304,21 @@
         }
     }
 
-    function createFilterDisplay(rank) {
+    function createFilterDisplay(grade) {
         var parentdiv = $('<div></div>');
         parentdiv.addClass('center-align');
-        parentdiv.attr('onclick', 'showFilterDetail(' + rank + ')');
+        parentdiv.attr('onclick', 'showFilterDetail(' + grade + ')');
         parentdiv.css('position', "relative");
         parentdiv.css('display', 'inline-flex');
         parentdiv.css('justify-content', 'center');
         parentdiv.css('z-index', '3');
         parentdiv.css('width', '100%');
-        var filterName = $('<div>第' + rank + '级</div>');
-        filterName.addClass('filter-name-text');
-        filterName.addClass('valign-wrapper');
-        filterName.attr('id', 'filter-name-' + rank);
-        filterName.css('color', '#ffffff');
-        filterName.appendTo(parentdiv);
+        var filter_name = $('<div>第' + grade + '级</div>');
+        filter_name.addClass('filter-name-text');
+        filter_name.addClass('valign-wrapper');
+        filter_name.attr('id', 'filter-name-' + grade);
+        filter_name.css('color', '#ffffff');
+        filter_name.appendTo(parentdiv);
         var filterProgress = $('<div></div>');
         filterProgress.addClass('weui-progess');
         filterProgress.addClass('valign-wrapper');
@@ -1187,12 +1329,12 @@
         filterProgressSon.appendTo(filterProgress);
         var filterProgressDetail = $('<div></div>');
         filterProgressDetail.addClass('weui-progress__inner-bar js_progress');
-        filterProgressDetail.attr('id', 'filter-progress-' + rank);
+        filterProgressDetail.attr('id', 'filter-progress-' + grade);
         filterProgressDetail.css('width', '0%');
         filterProgressDetail.css('background', '#0077c1');
         filterProgressDetail.appendTo(filterProgressSon);
         var filterPercent = $('<span>--</span>');
-        filterPercent.attr('id', 'filter-surplus-' + rank);
+        filterPercent.attr('id', 'filter-surplus-' + grade);
         filterPercent.css('width', '2rem');
         filterPercent.css('color', '#ffffff');
         filterPercent.css('margin', '0 0.5rem 0 0.5rem');
@@ -1210,7 +1352,7 @@
 
 
     function showFilterDetail(index) {
-        window.location.hash="action=lx_"+index+"&index="+index;
+        window.location.hash = "action=lx_" + index + "&index=" + index;
 
         /*filterIndex = index - 1;
 
@@ -1266,38 +1408,36 @@
     }
 
 
-
-
     function createBasicDialog(nProgress, nIcon, iSuccess) {
 
 
         dianCount = 1;
-        if(dianIntervalId!=null){
+        if (dianIntervalId != null) {
             clearInterval(dianIntervalId);
         }
-        dianIntervalId =  setInterval(function(){
-            var dian= "";
-            if(dianCount ==1){
-                dian= "·<span style=\"color: whitesmoke;\">·····</span>";
-            }else if(dianCount ==2){
-                dian= "··<span style=\"color: whitesmoke;\">····</span>";
-            }else if(dianCount ==3){
-                dian= "···<span style=\"color: whitesmoke;\">···</span>";
-            }else if(dianCount ==4){
-                dian= "····<span style=\"color: whitesmoke;\">··</span>";
-            }else if(dianCount ==5){
-                dian= "·····<span style=\"color: whitesmoke;\">·</span>";
-            }else if(dianCount ==6){
-                dian= "······";
+        dianIntervalId = setInterval(function () {
+            var dian = "";
+            if (dianCount == 1) {
+                dian = "·<span style=\"color: whitesmoke;\">·····</span>";
+            } else if (dianCount == 2) {
+                dian = "··<span style=\"color: whitesmoke;\">····</span>";
+            } else if (dianCount == 3) {
+                dian = "···<span style=\"color: whitesmoke;\">···</span>";
+            } else if (dianCount == 4) {
+                dian = "····<span style=\"color: whitesmoke;\">··</span>";
+            } else if (dianCount == 5) {
+                dian = "·····<span style=\"color: whitesmoke;\">·</span>";
+            } else if (dianCount == 6) {
+                dian = "······";
             }
-            var title= "冲洗";
-            var content = "正在冲洗中"+dian;
-            $.MsgBox.InformWait(title,content);
-            dianCount = dianCount+1;
-            if(dianCount>6){
+            var title = "冲洗";
+            var content = "正在冲洗中" + dian;
+            $.MsgBox.InformWait(title, content);
+            dianCount = dianCount + 1;
+            if (dianCount > 6) {
                 dianCount = 1;
             }
-        },200);
+        }, 200);
 
         /*var title= "冲洗";
         var content = "正在冲洗中…";
@@ -1402,32 +1542,32 @@
             }
 
             dianCount = 1;
-            if(dianIntervalId!=null){
+            if (dianIntervalId != null) {
                 clearInterval(dianIntervalId);
             }
-            dianIntervalId =  setInterval(function(){
-                var dian= "";
-                if(dianCount ==1){
-                    dian= "·<span style=\"color: whitesmoke;\">·····</span>";
-                }else if(dianCount ==2){
-                    dian= "··<span style=\"color: whitesmoke;\">····</span>";
-                }else if(dianCount ==3){
-                    dian= "···<span style=\"color: whitesmoke;\">···</span>";
-                }else if(dianCount ==4){
-                    dian= "····<span style=\"color: whitesmoke;\">··</span>";
-                }else if(dianCount ==5){
-                    dian= "·····<span style=\"color: whitesmoke;\">·</span>";
-                }else if(dianCount ==6){
-                    dian= "······";
+            dianIntervalId = setInterval(function () {
+                var dian = "";
+                if (dianCount == 1) {
+                    dian = "·<span style=\"color: whitesmoke;\">·····</span>";
+                } else if (dianCount == 2) {
+                    dian = "··<span style=\"color: whitesmoke;\">····</span>";
+                } else if (dianCount == 3) {
+                    dian = "···<span style=\"color: whitesmoke;\">···</span>";
+                } else if (dianCount == 4) {
+                    dian = "····<span style=\"color: whitesmoke;\">··</span>";
+                } else if (dianCount == 5) {
+                    dian = "·····<span style=\"color: whitesmoke;\">·</span>";
+                } else if (dianCount == 6) {
+                    dian = "······";
                 }
-                var title= "冲洗";
-                var content = "正在冲洗中"+dian;
-                $.MsgBox.InformWait(title,content);
-                dianCount = dianCount+1;
-                if(dianCount>6){
+                var title = "冲洗";
+                var content = "正在冲洗中" + dian;
+                $.MsgBox.InformWait(title, content);
+                dianCount = dianCount + 1;
+                if (dianCount > 6) {
                     dianCount = 1;
                 }
-            },200);
+            }, 200);
             /*var title= "冲洗";
             var content = "正在冲洗中…";
             $.MsgBox.InformWait(title,content);*/
@@ -1440,12 +1580,12 @@
             if (typeof(rinsingTimeout) != "undefined") {
                 clearTimeout(rinsingTimeout)
             }
-            if(dianIntervalId!=null){
+            if (dianIntervalId != null) {
                 clearInterval(dianIntervalId);
             }
             var title = "冲洗";
             var content = "本次冲洗完成";
-            $.MsgBox.InformSuccess(title,content);
+            $.MsgBox.InformSuccess(title, content);
             /*$('#progressDiv').hide();
             $('#dialog_content_text').html(displayArg);
             $('#dialogBtn').html("返回");
@@ -1454,12 +1594,12 @@
 
 
         function rinseTimeout() {
-            if(dianIntervalId!=null){
+            if (dianIntervalId != null) {
                 clearInterval(dianIntervalId);
             }
             var title = "冲洗";
             var content = "本次冲洗失败";
-            $.MsgBox.InformFail(title,content);
+            $.MsgBox.InformFail(title, content);
             /*$('#dialog_content_text').text("响应超时，请稍后再试");
             $('#dialogBtn').attr('onclick', "close_dialog(true)")*/
         }
@@ -1492,44 +1632,44 @@
     function startResetFilter() {
         sendCommand2Devices(COMMAND_FILTER_RESET, deviceId, filterIndex);
         dianCount = 1;
-        if(dianIntervalId!=null){
+        if (dianIntervalId != null) {
             clearInterval(dianIntervalId);
         }
-        dianIntervalId =  setInterval(function(){
-            var dian= "";
-            if(dianCount ==1){
-                dian= "·<span style=\"color: whitesmoke;\">·····</span>";
-            }else if(dianCount ==2){
-                dian= "··<span style=\"color: whitesmoke;\">····</span>";
-            }else if(dianCount ==3){
-                dian= "···<span style=\"color: whitesmoke;\">···</span>";
-            }else if(dianCount ==4){
-                dian= "····<span style=\"color: whitesmoke;\">··</span>";
-            }else if(dianCount ==5){
-                dian= "·····<span style=\"color: whitesmoke;\">·</span>";
-            }else if(dianCount ==6){
-                dian= "······";
+        dianIntervalId = setInterval(function () {
+            var dian = "";
+            if (dianCount == 1) {
+                dian = "·<span style=\"color: whitesmoke;\">·····</span>";
+            } else if (dianCount == 2) {
+                dian = "··<span style=\"color: whitesmoke;\">····</span>";
+            } else if (dianCount == 3) {
+                dian = "···<span style=\"color: whitesmoke;\">···</span>";
+            } else if (dianCount == 4) {
+                dian = "····<span style=\"color: whitesmoke;\">··</span>";
+            } else if (dianCount == 5) {
+                dian = "·····<span style=\"color: whitesmoke;\">·</span>";
+            } else if (dianCount == 6) {
+                dian = "······";
             }
-            var title= "";
-            var content = "正在重置中"+dian;
-            $.MsgBox.InformWait(title,content);
-            dianCount = dianCount+1;
-            if(dianCount>6){
+            var title = "";
+            var content = "正在重置中" + dian;
+            $.MsgBox.InformWait(title, content);
+            dianCount = dianCount + 1;
+            if (dianCount > 6) {
                 dianCount = 1;
             }
-        },200);
+        }, 200);
         /*$('#resetfilter_content_text').html("正在重置滤芯，请稍后……");
         $('.basic-dialog-content').css('text-align', 'center');
         $('.basic-dialog-content').css('padding', '1rem');
         $('#reset_before_btn').css('display', 'none');
         $('#reset_after_btn').css('display', 'block');*/
         filterResetTimer = setTimeout(function () {
-            if(dianIntervalId!=null){
+            if (dianIntervalId != null) {
                 clearInterval(dianIntervalId);
             }
             var title = "";
             var content = "响应超时";
-            $.MsgBox.InformFail(title,content);
+            $.MsgBox.InformFail(title, content);
             /*$('#resetfilter_content_text').html("响应超时");
             $('#filter_result_btn').html("确定");
             $('#filter_result_btn').attr('onclick', "close_filter_dialog()")*/
@@ -1537,7 +1677,7 @@
     }
 
     function resetresult(index, iSuccess) {
-        if(dianIntervalId!=null){
+        if (dianIntervalId != null) {
             clearInterval(dianIntervalId);
         }
         clearTimeout(filterResetTimer);
@@ -1548,15 +1688,15 @@
         if (iSuccess) {
             var title = "";
             var content = "重置成功";
-            $.MsgBox.InformSuccess(title,content);
+            $.MsgBox.InformSuccess(title, content);
             /*$('#resetfilter_content_text').html("重置成功!");
             var dialogContentIcon = $("<img src='../images/success_icon.png'/>");*/
         } else {
             var title = "";
             var content = "重置失败";
-            $.MsgBox.InformFail(title,content);
-           /* $('#resetfilter_content_text').html("重置失败!");
-            var dialogContentIcon = $("<img src='../images/failed_icon.png'/>");*/
+            $.MsgBox.InformFail(title, content);
+            /* $('#resetfilter_content_text').html("重置失败!");
+             var dialogContentIcon = $("<img src='../images/failed_icon.png'/>");*/
         }
         /*dialogContentIcon.addClass('basic-dialog-content-icon');
         dialogContentIcon.attr('id', 'basic-dialog-content-icon');
@@ -1578,21 +1718,21 @@
             } else {
                 perunused[index] = 100;
                 $('#filter-surplus-' + (index + 1)).html("100%");
-                $('#filter-progress-'+ (index + 1)).css('width', 100 + '%');
+                $('#filter-progress-' + (index + 1)).css('width', 100 + '%');
                 /*$('#filter_surplus_' + (index + 1)).text("100%")
                 $('#filter' + index).css({width: 100 + '%'});*/
             }
-            resetSucessResult(index+1);
+            resetSucessResult(index + 1);
         }
 
     }
 
     function resetSucessResult(index) {
-        drawProgress("canvas_"+index,100);
-        $("#div_bottom_"+index).off("click");
-        $("#div_bottom_"+index).on("click",function(){
-            var title = $("#label_"+index).html();
-            $.MsgBox.Confirm(title,cx_callback);
+        drawProgress("canvas_" + index, 100);
+        $("#div_bottom_" + index).off("click");
+        $("#div_bottom_" + index).on("click", function () {
+            var title = $("#label_" + index).html();
+            $.MsgBox.Confirm(title, cx_callback);
         });
         /*var loadingAnimation = findKeyframesRule("loading-animation");
         if (loadingAnimation != null) {

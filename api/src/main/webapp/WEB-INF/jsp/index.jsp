@@ -486,16 +486,16 @@
         if (order == -1) {
             return;
         }
-        if (update) {
-            url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type + "&update=0" +
-                "&version=" + updateInfos[order].version + "&size=" + updateInfos[order].pkgSize + "&url=" + updateInfos[order].downloadUrl + "&md5=" + updateInfos[order].md5;
+        // if (update) {
+        //     url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type + "&update=0" +
+        //         "&version=" + updateInfos[order].version + "&size=" + updateInfos[order].pkgSize + "&url=" + updateInfos[order].downloadUrl + "&md5=" + updateInfos[order].md5;
+        // } else {
+        if (type != "9") {
+            url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type;
         } else {
-            if (type != "9") {
-                url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type;
-            } else {
-                url = "/web/wechat/pre_filter.html?generalId=" + generalBindInfos[order].general_id;
-            }
+            url = "/web/wechat/pre_filter.html?generalId=" + generalBindInfos[order].general_id;
         }
+        // }
         window.location.href = url;
     }
 
