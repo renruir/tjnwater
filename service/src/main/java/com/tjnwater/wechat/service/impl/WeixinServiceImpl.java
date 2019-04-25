@@ -173,6 +173,11 @@ public class WeixinServiceImpl implements WeixinService {
     }
 
     @Override
+    public void updateDeviceModel(DeviceInfo deviceInfo) throws Exception {
+       weixinDao.updateDeviceModel(deviceInfo);
+    }
+
+    @Override
     public void updateDeviceName(WxBindInfo wxBindInfo) throws Exception {
         weixinDao.updateDeviceName(wxBindInfo);
     }

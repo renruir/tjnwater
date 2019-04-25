@@ -1018,21 +1018,15 @@
             $("#device_model").html(model);
             $("#device_squm").html(sn);
 
-            if (model == "CR400D1") {
+            if (model == "TJN-M20") {
                 filterRanks = 4;
                 $("#stat_num_id").html("4级状态");
-            } else if (model == "CR600D1") {
+            }  else if (model == "TJN-M30") {
                 filterRanks = 4;
                 $("#stat_num_id").html("4级状态");
-            } else if (model == "TJN-M20") {
+            } else if (model == "TJN-M40") {
                 filterRanks = 4;
                 $("#stat_num_id").html("4级状态");
-            } else if (model == "TJN-600E") {
-                filterRanks = 5;
-                $("#stat_num_id").html("5级状态");
-            } else if (model == "TJN-M30") {
-                filterRanks = 5;
-                $("#stat_num_id").html("5级状态");
                 $("#water-temperature").hide();
             } else{
                 filterRanks = 4;

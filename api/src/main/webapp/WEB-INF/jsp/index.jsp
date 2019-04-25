@@ -131,6 +131,27 @@
 </div>
 
 
+<div class="" id="model-zone" style="display: none">
+    <div class="weui-mask weui-animate-fade-in"></div>
+    <div class="weui-picker weui-animate-slide-up">
+        <div class="weui-picker__hd"><a href="javascript:;" data-action="cancel" class="weui-picker__action">取消</a> <a
+                href="javascript:;" data-action="select" class="weui-picker__action" id="weui-picker-confirm">确定</a>
+        </div>
+        <div class="weui-picker__bd">
+            <div class="weui-picker__group">
+                <div class="weui-picker__mask"></div>
+                <div class="weui-picker__indicator"></div>
+                <div class="weui-picker__content" style="transform: translate3d(0px, 102px, 0px);">
+                    <%--<div class="weui-picker__item">TJN-M20</div>--%>
+                    <%--<div class="weui-picker__item">TJN-M30</div>--%>
+                    <%--<div class="weui-picker__item">TJN-M40</div>--%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div style="width: 100%; display: none;" id="no_device">
     <div style="margin: 20% auto; text-align: center;width: inherit; height: 50%; opacity: 0.4">
         <img src="../images/no_bind_device_icon.png" width="60%">
@@ -152,6 +173,7 @@
 <script src="/web/js/jquery-1.10.1.min.js" type="text/javascript"></script>
 <script src="/web/js/protocol-parse.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/libs/weuijs/1.1.1/weui.min.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 
     var host = "${serverInfo.host}";
@@ -173,7 +195,6 @@
     }
 
     function initView() {
-        console.log("000000000");
         if (wxbindInfos.length > 0) {
             for (var i = 0; i < wxbindInfos.length; i++) {
                 createDeviceType(wxbindInfos[i].deviceType, i);
@@ -266,6 +287,10 @@
                 weui.alert('获取设备信息失败，请重试!');
             }
         });
+    }
+    
+    function refreshDeviceData() {
+        
     }
 
     function refreshData(dType) {
@@ -422,6 +447,12 @@
         var model = $('<span></span>');
         model.attr('id', 'device_model_' + order);
         model.appendTo(childDiv2);
+
+        var showMoreModel = $('<img src="../images/single-arrow-down.png">');
+        showMoreModel.addClass('more-model-icon');
+        showMoreModel.attr('onclick', 'showMoreModel(' + type + ',' + order + ')');
+        showMoreModel.attr('id', 'show_more_model_icon_' + order);
+        showMoreModel.appendTo(childDiv2);
 
         var childDiv3 = $('<div></div>')
         childDiv3.addClass('valign-wrapper');
@@ -603,6 +634,64 @@
         } else {
             $("#more_info_" + order).fadeOut(200);
             $("#show_more_info_icon_" + order).attr('src', '../images/single-arrow-down.png')
+        }
+    }
+
+    function showMoreModel(type, order) {
+        console.log("order ==" + order)
+        event.cancelBubble = true;
+        selectOrder = type;
+        weui.picker([{
+            label: 'TJN-M20',
+            value: 0
+        }, {
+            label: 'TJN-M30',
+            value: 1
+        }, {
+            label: 'TJN-M40',
+            value: 2
+        }], {
+            onChange: function (result) {
+                console.log("change:" + result);
+            },
+            onConfirm: function (result) {
+                console.log("result: " + result);
+                modelValue = "";
+                if (result == 0) {
+                    modelValue = "TJN-M20";
+                } else if (result == 1) {
+                    modelValue = "TJN-M30";
+                } else if (result == 2) {
+                    modelValue = "TJN-M40";
+                }
+                changeModelName(order, type, modelValue);
+            },
+        });
+    }
+
+    function changeModelName(order, type, modelValue) {
+          console.log("modelvalue == "+modelValue)
+        if (type == "1") {
+            var deviceID = wxbindInfos[order].deviceId;
+            $.ajax({
+                type: "POST",
+                url: "/web/wechat/update_device_model",
+                data: {
+                    newModel: modelValue,
+                    deviceId: deviceID,
+                    deviceType: type
+                },
+                success: function () {
+                    // $("#device_rename_dialog").fadeOut(200);
+                    weui.alert('修改成功!');
+                    $("#device_model_" + order).html(modelValue);
+                    // setTimeout(getBindInfo(appId), 2000);
+                },
+                error: function () {
+                    $("#device_rename_dialog").fadeOut(200);
+                    weui.alert('修改名称失败，请重试!');
+                }
+            });
         }
     }
 

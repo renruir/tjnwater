@@ -19,10 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -402,7 +399,7 @@ public class WechatWebController {
 
                 if (wxBindInfo != null && StrUtil.strIsNotNull(wxBindInfo.getDeviceId())) {
                     deviceInfo = weixinService.getDeviceInfo(wxBindInfo.getDeviceId());
-                    logger.info("device model: "+deviceInfo.getModel());
+                    logger.info("device model: " + deviceInfo.getModel());
                     if ("1".equals(wxBindInfo.getDeviceType())) {
                         if (deviceInfo != null) {
                             filterInfos = weixinService.getFilterInfo(deviceInfo.getModel());
@@ -496,7 +493,7 @@ public class WechatWebController {
         try {
             logger.info("========appid: " + appId);
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
+            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
 
             List<GeneralDeviceInfo> generalDeviceInfos;
             GeneralDeviceInfo info = new GeneralDeviceInfo();
@@ -518,7 +515,7 @@ public class WechatWebController {
 
         try {
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
+            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
             logger.info("get bind info, openID=" + openId);
             List<WxBindInfo> bindInfos;
             WxBindInfo wxBindInfo = new WxBindInfo();
@@ -626,6 +623,28 @@ public class WechatWebController {
             logger.error(e.getMessage());
             return "FAILED";
         }
+    }
+
+    @RequestMapping(value = "update_device_model")
+    @ResponseBody
+    public String updateDeviceModel(HttpServletRequest request, String deviceId, String deviceType, String newModel, Model model) {
+        try {
+            logger.info("new model: " + newModel);
+            WxAppInfo wxAppInfo = new WxAppInfo();
+            wxAppInfo.setGhId(JSQ_GH_ID);
+            wxAppInfo = weixinService.getWxAppInfo(wxAppInfo);
+            String appId = wxAppInfo.getAppId();
+            String appSecret = wxAppInfo.getAppSecret();
+            String cookieUid = CookieUtil.getCookie(appId + "_uid", request);
+            DeviceInfo deviceInfo = new DeviceInfo();
+            deviceInfo.setDeviceId(deviceId);
+            deviceInfo.setModel(newModel);
+            weixinService.updateDeviceModel(deviceInfo);
+            return "SUCCESS UPDATE MODEL";
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return "FAILED TO UPDATE MODEL";
     }
 
     @RequestMapping(value = "update_device_name")

@@ -248,6 +248,12 @@
         ]]>
 	</update>
 
+	<update id="updateDeviceModel" parameterType="DeviceInfo">
+		<![CDATA[
+			update device_info set model=#{model},create_date=sysdate() where device_id=#{deviceId}
+		]]>
+	</update>
+
     <insert id="saveWxUserInfo" parameterType="WxUserInfo">
 		<![CDATA[
 
