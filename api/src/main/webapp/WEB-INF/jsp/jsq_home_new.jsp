@@ -458,7 +458,7 @@
                     <div class="line_show_div filter_next"></div>
                 </div>
 
-                <div class="home_filter_content" id="home_filter_id_6" onclick="showFilterDetail('6')" >
+                <div class="home_filter_content" id="home_filter_id_6" onclick="showFilterDetail('6')">
                     <div class="home_filter_div number_icon">5</div>
                     <div class="home_filter_div progress_bar">
                         <div class="progress_bar_value" id="filter-progress-6"></div>
@@ -901,7 +901,7 @@
 
                 $("#div_bottom_" + index + "_" + index).off("click");
                 $("#div_bottom_" + index + "_" + index).on("click", function () {
-                    window.location.href = "https://item.jd.com/12186293491.html#crumb-wrap";
+                    window.location.href = "https://h5.youzan.com/v2/showcase/goods?alias=1ybcbckvrtanz&from=wsc&kdtfrom=wsc";
                 });
                 break;
             case "lx_2":
@@ -921,7 +921,7 @@
 
                 $("#div_bottom_" + index + "_" + index).off("click");
                 $("#div_bottom_" + index + "_" + index).on("click", function () {
-                    window.location.href = "https://item.jd.com/12186293493.html#crumb-wrap";
+                    window.location.href = "https://h5.youzan.com/v2/showcase/goods?alias=3ep7vln3fskkf&from=wsc&kdtfrom=wsc";
                 });
                 break;
             case "lx_3":
@@ -941,7 +941,16 @@
 
                 $("#div_bottom_" + index + "_" + index).off("click");
                 $("#div_bottom_" + index + "_" + index).on("click", function () {
-                    window.location.href = "https://item.jd.com/12186293490.html#crumb-wrap";
+                    console.log("MODEL=" + model)
+                    if (model == "TJN-M20") {
+                        window.location.href = "https://h5.youzan.com/v2/showcase/goods?alias=3nk9k5cxckqgf&from=wsc&kdtfrom=wsc";
+                    } else if (model == "TJN-M30") {
+                        window.location.href = "https://h5.youzan.com/v2/showcase/goods?alias=2oq9jvq6vqktr&from=wsc&kdtfrom=wsc";
+                    } else if (model == "TJN-M40") {
+                        window.location.href = "https://h5.youzan.com/v2/showcase/goods?alias=2g1etaff50z3j&from=wsc&kdtfrom=wsc";
+                    } else {
+                        window.location.href = "https://h5.youzan.com/v2/showcase/homepage?kdt_id=2286895";
+                    }
                 });
                 break;
             case "lx_4":
@@ -961,7 +970,13 @@
 
                 $("#div_bottom_" + index + "_" + index).off("click");
                 $("#div_bottom_" + index + "_" + index).on("click", function () {
-                    window.location.href = "https://item.jd.com/12186293489.html#crumb-wrap";
+                    if (model == "TJN-M20" || model == "TJN-M30") {
+                        window.location.href = "https://h5.youzan.com/v2/showcase/goods?alias=2g1eglk6qer5b&from=wsc&kdtfrom=wsc";
+                    } else if (model == "TJN-M40") {
+                        window.location.href = "https://h5.youzan.com/v2/showcase/goods?alias=2707r909q5gwf&from=wsc&kdtfrom=wsc";
+                    } else {
+                        window.location.href = "https://h5.youzan.com/v2/showcase/homepage?kdt_id=2286895";
+                    }
                 });
                 break;
             case "lx_5":
@@ -981,7 +996,7 @@
 
                 $("#div_bottom_" + index + "_" + index).off("click");
                 $("#div_bottom_" + index + "_" + index).on("click", function () {
-                    window.location.href = "https://item.jd.com/12186293487.html#crumb-wrap";
+                    window.location.href = "https://h5.youzan.com/v2/showcase/homepage?kdt_id=2286895";
                 });
                 break;
             case "lx_6":
@@ -1001,7 +1016,7 @@
 
                 $("#div_bottom_" + index + "_" + index).off("click");
                 $("#div_bottom_" + index + "_" + index).on("click", function () {
-                    window.location.href = "https://item.jd.com/12186293487.html#crumb-wrap";
+                    window.location.href = "https://h5.youzan.com/v2/showcase/homepage?kdt_id=2286895";
                 });
                 break;
             default:
@@ -1012,7 +1027,7 @@
 
     function viewInit() {
         //circleProgressInit();
-         console.log("model:"+model)
+        console.log("model:" + model)
         filterRanks = 0;
         try {
             $("#device_model").html(model);
@@ -1021,14 +1036,14 @@
             if (model == "TJN-M20") {
                 filterRanks = 4;
                 $("#stat_num_id").html("4级状态");
-            }  else if (model == "TJN-M30") {
+            } else if (model == "TJN-M30") {
                 filterRanks = 4;
                 $("#stat_num_id").html("4级状态");
             } else if (model == "TJN-M40") {
                 filterRanks = 4;
                 $("#stat_num_id").html("4级状态");
                 $("#water-temperature").hide();
-            } else{
+            } else {
                 filterRanks = 4;
                 $("#stat_num_id").html("4级状态");
             }
@@ -1531,7 +1546,7 @@
         }
 
         function startSuccess() {
-            if (typeof(rinseTimeout) != "undefined") {
+            if (typeof (rinseTimeout) != "undefined") {
                 clearTimeout(rinseTimeOut)
             }
 
@@ -1571,7 +1586,7 @@
         }
 
         function rinseCompleted(displayArg) {
-            if (typeof(rinsingTimeout) != "undefined") {
+            if (typeof (rinsingTimeout) != "undefined") {
                 clearTimeout(rinsingTimeout)
             }
             if (dianIntervalId != null) {

@@ -55,12 +55,12 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-        logger.info("########receive mqtt message#########");
+//        logger.info("########receive mqtt message#########");
         try {
             byte[] recMsg = mqttMessage.getPayload();
             if (recMsg == null || recMsg.length == 0 || recMsg.length < FAULT_PACKAGE_LENGTH) {
-                logger.error("package length error!!! " +
-                        "received package length is " + recMsg.length);
+//                logger.error("package length error!!! " +
+//                        "received package length is " + recMsg.length);
                 return;
             }
             byte[] realMsg = releasePackage(recMsg);
@@ -71,8 +71,8 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
             } else if (realMsg.length == FILTER_STATE_PACKAGE_LENGTH) {
                 processFilterPackage(realMsg);
             } else {
-                logger.error("package length error!!! " +
-                        "received package length is " + recMsg.length);
+//                logger.error("package length error!!! " +
+//                        "received package length is " + recMsg.length);
             }
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -112,7 +112,7 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
         }
 
         if (recDeviceId.isEmpty()) {
-            logger.info("###receive device use data, but invalid device id####");
+//            logger.info("###receive device use data, but invalid device id####");
             return;
         }
         replyDeviceTimeStamp(recDeviceId);
@@ -132,13 +132,13 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
         }
         logger.info("device id: " + recDeviceId);
         if (recDeviceId.isEmpty()) {
-            logger.info("###receive filter notify, but invalid device id####");
+//            logger.info("###receive filter notify, but invalid device id####");
             return;
         }
 
         deviceInfo = weixinService.getDeviceInfo(recDeviceId);
         String model = deviceInfo.getModel();
-        logger.info("device model: " + model);
+//        logger.info("device model: " + model);
 
         WaterModel waterModel = new WaterModel();
         waterModel.setModel(model);
@@ -192,10 +192,10 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
             logger.info(e.getMessage());
         }
         if (recDeviceId.isEmpty()) {
-            logger.info("###receive device fault notify, but invalid device id####");
+//            logger.info("###receive device fault notify, but invalid device id####");
             return;
         }
-        logger.info("device id: " + recDeviceId);
+//        logger.info("device id: " + recDeviceId);
         String deviceFault = "";
         switch (data[index + 1]) {
             case 0x01:
@@ -245,7 +245,7 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
     }
 
     private DeviceDataStat setDeviceDataStat(byte[] recMsg, String deviceId) {
-        logger.info("setDeviceDataStat");
+//        logger.info("setDeviceDataStat");
         if (deviceId.isEmpty()) {
             return null;
         }
@@ -259,7 +259,7 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
             mDeviceDataStat.setYsSize(MqttService.getDecValue(recMsg[index + 14], recMsg[index + 15], recMsg[index + 16]));
             mDeviceDataStat.setZsTime(((recMsg[index + 17] & 0xff) == 0x11) ? 0 : 1);
             mDeviceDataStat.setDeviceId(deviceId);
-            logger.info("data stat info:" + mDeviceDataStat.toString());
+//            logger.info("data stat info:" + mDeviceDataStat.toString());
 
             if (mDeviceDataStat.getZsTime() == 0) {
                 //TO DO
@@ -284,7 +284,7 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
 
     @Override
     public void replyDeviceTimeStamp(String deviceId) {
-        logger.info("###replyDeviceTimeStamp###");
+//        logger.info("###replyDeviceTimeStamp###");
         if (deviceId.isEmpty()) {
             return;
         }
