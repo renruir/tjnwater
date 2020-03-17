@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public interface MqttServiceInterface {
 
-    public void replyDeviceTimeStamp(String deviceId);
+//    public void replyDeviceTimeStamp(String deviceId);
 
     public void packageModelMsg(int flag, String openID, Map<String, BaseTemplateStruct> data);
 }

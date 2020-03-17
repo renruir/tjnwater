@@ -68,13 +68,12 @@ public class MqttService {
             connOpts.setSocketFactory(ctx.getSocketFactory());
 
             mqttClient.connect(connOpts);
-            mqttClient.subscribe(topic_jsq, new WaterPurifierMqttListener(weixinService));
+            mqttClient.subscribe(topic_jsq, WaterPurifierMqttListener.getInstance(weixinService));
 //            mqttClient.subscribe(topic_jhq, new AirPurifierMqttListener(weixinService));
             logger.info("mqtt start success");
 
             return true;
         } catch (Exception e) {
-            logger.error(e.getMessage());
             return false;
         }
     }
@@ -190,8 +189,8 @@ public class MqttService {
 
     //test
     public static void main(String[] args) {
-//        MqttService mqttService = new MqttService();
-//        mqttService.start();
+        MqttService mqttService = new MqttService();
+        mqttService.start();
 //        mqttService.replyDeviceTimeStamp("00e04c87000055f_1");
     }
 }

@@ -49,18 +49,24 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
 
     private WeixinService weixinService;
 
-    public WaterPurifierMqttListener(WeixinService service) {
+    private static WaterPurifierMqttListener waterPurifierMqttListener;
+
+    public static WaterPurifierMqttListener getInstance(WeixinService service) {
+        if(waterPurifierMqttListener == null){
+            waterPurifierMqttListener = new WaterPurifierMqttListener(service);
+        }
+        return waterPurifierMqttListener;
+    }
+
+    private WaterPurifierMqttListener(WeixinService service) {
         weixinService = service;
     }
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-//        logger.info("########receive mqtt message#########");
         try {
             byte[] recMsg = mqttMessage.getPayload();
             if (recMsg == null || recMsg.length == 0 || recMsg.length < FAULT_PACKAGE_LENGTH) {
-//                logger.error("package length error!!! " +
-//                        "received package length is " + recMsg.length);
                 return;
             }
             byte[] realMsg = releasePackage(recMsg);
@@ -71,8 +77,6 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
             } else if (realMsg.length == FILTER_STATE_PACKAGE_LENGTH) {
                 processFilterPackage(realMsg);
             } else {
-//                logger.error("package length error!!! " +
-//                        "received package length is " + recMsg.length);
             }
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -112,10 +116,9 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
         }
 
         if (recDeviceId.isEmpty()) {
-//            logger.info("###receive device use data, but invalid device id####");
             return;
         }
-        replyDeviceTimeStamp(recDeviceId);
+//        replyDeviceTimeStamp(recDeviceId);
         setDeviceDataStat(data, recDeviceId);
     }
 
@@ -132,13 +135,11 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
         }
         logger.info("device id: " + recDeviceId);
         if (recDeviceId.isEmpty()) {
-//            logger.info("###receive filter notify, but invalid device id####");
             return;
         }
 
         deviceInfo = weixinService.getDeviceInfo(recDeviceId);
         String model = deviceInfo.getModel();
-//        logger.info("device model: " + model);
 
         WaterModel waterModel = new WaterModel();
         waterModel.setModel(model);
@@ -159,7 +160,6 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
                     List<String> openIDArray = weixinService.getBindUserOpenId(recDeviceId);
                     String installTime = weixinService.getRegisterTime(recDeviceId);
                     String used = (100 - waterModel.getFilterSurplus()[i]) + "%";
-//                    String used = waterModel.getFilterSurplus()[i] + "%";
                     String replaceModel = waterModel.getFilterName()[i];
 
                     Map<String, BaseTemplateStruct> map = new HashMap<String, BaseTemplateStruct>();
@@ -192,10 +192,8 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
             logger.info(e.getMessage());
         }
         if (recDeviceId.isEmpty()) {
-//            logger.info("###receive device fault notify, but invalid device id####");
             return;
         }
-//        logger.info("device id: " + recDeviceId);
         String deviceFault = "";
         switch (data[index + 1]) {
             case 0x01:
@@ -245,7 +243,6 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
     }
 
     private DeviceDataStat setDeviceDataStat(byte[] recMsg, String deviceId) {
-//        logger.info("setDeviceDataStat");
         if (deviceId.isEmpty()) {
             return null;
         }
@@ -259,7 +256,6 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
             mDeviceDataStat.setYsSize(MqttService.getDecValue(recMsg[index + 14], recMsg[index + 15], recMsg[index + 16]));
             mDeviceDataStat.setZsTime(((recMsg[index + 17] & 0xff) == 0x11) ? 0 : 1);
             mDeviceDataStat.setDeviceId(deviceId);
-//            logger.info("data stat info:" + mDeviceDataStat.toString());
 
             if (mDeviceDataStat.getZsTime() == 0) {
                 //TO DO
@@ -282,37 +278,37 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
         return null;
     }
 
-    @Override
-    public void replyDeviceTimeStamp(String deviceId) {
+//    @Override
+//    public void replyDeviceTimeStamp(String deviceId) {
 //        logger.info("###replyDeviceTimeStamp###");
-        if (deviceId.isEmpty()) {
-            return;
-        }
-
-        byte[] data = new byte[17];
-
-        byte[] head = new byte[]{(byte) 0x7A, (byte) 0x7A, (byte) 0x24, (byte) 0xe6, (byte) 0x11, (byte) 0x00, (byte) 0x00, (byte) 0xbf, (byte) 0xf0};
-
-        String topic = "nodes/" + deviceId + "/timestamp";
-
-        byte[] timeStamp = MqttService.hexStringToBytes(Long.toHexString(System.currentTimeMillis() / 1000));
-
-        System.arraycopy(head, 0, data, 0, head.length);
-        System.arraycopy(timeStamp, 0, data, head.length, timeStamp.length);
-
-        data[data.length - 2] = (byte) 0xf1;
-        data[data.length - 1] = (byte) 0xf2;
-
-        try {
-            MqttMessage msg = new MqttMessage(data);
-            if (mqttClient == null) {
-                initMqttClient();
-            }
-            mqttClient.publish(topic, msg);
-        } catch (MqttException e) {
-            logger.info(e.getMessage());
-        }
-    }
+//        if (deviceId.isEmpty()) {
+//            return;
+//        }
+//
+//        byte[] data = new byte[17];
+//
+//        byte[] head = new byte[]{(byte) 0x7A, (byte) 0x7A, (byte) 0x24, (byte) 0xe6, (byte) 0x11, (byte) 0x00, (byte) 0x00, (byte) 0xbf, (byte) 0xf0};
+//
+//        String topic = "nodes/" + deviceId + "/timestamp";
+//
+//        byte[] timeStamp = MqttService.hexStringToBytes(Long.toHexString(System.currentTimeMillis() / 1000));
+//
+//        System.arraycopy(head, 0, data, 0, head.length);
+//        System.arraycopy(timeStamp, 0, data, head.length, timeStamp.length);
+//
+//        data[data.length - 2] = (byte) 0xf1;
+//        data[data.length - 1] = (byte) 0xf2;
+//
+//        try {
+//            MqttMessage msg = new MqttMessage(data);
+//            if (mqttClient == null) {
+//                initMqttClient();
+//            }
+//            mqttClient.publish(topic, msg);
+//        } catch (MqttException e) {
+//
+//        }
+//    }
 
     @Override
     public void packageModelMsg(int flag, String openID, Map<String, BaseTemplateStruct> data) {
@@ -323,7 +319,7 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
             modelMsg.setTemplate_id(ServiceConstant.FAULT_NOTICE_MODEL_ID);
         }
         modelMsg.setTouser(openID);
-        modelMsg.setUrl("http://weixin.tejien.com/web/wechat/index.html");
+        modelMsg.setUrl("http://weixin.tjnwater.com/web/wechat/index.html");
         modelMsg.setTopcolor("#FF0000");
         modelMsg.setData(data);
         weixinService.sendTemplateMsg(JSON.toJSONString(modelMsg));

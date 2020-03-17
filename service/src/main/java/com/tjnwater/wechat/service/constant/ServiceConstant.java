@@ -8,7 +8,7 @@ public interface ServiceConstant {
 
 	String BIND_STATU = "0";
 
-	String WX_DOMAIN = "http://weixin.tejien.com/";
+	String WX_DOMAIN = "http://weixin.tjnwater.com/";
 //	String WX_DOMAIN = "http://39.104.94.25/";
 
 	String appId = "wx013a0b0fac979a5e";

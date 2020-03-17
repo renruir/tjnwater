@@ -185,12 +185,12 @@ public class WechatWebController {
             UrlMenu menu3002 = new UrlMenu();
             menu3002.setName("订单查询");
             menu3002.setType("view");
-            menu3002.setUrl("http://weixin.tejien.com/web/order/search_by_order.html?v=1.5");
+            menu3002.setUrl("http://weixin.tjnwater.com/web/order/search_by_order.html?v=1.5");
 
             UrlMenu menu3003 = new UrlMenu();
             menu3003.setName("安装维修");
             menu3003.setType("view");
-            menu3003.setUrl("http://weixin.tejien.com/web/order/install_repair.html?v=1.5");
+            menu3003.setUrl("http://weixin.tjnwater.com/web/order/install_repair.html?v=1.5");
 
             UrlMenu menu3004 = new UrlMenu();
             menu3004.setName("常见问题");
@@ -215,7 +215,7 @@ public class WechatWebController {
             UrlMenu menu3005 = new UrlMenu();
             menu3005.setName("我的设备");
             menu3005.setType("view");
-            menu3005.setUrl("http://weixin.tejien.com/web/wechat/index.html");
+            menu3005.setUrl("http://weixin.tjnwater.com/web/wechat/index.html");
 
             List<Object> list30 = new ArrayList<Object>();
             list30.add(menu3001);
@@ -255,7 +255,7 @@ public class WechatWebController {
             String appId = wxAppInfo.getAppId();
             String appSecret = wxAppInfo.getAppSecret();
             String cookieUid = CookieUtil.getCookie(appId + "_uid", request);
-            logger.info("cookieUid: " + cookieUid);
+            logger.info("cookieUid = " + cookieUid);
             if (cookieUid != null && !"".equals(cookieUid)) {
                 CookieUtil.setCookie(appId + "_uid", cookieUid, response);
             } else if (code != null && !"".equals(code)) {
@@ -378,7 +378,7 @@ public class WechatWebController {
                 String homeMenuUrl = WeixinConstant.OAUTH_URL;
                 homeMenuUrl = homeMenuUrl.replace("${appid}", appId);
                 homeMenuUrl = homeMenuUrl.replace("${redirect_uri}", homeUrl);
-                logger.info("redirect url: " + homeMenuUrl);
+//                logger.info("redirect url: " + homeMenuUrl);
                 return "redirect:" + homeMenuUrl;
             }
 
@@ -406,7 +406,7 @@ public class WechatWebController {
                         }
                     }
 
-                    String url = "http://weixin.tejien.com/web/wechat/my_devices.html?deviceId=" + deviceId + "&type=" + deviceType;
+                    String url = "http://weixin.tjnwater.com/web/wechat/my_devices.html?deviceId=" + deviceId + "&type=" + deviceType;
                     String signature = getSignature(url, wxTicket.getJsApiTicket());
                     model.addAttribute("wxBindInfo", wxBindInfo);
                     Map<String, String> serverInfo = new HashMap<String, String>();
@@ -491,16 +491,15 @@ public class WechatWebController {
     @ResponseBody
     public List<GeneralDeviceInfo> getGeneralBindInfo(HttpServletRequest request, @RequestParam("appId") String appId, Model model) throws Exception {
         try {
-            logger.info("========appid: " + appId);
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
+//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
 
             List<GeneralDeviceInfo> generalDeviceInfos;
             GeneralDeviceInfo info = new GeneralDeviceInfo();
             info.setOpen_id(openId);
             info.setApp_id(appId);
             generalDeviceInfos = weixinService.getGeneralBindInfo(info);
-            logger.info("general info: " + generalDeviceInfos);
+//            logger.info("general info: " + generalDeviceInfos);
             return generalDeviceInfos;
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -515,7 +514,7 @@ public class WechatWebController {
 
         try {
             String openId = CookieUtil.getCookie(appId + "_uid", request);
-            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
+//            openId = "ovAFut6Jkhz9z2a6Egmh7CVSzorM"; // for test
             logger.info("get bind info, openID=" + openId);
             List<WxBindInfo> bindInfos;
             WxBindInfo wxBindInfo = new WxBindInfo();
@@ -824,7 +823,7 @@ public class WechatWebController {
                 serverInfo.put("appId", appId);
                 model.addAttribute("serverInfo", serverInfo);
             } else {
-                return "redirect:http://weixin.tejien.com/web/error.html";
+                return "redirect:http://weixin.tjnwater.com/web/error.html";
             }
 
         } catch (Exception e) {
@@ -891,7 +890,7 @@ public class WechatWebController {
                 attributes.addAttribute("headimg", wxUserInfo.getHeadimgurl());
                 return "redirect:" + redirctUrl;
             } else {
-                String redUrl = "http://weixin.tejien.com/web/wechat/getWxPageAuthInfo.html?backurl=" + redirctUrl;
+                String redUrl = "http://weixin.tjnwater.com/web/wechat/getWxPageAuthInfo.html?backurl=" + redirctUrl;
                 String tempUrl = URLEncoder.encode(redUrl, "utf-8");
                 String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appId + "&redirect_uri=" + tempUrl + "&response_type=code&scope=snsapi_userinfo&state=" + redirctUrl + "#wechat_redirect";
 
