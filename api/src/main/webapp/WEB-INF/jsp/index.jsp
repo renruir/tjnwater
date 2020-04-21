@@ -288,9 +288,9 @@
             }
         });
     }
-    
+
     function refreshDeviceData() {
-        
+
     }
 
     function refreshData(dType) {
@@ -517,16 +517,16 @@
         if (order == -1) {
             return;
         }
-        // if (update) {
-        //     url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type + "&update=0" +
-        //         "&version=" + updateInfos[order].version + "&size=" + updateInfos[order].pkgSize + "&url=" + updateInfos[order].downloadUrl + "&md5=" + updateInfos[order].md5;
-        // } else {
-        if (type != "9") {
-            url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type;
+        if (update) {
+            url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type + "&update=0" +
+                "&version=" + updateInfos[order].version + "&size=" + updateInfos[order].pkgSize + "&url=" + updateInfos[order].downloadUrl + "&md5=" + updateInfos[order].md5;
         } else {
-            url = "/web/wechat/pre_filter.html?generalId=" + generalBindInfos[order].general_id;
+            if (type != "9") {
+                url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type;
+            } else {
+                url = "/web/wechat/pre_filter.html?generalId=" + generalBindInfos[order].general_id;
+            }
         }
-        // }
         window.location.href = url;
     }
 
@@ -670,7 +670,7 @@
     }
 
     function changeModelName(order, type, modelValue) {
-          console.log("modelvalue == "+modelValue)
+        console.log("modelvalue == " + modelValue)
         if (type == "1") {
             var deviceID = wxbindInfos[order].deviceId;
             $.ajax({
@@ -708,7 +708,7 @@
         console.log("i = " + i);
         console.log("device id = " + deviceInfos[0].deviceId);
         console.log("new version = " + updateInfos[i].version);
-        console.log("new pkgSize = " + updateInfos[i].pkgSize);
+        console.log("new pkgSize = " + updateInfos[i].downloadUrl);
         console.log("new md5 = " + updateInfos[i].md5);
         $("#update-dialog").fadeOut(200);
 

@@ -46,14 +46,12 @@ public class WechatWebController {
 
     private static final String JHQ_DEVICE_TYPE = "2";
 
-//    private static final String MQTT_HOST = "conn.doubimeizhi.com";
-//
-//    private static final String MQTT_PORT = "12901";
-
     //private static final String MQTT_HOST = "tjnwater.mqtt.iot.bj.baidubce.com";
-    private static final String MQTT_HOST = "tjnwater.mqtt.iot.gz.baidubce.com";
+//    private static final String MQTT_HOST = "tjnwater.mqtt.iot.gz.baidubce.com";
+    private static final String MQTT_HOST = "weixin.tjnwater.com";
 
-    private static final String MQTT_PORT = "8884";
+    private static final String MQTT_PORT = "61623";
+//    private static final String MQTT_PORT = "8884";
 
     private static final Integer OneDay_seconds = 24 * 3600 * 1000;
 
@@ -96,21 +94,6 @@ public class WechatWebController {
             menu1004.setType("view");
             menu1004.setUrl("http://mp.weixin.qq.com/mp/homepage?__biz=MzA3NzQzOTkzMg==&hid=8&sn=d932840e7f93dff78c38e0ca388f8383#wechat_redirect");
 
-           /* UrlMenu menu1002 = new UrlMenu();
-            menu1002.setName("水质地图");
-            menu1002.setType("view");
-            menu1002.setUrl("http://mp.weixin.qq.com/mp/homepage?__biz=MzA3NzQzOTkzMg==&hid=9&sn=bceaa5d5b84ec797a878ebbb849e59fa#wechat_redirect");*/
-
-
-            /*UrlMenu menu1003 = new UrlMenu();
-            menu1003.setName("净水贴士");
-            menu1003.setType("view");
-            menu1003.setUrl("http://mp.weixin.qq.com/mp/homepage?__biz=MzA3NzQzOTkzMg==&hid=8&sn=d932840e7f93dff78c38e0ca388f8383#wechat_redirect");*/
-
-            /*UrlMenu menu1004 = new UrlMenu();
-            menu1004.setName("签到抽奖");
-            menu1004.setType("view");
-            menu1004.setUrl("https://h5.youzan.com/v2/showcase/mpnews?alias=25jhkqop");*/
 
             List<Object> list10 = new ArrayList<Object>();
             list10.add(menu1000);
@@ -118,29 +101,15 @@ public class WechatWebController {
             list10.add(menu1002);
             list10.add(menu1003);
             list10.add(menu1004);
-            /*list10.add(menu1002);
-            list10.add(menu1003);
-            list10.add(menu1004);*/
 
             SubButton subButton10 = new SubButton();
-            //subButton10.setName("结缘特洁恩");
             subButton10.setName("懂得");
             subButton10.setSub_button(list10);
-
-            /*UrlMenu menu2001 = new UrlMenu();
-            menu2001.setName("京东商城旗舰店");
-            menu2001.setType("view");
-            menu2001.setUrl("http://wq.jd.com/mshop/gethomepage?ptag=7001.1.21&venderId=129853&source=1&sid=&loginFlag=1");*/
 
             UrlMenu menu2001 = new UrlMenu();
             menu2001.setName("微信小店");
             menu2001.setType("view");
             menu2001.setUrl("http://mp.weixin.qq.com/bizmall/mallshelf?id=&t=mall/list&biz=MzA3NzQzOTkzMg==&shelf_id=2&showwxpaytitle=1#wechat_redirect");
-
-            /*UrlMenu menu2002 = new UrlMenu();
-            menu2002.setName("有赞商城");
-            menu2002.setType("view");
-            menu2002.setUrl("https://h5.youzan.com/v2/showcase/homepage?alias=ogv8ipgh");*/
 
             UrlMenu menu2002 = new UrlMenu();
             menu2002.setName("线上活动");
@@ -156,7 +125,6 @@ public class WechatWebController {
             menu2004.setName("互动有礼");
             menu2004.setType("view");
             menu2004.setUrl("http://wxcrm.me/wxcrm-mobile/wx013a0b0fac979a5e/index.html#/member/point-get");
-            //menu2004.setUrl("https://h5.youzan.com/v2/showcase/mpnews?alias=25jhkqop");
 
             UrlMenu menu2005 = new UrlMenu();
             menu2005.setName("更多期待");
@@ -171,16 +139,13 @@ public class WechatWebController {
             list20.add(menu2005);
 
             SubButton subButton20 = new SubButton();
-            //subButton20.setName("官方商城");
             subButton20.setName("实惠");
             subButton20.setSub_button(list20);
 
             UrlMenu menu3001 = new UrlMenu();
-            //menu3001.setName("会员中心");
             menu3001.setName("会员绑定");
             menu3001.setType("view");
             menu3001.setUrl("http://wxcrm.me/wxcrm-mobile/wx013a0b0fac979a5e/index.html#/member/center");
-            //menu3001.setUrl("http://vipportal.ecp100.com/61459fc0-af81-11e5-b6b1-00163e02034c/login?returnurl=http%253a%252f%252fvipportal.ecp100.com%252f61459fc0-af81-11e5-b6b1-00163e02034c%252fhome");
 
             UrlMenu menu3002 = new UrlMenu();
             menu3002.setName("订单查询");
@@ -197,21 +162,6 @@ public class WechatWebController {
             menu3004.setType("view");
             menu3004.setUrl("http://mp.weixin.qq.com/mp/homepage?__biz=MzA3NzQzOTkzMg==&hid=10&sn=e75356a2dd7e1bf81c461101a83fe8bc#wechat_redirect");
 
-            /*UrlMenu menu3002 = new UrlMenu();
-            menu3002.setName("VIP优惠");
-            menu3002.setType("view");
-            menu3002.setUrl("https://shop2479063.koudaitong.com/v2/showcase/mpnews?alias=y1y5c9td&sf=wx_sm");
-
-            UrlMenu menu3003 = new UrlMenu();
-            menu3003.setName("预约售后");
-            menu3003.setType("view");
-            menu3003.setUrl("http://weixin.tejien.com/web/wechat/customer_service.html");
-
-            UrlMenu menu3004 = new UrlMenu();
-            menu3004.setName("联网绑定");
-            menu3004.setType("view");
-            menu3004.setUrl("http://weixin.tejien.com/web/wechat/net_setting.html");*/
-
             UrlMenu menu3005 = new UrlMenu();
             menu3005.setName("我的设备");
             menu3005.setType("view");
@@ -225,7 +175,6 @@ public class WechatWebController {
             list30.add(menu3005);
 
             SubButton subButton30 = new SubButton();
-            //subButton30.setName("自助服务");
             subButton30.setName("呼叫");
             subButton30.setSub_button(list30);
 

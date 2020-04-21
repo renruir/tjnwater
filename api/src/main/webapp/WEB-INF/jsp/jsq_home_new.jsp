@@ -1103,9 +1103,11 @@
         client.onMessageArrived = onMessageArrived;
 //        client.connect({onSuccess: onConnect});
         client.connect({
-            userName: "tjnwater/tjnwater",
-            password: "lSbk77hCaG16+C4VJHskMMJqFTsGut5aCF4nBqNz5GI=",
-            useSSL: true,
+            // userName: "tjnwater/tjnwater",
+            // password: "lSbk77hCaG16+C4VJHskMMJqFTsGut5aCF4nBqNz5GI=",
+            userName: "admin",
+            password: "tjnwater123",
+            // useSSL: true,
             onSuccess: onConnect,
         });
     }
