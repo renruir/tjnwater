@@ -9,6 +9,7 @@ public class DeviceVersionUpdate {
 	private String model;
 	private String version;
 	private String pkgSize;
+	private String crc32;
 	private String md5;
 	private String downloadUrl;
 
@@ -50,6 +51,14 @@ public class DeviceVersionUpdate {
 
 	public void setPkgSize(String pkgSize) {
 		this.pkgSize = pkgSize;
+	}
+
+	public String getCrc32() {
+		return crc32;
+	}
+
+	public void setCrc32(String crc32) {
+		this.crc32 = crc32;
 	}
 
 	public String getMd5() {

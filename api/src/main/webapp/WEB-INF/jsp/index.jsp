@@ -519,7 +519,7 @@
         }
         if (update) {
             url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type + "&update=0" +
-                "&version=" + updateInfos[order].version + "&size=" + updateInfos[order].pkgSize + "&url=" + updateInfos[order].downloadUrl + "&md5=" + updateInfos[order].md5;
+                "&version=" + updateInfos[order].version + "&size=" + updateInfos[order].pkgSize + "&url=" + updateInfos[order].downloadUrl + "&md5=" + updateInfos[order].md5 +"&crc32="+updateInfos[order].crc32;
         } else {
             if (type != "9") {
                 url = "/web/wechat/my_devices.html?deviceId=" + wxbindInfos[order].deviceId + "&type=" + type;
@@ -714,7 +714,7 @@
 
 //        wifiModelUpdate(updateInfos[i].version, updateInfos[i].pkgSize, updateInfos[i].downloadUrl, updateInfos[i].md5, deviceInfos[i].deviceId);
 //        weui.alert("正在升级，请勿推出或者刷新！");
-        location_device_detail(deviceInfos[0].deviceType, i, "update", updateInfos[i].version, updateInfos[i].pkgSize, updateInfos[i].downloadUrl, updateInfos[i].md5);
+        location_device_detail(deviceInfos[0].deviceType, i, "update", updateInfos[i].version, updateInfos[i].pkgSize, updateInfos[i].downloadUrl, updateInfos[i].md5, updateInfos[i].crc32);
     }
 
 </script>

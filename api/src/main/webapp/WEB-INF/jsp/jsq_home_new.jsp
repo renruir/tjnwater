@@ -841,6 +841,7 @@
     var updateVersionInfo = {
         "version": "${updateDeviceInfo.version}",
         "pkgSize": "${updateDeviceInfo.pkgSize}",
+        "crc32": "${updateDeviceInfo.crc32}",
         "md5": "${updateDeviceInfo.md5}",
         "downloadUrl": "${updateDeviceInfo.downloadUrl}"
     };
@@ -1119,12 +1120,18 @@
         client.subscribe("nodes/" + deviceId + "/alive");
         //查询设备当前状态
         queryDeviceStates(TYPE_WATER_PURIFIER, deviceId);
+
         if (updateVersionInfo.version != null && updateVersionInfo.version != "") {
+            console.log("updateVersionInfo:", updateVersionInfo.pkgSize)
+            console.log("updateVersionInfo downloadUrl:", updateVersionInfo.downloadUrl)
             //$("#loadingToast").show();
             var title = "";
             var content = "固件升级中…";
             $.MsgBox.InformWait(title, content);
-            update();
+            setTimeout(function(){
+                update();
+            }, 3000)
+
         }
     }
 
@@ -1136,18 +1143,18 @@
         }
     }
 
-    function connectSuccess() {
-        client.subscribe("nodes/" + deviceId + "/status");
-        client.subscribe("nodes/" + deviceId + "/alive");
-        queryDeviceStates(TYPE_WATER_PURIFIER, deviceId);
-        if (updateVersionInfo.version != null && updateVersionInfo.version != "") {
-            //$("#loadingToast").show();
-            var title = "";
-            var content = "固件升级中…";
-            $.MsgBox.InformWait(title, content);
-            update();
-        }
-    }
+    // function connectSuccess() {
+    //     client.subscribe("nodes/" + deviceId + "/status");
+    //     client.subscribe("nodes/" + deviceId + "/alive");
+    //     queryDeviceStates(TYPE_WATER_PURIFIER, deviceId);
+    //     if (updateVersionInfo.version != null && updateVersionInfo.version != "") {
+    //         //$("#loadingToast").show();
+    //         var title = "";
+    //         var content = "固件升级中…";
+    //         $.MsgBox.InformWait(title, content);
+    //         update();
+    //     }
+    // }
 
     function mqttConnectLost() {
         weui.alert("与净水器已经断开连接，请检查重试！");
@@ -1166,9 +1173,9 @@
             }
 
             if ((arr.length == 2) && (arr[0] == 111) && (arr[1] == 110)) {//on消息表示wifi模块上线
-                setTimeout(function () {
-                    queryDeviceStates(TYPE_WATER_PURIFIER, deviceId);
-                }, 3000)
+                // setTimeout(function () {
+                //     queryDeviceStates(TYPE_WATER_PURIFIER, deviceId);
+                // }, 1000)
             }
 
             if ((arr[0] == 122) && (arr[1] == 122)) {//0x7A,0x7A
@@ -1780,7 +1787,7 @@
 
 
     function update() {
-        wifiModelUpdate(updateVersionInfo.version, updateVersionInfo.pkgSize, updateVersionInfo.downloadUrl, updateVersionInfo.md5, deviceId);
+        wifiModelUpdate(updateVersionInfo.version, updateVersionInfo.pkgSize, updateVersionInfo.downloadUrl, updateVersionInfo.md5, updateVersionInfo.crc32, deviceId);
     }
 
 

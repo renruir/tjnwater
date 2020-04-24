@@ -296,6 +296,7 @@ public class WechatWebController {
                 updateDeviceInfo.setDeviceType(deviceType);
                 updateDeviceInfo.setDownloadUrl(request.getParameter("url"));
                 updateDeviceInfo.setPkgSize(request.getParameter("size"));
+                updateDeviceInfo.setCrc32(request.getParameter("crc32"));
                 updateDeviceInfo.setMd5(request.getParameter("md5"));
 
             }

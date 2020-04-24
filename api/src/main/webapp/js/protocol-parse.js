@@ -131,9 +131,9 @@ function bytes2StrForPrint(arr) {
         for (var i = 0; i < arr.length; i++) {
             var tmp = arr[i].toString(16);
             if (tmp.length == 1) {
-                tmp = "0" + tmp + " ";
+                tmp = "0" + tmp;
             }
-            str = str + tmp + " ";
+            str = str + tmp;
         }
         return str;
     } catch (e) {
@@ -430,7 +430,8 @@ function str2Bytes(str) {
  * arguments[1]: update package size
  * arguments[2]: update package download url
  * arguments[3]: update package checksum
- * arguments[4]: device id
+ * arguments[5]: crc32
+ * arguments[5]: device id
  */
 
 function wifiModelUpdate() {
@@ -455,8 +456,9 @@ function wifiModelUpdate() {
         packageSize = str2Bytes(size);
 
         //calculate checkCode for package
+        console.log("crc32:", arguments[4])
         var checkCode = new Array();
-        checkCode = str2Bytes(arguments[3]);
+        checkCode = str2Bytes(arguments[4]);
         data[2] = parseInt(packageSize[0], 16);
         data[3] = parseInt(packageSize[1], 16);
         data[4] = parseInt(packageSize[2], 16);

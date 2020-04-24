@@ -278,7 +278,7 @@
 		<![CDATA[
 
 
-		select app_id appId,device_type deviceType,model model,version,pkg_size pkgSize,md5,download_url downloadUrl from device_version_update where model=#{model} and device_type=#{deviceType} limit 1
+		select app_id appId,device_type deviceType,model model,version,pkg_size pkgSize,crc32, md5,download_url downloadUrl from device_version_update where model=#{model} and device_type=#{deviceType} limit 1
 
 
         ]]>
