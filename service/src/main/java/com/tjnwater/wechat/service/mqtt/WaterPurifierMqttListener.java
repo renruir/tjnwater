@@ -323,7 +323,7 @@ public class WaterPurifierMqttListener implements IMqttMessageListener, MqttServ
             modelMsg.setTemplate_id(ServiceConstant.FAULT_NOTICE_MODEL_ID);
         }
         modelMsg.setTouser(openID);
-        modelMsg.setUrl("http://weixin.tejien.com/web/wechat/index.html");
+        modelMsg.setUrl("http://weixin.tjnwater.com/web/wechat/index.html");
         modelMsg.setTopcolor("#FF0000");
         modelMsg.setData(data);
         weixinService.sendTemplateMsg(JSON.toJSONString(modelMsg));

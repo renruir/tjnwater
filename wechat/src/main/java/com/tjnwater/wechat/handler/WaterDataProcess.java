@@ -18,7 +18,7 @@ public class WaterDataProcess extends BaseDataProcess{
 	public String processPost(String requestMsg,WeixinMsgExecute weixinMsgExecute) {
 		String respContent = "";
 		try{
-			logger.info("rec msg: "+ requestMsg);
+//			logger.info("rec msg: "+ requestMsg);
 			Map<String, String> requestMap = MessageUtil.parseXmlByString(requestMsg);
 			String fromUserName = requestMap.get("FromUserName");
 			String toUserName = requestMap.get("ToUserName");
