@@ -3,7 +3,7 @@ package com.tjnwater.wechat.engin;
 import com.alibaba.fastjson.JSONObject;
 import com.tjnwater.wechat.base.utils.MD5Encode;
 import com.tjnwater.wechat.http.utils.HttpClientUtil;
-import sun.misc.BASE64Decoder;
+import java.util.Base64;
 //import sun.misc.BASE64Decoder;
 
 import java.net.URLEncoder;
@@ -143,16 +143,16 @@ public class SCMUtil {
             String msg=returnStr.getString("Msg");
 //            System.out.println(msg);
 
-            BASE64Decoder decoder = new BASE64Decoder();
-            byte[] b = decoder.decodeBuffer(msg);
-            String result = new String(b, "utf-8");
-            System.out.println(result);
-//            final Base64.Decoder decoder = Base64.getDecoder();
-//            System.out.println(new String(decoder.decode(msg), "UTF-8"));
-
-//            byte[] asBytes = Base64.getDecoder().decode(msg);
-//            String result = new String(asBytes, "utf-8");
+//            BASE64Decoder decoder = new BASE64Decoder();
+//            byte[] b = decoder.decodeBuffer(msg);
+//            String result = new String(b, "utf-8");
 //            System.out.println(result);
+            final Base64.Decoder decoder = Base64.getDecoder();
+            System.out.println(new String(decoder.decode(msg), "UTF-8"));
+
+            byte[] asBytes = Base64.getDecoder().decode(msg);
+            String result = new String(asBytes, "utf-8");
+            System.out.println(result);
             return result;
         } catch (Exception e) {
             e.printStackTrace();
