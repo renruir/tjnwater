@@ -173,6 +173,11 @@ public class WeixinServiceImpl implements WeixinService {
     }
 
     @Override
+    public void updateDeviceModel(DeviceInfo deviceInfo) throws Exception {
+       weixinDao.updateDeviceModel(deviceInfo);
+    }
+
+    @Override
     public void updateDeviceName(WxBindInfo wxBindInfo) throws Exception {
         weixinDao.updateDeviceName(wxBindInfo);
     }
@@ -194,21 +199,21 @@ public class WeixinServiceImpl implements WeixinService {
         weixinDao.saveDeviceDataStat(deviceDataStat);
     }
 
-    public List<DeviceDataStat> getDailyDeviceDataStat(Map<String, Object> map) {
-        return weixinDao.getDailyDeviceDataStat(map);
-    }
-
-    public List<DeviceDataStat> getDeviceDataStat(java.sql.Date sqlDate) {
-        return weixinDao.getDeviceDataStat(sqlDate);
-    }
-
-    public List<DeviceDataStat> getMonthlyDeviceDataStat(Map<String, Object> map) {
-        return weixinDao.getMonthlyDeviceDataStat(map);
-    }
-
-    public List<DeviceDataStat> getYearlyDeviceDataStat(Map<String, Object> map) {
-        return weixinDao.getYearlyDeviceDataStat(map);
-    }
+//    public List<DeviceDataStat> getDailyDeviceDataStat(Map<String, Object> map) {
+//        return weixinDao.getDailyDeviceDataStat(map);
+//    }
+//
+//    public List<DeviceDataStat> getDeviceDataStat(java.sql.Date sqlDate) {
+//        return weixinDao.getDeviceDataStat(sqlDate);
+//    }
+//
+//    public List<DeviceDataStat> getMonthlyDeviceDataStat(Map<String, Object> map) {
+//        return weixinDao.getMonthlyDeviceDataStat(map);
+//    }
+//
+//    public List<DeviceDataStat> getYearlyDeviceDataStat(Map<String, Object> map) {
+//        return weixinDao.getYearlyDeviceDataStat(map);
+//    }
 
     public void delDeviceDataStat(Map<String, Object> map) {
         weixinDao.delDeviceDataStat(map);

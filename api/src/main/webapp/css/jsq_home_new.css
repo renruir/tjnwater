@@ -582,6 +582,14 @@
     height: 16px
 }
 
+.more-model-icon {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
 .show-more-info-icon {
     width: 16px;
     height: 16px;

@@ -143,6 +143,13 @@ public interface WeixinDao {
     public WxBindInfo getWxBindInfoByDevice(WxBindInfo wxBindInfo);
 
     /**
+     * 更新绑定设备的型号
+     * 2019-04-23 新需求，由于部门型号产品销售不好，为减少电控型号，统一使用一个型号，然后用户在绑定以后自行
+     * 修改型号名称
+     */
+    public void updateDeviceModel(DeviceInfo deviceInfo);
+
+    /**
      * 更新绑定设备的名称
      * @param wxBindInfo
      */

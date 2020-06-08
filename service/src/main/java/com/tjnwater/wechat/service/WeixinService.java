@@ -117,6 +117,13 @@ public interface WeixinService {
 	public WxBindInfo getWxBindInfoByDevice(WxBindInfo wxBindInfo) throws Exception;
 
 	/**
+	 * 更新绑定设备的型号
+	 * 2019-04-23 新需求，由于部门型号产品销售不好，为减少电控型号，统一使用一个型号，然后用户在绑定以后自行
+	 * 修改型号名称
+	 */
+	public void updateDeviceModel(DeviceInfo deviceInfo) throws Exception;
+
+	/**
 	 * 更新绑定设备的设备名称
 	 * @param wxBindInfo
 	 * @throws Exception
@@ -172,25 +179,25 @@ public interface WeixinService {
 	 * 获取设备净水数据统计(日)
 	 * @param map
 	 */
-	public List<DeviceDataStat> getDailyDeviceDataStat(Map<String, Object> map);
+//	public List<DeviceDataStat> getDailyDeviceDataStat(Map<String, Object> map);
 
 	/**
 	 * 获取所有净水数据统计
 	 * @param sqlDate
 	 */
-	public List<DeviceDataStat> getDeviceDataStat(java.sql.Date sqlDate);
+//	public List<DeviceDataStat> getDeviceDataStat(java.sql.Date sqlDate);
 
 	/**
 	 * 获取设备净水数据统计(月)
 	 * @param map
 	 */
-	public List<DeviceDataStat> getMonthlyDeviceDataStat(Map<String, Object> map);
+//	public List<DeviceDataStat> getMonthlyDeviceDataStat(Map<String, Object> map);
 
 	/**
 	 * 获取设备净水数据统计(年)
 	 * @param map
 	 */
-	public List<DeviceDataStat> getYearlyDeviceDataStat(Map<String, Object> map);
+//	public List<DeviceDataStat> getYearlyDeviceDataStat(Map<String, Object> map);
 
 	/**
 	 * 删除设备净水数据

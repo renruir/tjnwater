@@ -103,7 +103,7 @@ public class MqttService {
 //    @Scheduled(cron = "0 0 2 * * ? ")
     @Scheduled(cron = "0 0 0/8 * * ?")
     public void queryDevicesStatus() {
-        logger.info("===update devices status and time is " + simpleDateFormat.format(new Date()) + "=====");
+//        logger.info("===update devices status and time is " + simpleDateFormat.format(new Date()) + "=====");
         byte[] data = new byte[19];
 
         byte[] head = new byte[]{(byte) 0x7A, (byte) 0x7A, (byte) 0x24, (byte) 0xe6, (byte) 0x13, (byte) 0x00, (byte) 0x00, (byte) 0xc0, (byte) 0x01};
@@ -124,37 +124,37 @@ public class MqttService {
         }
     }
 
-    private void replyDeviceTimeStamp(String deviceId) {
-
-        logger.info("###replyDeviceTimeStamp###");
-        if (deviceId.isEmpty()) {
-            return;
-        }
-
-        byte[] data = new byte[17];
-
-        byte[] head = new byte[]{(byte) 0x7A, (byte) 0x7A, (byte) 0x24, (byte) 0xe6, (byte) 0x11, (byte) 0x00, (byte) 0x00, (byte) 0xbf, (byte) 0xf0};
-
-        String topic = "nodes/" + deviceId + "/timestamp";
-
-        byte[] timeStamp = hexStringToBytes(Long.toHexString(System.currentTimeMillis() / 1000));
-
-        System.arraycopy(head, 0, data, 0, head.length);
-        System.arraycopy(timeStamp, 0, data, head.length, timeStamp.length);
-
-        data[data.length - 2] = (byte) 0xf1;
-        data[data.length - 1] = (byte) 0xf2;
-
-        try {
-            MqttMessage msg = new MqttMessage(data);
-            if(mqttClient == null){
-                start();
-            }
-            mqttClient.publish(topic, msg);
-        } catch (MqttException e) {
-            logger.info(e.getMessage());
-        }
-    }
+//    private void replyDeviceTimeStamp(String deviceId) {
+//
+////        logger.info("###replyDeviceTimeStamp###");l
+//        if (deviceId.isEmpty()) {
+//            return;
+//        }
+//
+//        byte[] data = new byte[17];
+//
+//        byte[] head = new byte[]{(byte) 0x7A, (byte) 0x7A, (byte) 0x24, (byte) 0xe6, (byte) 0x11, (byte) 0x00, (byte) 0x00, (byte) 0xbf, (byte) 0xf0};
+//
+//        String topic = "nodes/" + deviceId + "/timestamp";
+//
+//        byte[] timeStamp = hexStringToBytes(Long.toHexString(System.currentTimeMillis() / 1000));
+//
+//        System.arraycopy(head, 0, data, 0, head.length);
+//        System.arraycopy(timeStamp, 0, data, head.length, timeStamp.length);
+//
+//        data[data.length - 2] = (byte) 0xf1;
+//        data[data.length - 1] = (byte) 0xf2;
+//
+//        try {
+//            MqttMessage msg = new MqttMessage(data);
+//            if(mqttClient == null){
+//                start();
+//            }
+//            mqttClient.publish(topic, msg);
+//        } catch (MqttException e) {
+//            logger.info(e.getMessage());
+//        }
+//    }
 
     public static byte[] hexStringToBytes(String hexString) {
         if (hexString == null || hexString.equals("")) {

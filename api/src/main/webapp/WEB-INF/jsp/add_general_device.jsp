@@ -165,21 +165,21 @@
         console.log("install date: " + installDate);
         if (installDate == "" || installDate == undefined) {
             weui.alert("请输入安装日期!")
-            return false;
+            return false
         }
 
-        if(!compareTime(installDate)){
-            weui.alert("请不要选择将来的日期!")
-            return false;
+        if(compareDate(installDate)){
+            weui.alert("安装日期不能选择将来的日期")
+            return false
         }
 
         return true;
     }
 
-    function compareTime(installDate) {
+    function compareDate(date) {
         var curTime = new Date();
-        installDate = new Date(Date.parse(installDate));
-        return (curTime >= installDate);
+        var installDate = new Date(Date.parse(date))
+        return (curTime < installDate);
     }
 
     function addGeneralDevice() {
