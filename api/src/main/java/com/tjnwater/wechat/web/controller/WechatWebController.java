@@ -51,9 +51,13 @@ public class WechatWebController {
 //    private static final String MQTT_PORT = "12901";
 
     //private static final String MQTT_HOST = "tjnwater.mqtt.iot.bj.baidubce.com";
-    private static final String MQTT_HOST = "tjnwater.mqtt.iot.gz.baidubce.com";
+//    private static final String MQTT_HOST = "tjnwater.mqtt.iot.gz.baidubce.com";
+//
+//    private static final String MQTT_PORT = "8884";
 
-    private static final String MQTT_PORT = "8884";
+    private static final String MQTT_HOST = "weixin.tejien.com";
+
+    private static final String MQTT_PORT = "61623";
 
     private static final Integer OneDay_seconds = 24 * 3600 * 1000;
 
@@ -403,6 +407,7 @@ public class WechatWebController {
                     if ("1".equals(wxBindInfo.getDeviceType())) {
                         if (deviceInfo != null) {
                             filterInfos = weixinService.getFilterInfo(deviceInfo.getModel());
+                            logger.info("filter: "+filterInfos.get(0).getFilter_name());
                         }
                     }
 

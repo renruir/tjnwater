@@ -1027,7 +1027,7 @@
 
     function viewInit() {
         //circleProgressInit();
-        console.log("model:" + model)
+        console.log("model:" + model + " ,deviceid: " + deviceId)
         filterRanks = 0;
         try {
             $("#device_model").html(model);
@@ -1103,9 +1103,9 @@
         client.onMessageArrived = onMessageArrived;
 //        client.connect({onSuccess: onConnect});
         client.connect({
-            userName: "tjnwater/tjnwater",
-            password: "lSbk77hCaG16+C4VJHskMMJqFTsGut5aCF4nBqNz5GI=",
-            useSSL: true,
+            userName: "admin",
+            password: "tjnwater123",
+            // useSSL: true,
             onSuccess: onConnect,
         });
     }
