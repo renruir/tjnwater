@@ -501,7 +501,6 @@ public class WechatWebController {
             info.setOpen_id(openId);
             info.setApp_id(appId);
             generalDeviceInfos = weixinService.getGeneralBindInfo(info);
-            logger.info("general info: " + generalDeviceInfos);
             return generalDeviceInfos;
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -657,9 +656,6 @@ public class WechatWebController {
             String appId = wxAppInfo.getAppId();
             String appSecret = wxAppInfo.getAppSecret();
             String cookieUid = CookieUtil.getCookie(appId + "_uid", request);
-//            logger.info("openid=" + cookieUid);
-//            cookieUid = "oPcODwQ-pBu1K6CLFZdAJhuMwiGo";
-
             WxBindInfo wxBindInfo = new WxBindInfo();
             wxBindInfo.setDeviceId(deviceId);
             wxBindInfo.setDeviceType(deviceType);

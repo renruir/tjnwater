@@ -117,7 +117,6 @@ public class WaterMsgExecuteImpl implements WeixinMsgExecute {
             String fromUserName = requestMap.get("FromUserName");
             String deviceIdStr = requestMap.get("DeviceID");
             String[] deviceArr = deviceIdStr.split("_");
-            logger.info("deviceArr : " + deviceArr);
             logger.info("####unbindMsg#### , deviceID:" + deviceIdStr + ", openId:" + fromUserName);
             if (deviceArr.length == 2) {
                 logger.info("=========updateWxBindStat========");

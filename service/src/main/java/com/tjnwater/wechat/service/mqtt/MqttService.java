@@ -52,20 +52,18 @@ public class MqttService {
             wxAccessToken = weixinService.getAccessToken(ServiceConstant.appId);
             int rdm = (int) (Math.random() * (9000)) + 1000;//产生1000-9999的随机数
             clientId = "mqtt_for_tjn_jsq_" + String.valueOf(rdm);
-
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance("X509");
-            tmf.init((KeyStore)null);
-            TrustManager[] trustManagers = tmf.getTrustManagers();
-
-            SSLContext ctx = SSLContext.getInstance("TLS");
-            ctx.init(null, trustManagers, null);
+//            TrustManagerFactory tmf = TrustManagerFactory.getInstance("X509");
+//            tmf.init((KeyStore)null);
+//            TrustManager[] trustManagers = tmf.getTrustManagers();
+//            SSLContext ctx = SSLContext.getInstance("TLS");
+//            ctx.init(null, trustManagers, null);
 
             mqttClient = new MqttClient(ServiceConstant.MQTT_HOST, clientId);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
             connOpts.setUserName(ServiceConstant.username);
             connOpts.setPassword(ServiceConstant.password.toCharArray());
-            connOpts.setSocketFactory(ctx.getSocketFactory());
+//            connOpts.setSocketFactory(ctx.getSocketFactory());
 
             mqttClient.connect(connOpts);
             mqttClient.subscribe(topic_jsq, new WaterPurifierMqttListener(weixinService));

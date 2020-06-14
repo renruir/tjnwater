@@ -266,7 +266,9 @@
                 wxbindInfos = data;
                 // console.log("genalL:" + wxbindInfos[0].deviceName);
                 getGeneralBindInfo(appId);
-                getDevciesInfo(JSON.stringify(data));
+                setTimeout(function () {
+                    getDevciesInfo(JSON.stringify(data));
+                }, 1000)
             },
             error: function () {
                 weui.alert('获取绑定信息失败，请重试!');

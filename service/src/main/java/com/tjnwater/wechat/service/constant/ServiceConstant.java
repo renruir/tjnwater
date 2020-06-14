@@ -15,13 +15,14 @@ public interface ServiceConstant {
 
 //	final String MQTT_HOST = "ws://conn.doubimeizhi.com:12901";
 	//String MQTT_HOST = "ssl://tjnwater.mqtt.iot.bj.baidubce.com:1884";
-	String MQTT_HOST = "ssl://tjnwater.mqtt.iot.gz.baidubce.com:1884";
+
+	String MQTT_HOST = "ws://weixin.tjnwater.com:61623";
 
 	//String username = "tjnwater/jindian";
-	String username = "tjnwater/tjnwater";
+	String username = "admin";
 
 	//String password = "ufO80F5sSyin4ArSurBcPJOeeCwK9eA2IR2pHOX3+nY=";
-	String password = "lSbk77hCaG16+C4VJHskMMJqFTsGut5aCF4nBqNz5GI=";
+	String password = "tjnwater123";
 
 	String QQ_MAP_KEY = "XIQBZ-H2OHF-EXIJR-NIRX5-62OQJ-WUFJI";
 
