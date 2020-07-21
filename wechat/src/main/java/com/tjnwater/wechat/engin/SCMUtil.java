@@ -137,7 +137,7 @@ public class SCMUtil {
         try {
             String urlString = URLEncoder.encode(SecretKey, "utf-8");
 
-            String stringStr = HttpClientUtil.httpPostRequest("http://112.124.55.181:30005/GateWay",urlString);
+            String stringStr = HttpClientUtil.httpPostRequest("http://bjjdfw.51ecp.com/gateway",urlString);
             JSONObject returnStr = (JSONObject) JSONObject.parse(stringStr);
             System.out.println(returnStr);
             String msg=returnStr.getString("Msg");
